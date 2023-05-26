@@ -21,6 +21,7 @@ namespace GeCli.Back.Domain.Entities
 
         public void Update(string name) => ValidateDomainName(name);
 
-        public ICollection<Customer> Customers { get; private set; }
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
     }
 }

@@ -40,6 +40,8 @@ namespace GeCli.Back.Domain.Entities
         public int ResponsibleId { get; set; }
         public Responsible Responsible { get; set; }
 
+        public MedicalRecord MedicalRecord { get; set; }
+
         private void ValidateDomainCustomer(string address, string cellphone, string birth, bool responsible)
         {
             Regex regexCell = new Regex("^\\d{11}$");

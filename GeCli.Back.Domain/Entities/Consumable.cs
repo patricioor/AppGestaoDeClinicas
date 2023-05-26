@@ -38,5 +38,7 @@ namespace GeCli.Back.Domain.Entities
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public Procedure Procedures { get; set; }
     }
 }

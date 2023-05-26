@@ -22,7 +22,7 @@ namespace GeCli.Back.Domain.Entities
             ValidateDomainName(name);
         }
 
-        public ICollection<Consumable> Consumable { get; private set; }
+        public ICollection<Consumable> Consumables { get; private set; }
 
     }
 }

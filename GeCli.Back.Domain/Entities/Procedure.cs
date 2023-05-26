@@ -16,7 +16,9 @@
             ConsumablesId = consumablesId;
         }
 
+        public MedicalRecord MedicalRecord { get; set; }
+
         public int ConsumablesId { get; set; }
-        public Consumable Consumable { get; set; }
+        public IEnumerable<Consumable> Consumables { get; set; }
     }
 }

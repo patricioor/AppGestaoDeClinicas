@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GeCli.Back.Application\GeCli.Back.Application.csproj" />
     <ProjectReference Include="..\GeCli.Back.Domain\GeCli.Back.Domain.csproj" />
     <ProjectReference Include="..\GeCli.Back.Infra.Data\GeCli.Back.Infra.Data.csproj" />

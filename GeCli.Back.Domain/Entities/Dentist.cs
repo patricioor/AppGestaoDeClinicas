@@ -35,6 +35,8 @@ namespace GeCli.Back.Domain.Entities
         }
 
         public int EmploymentId { get; set; }
-        Employment Employment { get; set; }
+        public Employment Employment { get; set; }
+
+        public MedicalRecord MedicalRecord { get; set; }
     }
 }
