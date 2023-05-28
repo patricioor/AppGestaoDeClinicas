@@ -13,12 +13,12 @@
         public void Update(string name, int consumablesId)
         {
             ValidateDomainName(name);
-            ConsumablesId = consumablesId;
+            ConsumableId = consumablesId;
         }
 
         public MedicalRecord MedicalRecord { get; set; }
 
-        public int ConsumablesId { get; set; }
-        public IEnumerable<Consumable> Consumables { get; set; }
+        public int ConsumableId { get; set; }
+        public Consumable Consumable { get; set; }
     }
 }

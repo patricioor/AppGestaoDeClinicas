@@ -11,6 +11,8 @@ namespace GeCli.Back.Infra.Data.EntitiesConfiguration
             builder.HasKey(pk => pk.Id);
 
             builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
+
+            builder.HasOne(e=> e.Consumable).WithMany(e=> e.Procedures).HasForeignKey(p => p.ConsumableId);
         }
     }
 }

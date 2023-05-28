@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GeCli.Back.Infra.Data.Repositories
 {
-    public class MedicalRecordRepository : IMedicalRecorderRepository
+    public class MedicalRecordRepository : IMedicalRecordRepository
     {
         ApplicationDbContext _medicalRecordContext;
 

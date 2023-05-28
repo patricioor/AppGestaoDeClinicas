@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GeCli.Back.Infra.Data.EntitiesConfiguration
 {
-    internal class ConsumableConfiguration : IEntityTypeConfiguration<Consumable>
+    public class ConsumableConfiguration : IEntityTypeConfiguration<Consumable>
     {
         public void Configure(EntityTypeBuilder<Consumable> builder)
         {

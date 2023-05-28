@@ -33,8 +33,13 @@ namespace GeCli.Back.Domain.Entities
             ValidateDomainName(name);
             ValidateDomainCustomer(address, cellphone, birth, responsible);
 
-            if(responsible)
-                ResponsibleId = responsibleId; 
+            ResponsibleId = responsibleId; 
+        }
+
+        public void Update(string name, string address, string cellphone, string birth, bool responsible)
+        {
+            ValidateDomainName(name);
+            ValidateDomainCustomer(address, cellphone, birth, responsible);
         }
 
         public int ResponsibleId { get; set; }
