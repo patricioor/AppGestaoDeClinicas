@@ -15,15 +15,14 @@ namespace GeCli.Back.Application.CQRS.Customers.Handler
 
         public async Task<Customer> Handle(CustomerCreateCommand request, CancellationToken cancellationToken)
         {
-            var customer = new Customer(request.Name, request.Address, request.Cellphone, request.Birth, request.Responsible);
+            var customer = new Customer(request.Name, request.Address, request.Cellphone, request.Birth);
             if (customer == null)
             {
                 throw new ArgumentNullException("Error creating entity");
             }
             else
             {
-                if (request.Responsible)
-                    customer.ResponsibleId = request.ResponsibleId;
+                customer.ResponsibleId = request.ResponsibleId;
                 return await _customerRepository.Create(customer);
             }
         }

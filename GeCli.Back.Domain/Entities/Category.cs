@@ -1,11 +1,7 @@
-﻿using GeCli.Back.Domain.Validation;
-
-namespace GeCli.Back.Domain.Entities
+﻿namespace GeCli.Back.Domain.Entities
 {
     public sealed class Category : Entity
     {
-        public string Name { get; protected set; }
-
         public Category(string name)
         {
             ValidateDomainName(name);

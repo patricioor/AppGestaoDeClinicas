@@ -1,10 +1,5 @@
 ﻿using GeCli.Back.Domain.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace GeCli.Back.Domain.Entities
 {
@@ -13,41 +8,34 @@ namespace GeCli.Back.Domain.Entities
         public string Address { get; protected set; }
         public string Cellphone { get; protected set; }
         public string Birth { get; protected set; }
-        public bool Reponsible { get; protected set; }
 
-        public Customer(string name,string address, string cellphone, string birth, bool responsible)
+        public Customer(string name, string address, string cellphone, string birth)
         {
             ValidateDomainName(name);
-            ValidateDomainCustomer(address, cellphone, birth, responsible);
+            ValidateDomainCustomer(address, cellphone, birth);
         }
 
-        public Customer(int id, string name, string address, string cellphone, string birth, bool responsible)
+        public Customer(int id, string name, string address, string cellphone, string birth)
         {
             ValidateDomainId(id);
             ValidateDomainName(name);
-            ValidateDomainCustomer(address, cellphone, birth, responsible);
+            ValidateDomainCustomer(address, cellphone, birth);
         }
 
-        public void Update(string name, string address, string cellphone, string birth, bool responsible, int responsibleId)
+        public void Update(string name, string address, string cellphone, string birth, int responsibleId)
         {
             ValidateDomainName(name);
-            ValidateDomainCustomer(address, cellphone, birth, responsible);
+            ValidateDomainCustomer(address, cellphone, birth);
 
-            ResponsibleId = responsibleId; 
+            ResponsibleId = responsibleId;
         }
 
-        public void Update(string name, string address, string cellphone, string birth, bool responsible)
-        {
-            ValidateDomainName(name);
-            ValidateDomainCustomer(address, cellphone, birth, responsible);
-        }
-
-        public int ResponsibleId { get; set; }
+        public int? ResponsibleId { get; set; }
         public Responsible Responsible { get; set; }
 
-        public MedicalRecord MedicalRecord { get; set; }
+        public IEnumerable<MedicalRecord> MedicalRecords { get; set; }
 
-        private void ValidateDomainCustomer(string address, string cellphone, string birth, bool responsible)
+        private void ValidateDomainCustomer(string address, string cellphone, string birth)
         {
             Regex regexCell = new Regex("^\\d{11}$");
             Regex regexBirth = new Regex("^\\d{8}$");
@@ -65,8 +53,6 @@ namespace GeCli.Back.Domain.Entities
             Address = address;
             Cellphone = cellphone;
             Birth = birth;
-            Reponsible = responsible;
         }
-
     }
 }

@@ -9,7 +9,6 @@ namespace GeCli.Back.Application.CQRS.Customers.Command
         public string Address { get; set; }
         public string Cellphone { get; set; }
         public string Birth { get; set; }
-        public bool Responsible { get; set; }
         public int ResponsibleId { get; set; }
     }
 }

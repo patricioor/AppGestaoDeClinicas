@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GeCli.Back.Domain.Entities
+﻿namespace GeCli.Back.Domain.Entities
 {
     public sealed class Responsible : Entity
     {
-        public Responsible(string name) 
+        public Responsible(string name)
         {
             ValidateDomainName(name);
         }
@@ -21,7 +15,6 @@ namespace GeCli.Back.Domain.Entities
 
         public void Update(string name) => ValidateDomainName(name);
 
-        public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public IEnumerable<Customer> Customers { get; set; }
     }
 }

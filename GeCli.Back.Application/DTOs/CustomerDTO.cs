@@ -30,12 +30,9 @@ namespace GeCli.Back.Application.DTOs
         [DisplayName("Date of Birth")]
         public string Birth { get; set; }
 
-        [DisplayName("Does the patient have a legal guardian?")]
-        public bool Responsible { get; set; }
-
         public Responsible? Resposible { get; set; }
 
         [DisplayName("Responsible's list")]
-        public int ResponsibleId { get; set; }
+        public int? ResponsibleId { get; set; }
     }
 }

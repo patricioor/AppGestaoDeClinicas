@@ -23,14 +23,8 @@ namespace GeCli.Back.Application.CQRS.Customers.Handler
             }
             else
             {
-                if (request.Responsible)
-                {
-                    customer.Update(request.Name, request.Address, request.Cellphone, request.Birth, request.Responsible, request.ResponsibleId);
-                }
-                else
-                {
-                    customer.Update(request.Name, request.Address, request.Cellphone, request.Birth, request.Responsible);
-                }
+                customer.Update(request.Name, request.Address, request.Cellphone, request.Birth, request.ResponsibleId);
+
                 return await _customerRepository.Update(customer);
 
             }

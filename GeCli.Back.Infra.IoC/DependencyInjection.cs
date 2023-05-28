@@ -1,4 +1,5 @@
 ﻿using GeCli.Back.Application.Interfaces;
+using GeCli.Back.Application.Mappings;
 using GeCli.Back.Application.Services;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
@@ -34,6 +35,11 @@ namespace GeCli.Back.Infra.IoC
             services.AddScoped<IMedicalRecordService, MedicalRecordService>();
             services.AddScoped<IProcedureService, ProcedureService>();
             services.AddScoped<IResponsibleService, ResponsibleService>();
+
+            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+
+            var myHandlers = AppDomain.CurrentDomain.Load("GeCli.Back.Application");
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(myHandlers));
 
             return services;
 

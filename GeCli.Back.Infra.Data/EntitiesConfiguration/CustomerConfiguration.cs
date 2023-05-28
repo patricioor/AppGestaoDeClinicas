@@ -14,9 +14,8 @@ namespace GeCli.Back.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.Address).HasMaxLength(200).IsRequired();
             builder.Property(p => p.Cellphone).HasMaxLength(11).IsRequired();
             builder.Property(p => p.Birth).HasMaxLength(8).IsRequired();
-            builder.Property(p => p.Responsible).IsRequired().HasColumnType("bit");
 
-            builder.HasOne(e => e.Responsible).WithOne(e => e.Customer).HasForeignKey<Customer>(e => e.ResponsibleId);
+            builder.HasOne(e => e.Responsible).WithMany(e => e.Customers).HasForeignKey(e => e.ResponsibleId);
         }
     }
 }

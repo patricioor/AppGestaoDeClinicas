@@ -22,7 +22,7 @@ namespace GeCli.Back.Infra.Data.EntitiesConfiguration
 
             builder.HasOne(e => e.Procedure).WithOne(e => e.MedicalRecord).HasForeignKey<MedicalRecord>(e => e.ProcedureId);
             builder.HasOne(e => e.Dentist).WithOne(e => e.MedicalRecord).HasForeignKey<MedicalRecord>(e => e.DentistId);
-            builder.HasOne(e => e.Customer).WithOne(e => e.MedicalRecord).HasForeignKey<MedicalRecord>(e => e.CustomerId);
+            builder.HasOne(e => e.Customer).WithMany(e => e.MedicalRecords).HasForeignKey(e => e.CustomerId);
         }
     }
 }
