@@ -1,9 +1,12 @@
 ﻿using GeCli.Back.Application.Interfaces;
 using GeCli.Back.Application.Mappings;
 using GeCli.Back.Application.Services;
+using GeCli.Back.Domain.Account;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
+using GeCli.Back.Infra.Data.Identity;
 using GeCli.Back.Infra.Data.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +20,12 @@ namespace GeCli.Back.Infra.IoC
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>().
+                AddEntityFrameworkStores<ApplicationDbContext>().
+                AddDefaultTokenProviders();
+
+            services.AddScoped<IAuthenticate, AuthenticateService>();
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IConsumableRepository, ConsumableRepository>();
