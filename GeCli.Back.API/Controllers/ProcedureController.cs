@@ -1,0 +1,58 @@
+﻿using GeCli.Back.Application.DTOs;
+using GeCli.Back.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+namespace GeCli.Back.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProcedureController : ControllerBase
+    {
+        private readonly IProcedureService _procedureService;
+        private readonly IConsumableService _consumableService;
+
+        public ProcedureController(IProcedureService procedureService, IConsumableService consumableService)
+        {
+            _procedureService = procedureService;
+            _consumableService = consumableService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProcedureDTO>>> Get()
+        {
+            var procedures = _procedureService.GetProcedures();
+
+            if(procedures == null)
+                return NotFound("Procedures not found");
+
+            return Ok(procedures);
+        }
+
+        [HttpGet("{id:int}", Name = "GetProcedureById")]
+        public async Task<ActionResult<ProcedureDTO>> Get(int id)
+        {
+            var procedure = _procedureService.GetProcedureById(id);
+
+            if (procedure == null)
+                return NotFound("Procedure not found");
+
+            return Ok(procedure);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] ProcedureDTO procedureDTO)
+        {
+            if (procedureDTO == null)
+                return BadRequest();
+            //foreach (var consumable in procedureDTO.Consumables)
+            //{
+            //    var consumablesFound = _consumableService.GetConsumableById(consumable.Id).Result;
+
+            //    newConsumables = newConsumables.Concat(new[] { consumablesFound });
+            //}
+
+            await _procedureService.Create(procedureDTO);
+            return CreatedAtRoute("GetProcedureById", new {id = procedureDTO.Id}, procedureDTO);
+        }
+    }
+}

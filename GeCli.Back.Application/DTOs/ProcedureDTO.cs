@@ -14,8 +14,6 @@ namespace GeCli.Back.Application.DTOs
         [DisplayName("Name")]
         public string Name { get; set; }
 
-        public Consumable? Consumable { get; set; }
-        [DisplayName("Consumables")]
-        public int ConsumableId { get; set; }
+        public IEnumerable<Consumable> Consumables { get; set; }
     }
 }

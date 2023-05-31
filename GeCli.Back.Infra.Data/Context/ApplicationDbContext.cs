@@ -10,12 +10,12 @@ namespace GeCli.Back.Infra.Data.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Consumable> Consumables { get; set;}
+        public DbSet<Consumable> Consumables { get; set; } = null!;
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Dentist> Dentists { get; set; }
         public DbSet<Employment> Employments { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
-        public DbSet<Procedure> Procedures { get; set; }
+        public DbSet<Procedure> Procedures { get; set; } = null!;
         public DbSet<Responsible> Responsibles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

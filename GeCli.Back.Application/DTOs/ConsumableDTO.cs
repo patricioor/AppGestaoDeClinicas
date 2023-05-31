@@ -23,11 +23,19 @@ namespace GeCli.Back.Application.DTOs
         [DisplayName("Price")]
         public decimal Price { get; set; }
 
+        [Required(ErrorMessage = "Stock is required")]
+        [Range(1, 9999)]
+        [DisplayName("Stock")]
+        public int Stock { get; set; }
+
         [JsonIgnore]
         [IgnoreDataMember]
         public Category? Category { get; set; }
 
         [DisplayName("Categories")]
         public int CategoryId { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public IEnumerable<Procedure>? Procedures { get; set; }
     }
 }

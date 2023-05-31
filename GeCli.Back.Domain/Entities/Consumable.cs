@@ -1,4 +1,5 @@
 ﻿using GeCli.Back.Domain.Validation;
+using System.Text.Json.Serialization;
 
 namespace GeCli.Back.Domain.Entities
 {
@@ -38,6 +39,7 @@ namespace GeCli.Back.Domain.Entities
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        [JsonIgnore]
         public IEnumerable<Procedure> Procedures { get; set; }
     }
 }
