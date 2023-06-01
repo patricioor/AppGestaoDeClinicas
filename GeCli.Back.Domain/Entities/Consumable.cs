@@ -39,6 +39,7 @@ namespace GeCli.Back.Domain.Entities
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
         [JsonIgnore]
         public IEnumerable<Procedure> Procedures { get; set; }
     }

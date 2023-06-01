@@ -44,12 +44,6 @@ namespace GeCli.Back.API.Controllers
         {
             if (procedureDTO == null)
                 return BadRequest();
-            //foreach (var consumable in procedureDTO.Consumables)
-            //{
-            //    var consumablesFound = _consumableService.GetConsumableById(consumable.Id).Result;
-
-            //    newConsumables = newConsumables.Concat(new[] { consumablesFound });
-            //}
 
             await _procedureService.Create(procedureDTO);
             return CreatedAtRoute("GetProcedureById", new {id = procedureDTO.Id}, procedureDTO);

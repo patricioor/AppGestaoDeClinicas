@@ -27,16 +27,46 @@ namespace GeCli.Back.Infra.Data.Repositories
         public async Task<Procedure> Create(Procedure procedure)
         {
             _procedureContext.Procedures.Add(procedure);
+            await InsertConsumablesProcedure(procedure);
             await _procedureContext.SaveChangesAsync();
             return procedure;
         }
 
+        private async Task InsertConsumablesProcedure(Procedure procedure)
+        {
+            foreach (var consumable in procedure.Consumables)
+            {
+                var consumableFound = await _procedureContext.Consumables.AsNoTracking().MinAsync(p => p.Id == consumable.Id);
+                _procedureContext.Entry(consumable).CurrentValues.SetValues(consumableFound);
+            }
+        }
+
         public async Task<Procedure> Update(Procedure procedure)
         {
-            _procedureContext.Procedures.Update(procedure);
+            var procedureUpdate = await _procedureContext.Procedures.Include(p => p.Consumables).SingleOrDefaultAsync(p => p.Id == procedure.Id);
+
+            if (procedureUpdate == null)
+                return null;
+
+            _procedureContext.Entry(procedureUpdate).CurrentValues.SetValues(procedure);
+
+            await UpdateProcedureConsumables(procedure, procedureUpdate);
+
+            _procedureContext.Procedures.Update(procedureUpdate);
+
             await _procedureContext.SaveChangesAsync();
-            return procedure;
+            return procedureUpdate;
         }
+
+        private async Task UpdateProcedureConsumables(Procedure procedure, Procedure? procedureUpdate)
+        {
+            foreach (var consumable in procedure.Consumables)
+            {
+                var consumableFound = await _procedureContext.Consumables.FindAsync(consumable.Id);
+                procedureUpdate.Consumables.Append(consumableFound);
+            }
+        }
+
         public async Task<Procedure> Remove(Procedure procedure)
         {
             _procedureContext?.Procedures.Remove(procedure);

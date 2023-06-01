@@ -34,6 +34,7 @@ namespace GeCli.Back.Application.DTOs
 
         [DisplayName("Categories")]
         public int CategoryId { get; set; }
+
         [JsonIgnore]
         [IgnoreDataMember]
         public IEnumerable<Procedure>? Procedures { get; set; }
