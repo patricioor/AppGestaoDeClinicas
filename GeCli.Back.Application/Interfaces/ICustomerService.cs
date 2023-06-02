@@ -4,11 +4,11 @@ namespace GeCli.Back.Application.Interfaces
 {
     public interface ICustomerService
     {
-        Task<IEnumerable<CustomerDTO>> GetCustomers();
-        Task <CustomerDTO> GetCustomerById (int? id);
+        Task<IEnumerable<CustomerDTO>> GetCustomersAsync();
+        Task <CustomerDTO> GetCustomerByIdAsync(int id);
 
-        Task Create(CustomerDTO customerDTO);
-        Task Update(CustomerDTO customerDTO);
-        Task Delete(int? id);
+        Task CreateCustomerAsync(CustomerDTO customerDTO);
+        Task UpdateCustomerAsync(CustomerDTO customerDTO);
+        Task DeleteCustomerAsync(int id);
     }
 }

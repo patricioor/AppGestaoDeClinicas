@@ -17,7 +17,7 @@ namespace GeCli.Back.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> Get()
         {
-            var categories = await _categoryService.GetCategories();
+            var categories = await _categoryService.GetCategoriesAsync();
 
             if (categories == null)          
                 return NotFound("Categories not found");
@@ -26,9 +26,9 @@ namespace GeCli.Back.API.Controllers
         }
 
         [HttpGet("{id:int}", Name = "GetCategory")]
-        public async Task<ActionResult<CategoryDTO>> GetById(int? id)
+        public async Task<ActionResult<CategoryDTO>> GetById(int id)
         {
-            var category = await _categoryService.GetCategoryById(id);
+            var category = await _categoryService.GetCategoryByIdAsync(id);
 
             if (category == null)           
                 return NotFound("Category not found");
@@ -37,12 +37,9 @@ namespace GeCli.Back.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CategoryDTO categoryDTO)
+        public async Task<ActionResult> Post(CategoryDTO categoryDTO)
         {
-            if (categoryDTO == null)
-                return BadRequest("Invalid data");
-
-            await _categoryService.Create(categoryDTO);
+            await _categoryService.CreateCategoryAsync(categoryDTO);
             return new CreatedAtRouteResult("GetCategory", new { id = categoryDTO.Id }, categoryDTO);
         }
 
@@ -53,22 +50,17 @@ namespace GeCli.Back.API.Controllers
                 return BadRequest();
 
             if (categoryDTO == null)
-                return BadRequest();
+                return NotFound();
 
-            await _categoryService.Update(categoryDTO);
+            await _categoryService.UpdateCategoryAsync(categoryDTO);
             return Ok(categoryDTO);
         }
 
         [HttpDelete]
         public async Task<ActionResult<CategoryDTO>> Delete(int id)
         {
-            var category = _categoryService.GetCategoryById(id).Result;
-
-            if(category == null)
-                return NotFound("Category not found");
-
-            await _categoryService.Delete(id);
-            return Ok(category);
+           await _categoryService.DeleteCategoryAsync(id);
+            return NoContent();
         }
     }
 }

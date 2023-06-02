@@ -13,13 +13,13 @@ namespace GeCli.Back.Infra.Data.Repositories
             _procedureContext = context;
         }
 
-        public async Task<IEnumerable<Procedure>> GetProcedures()
+        public async Task<IEnumerable<Procedure>> GetProceduresAsync()
         {
-            return await _procedureContext.Procedures.ToListAsync();
+            return await _procedureContext.Procedures.AsNoTracking().ToListAsync();
 
         }
 
-        public async Task<Procedure> GetProcedureById(int? id)
+        public async Task<Procedure> GetProcedureByIdAsync(int id)
         {
             return await _procedureContext.Procedures.FindAsync(id);
         }

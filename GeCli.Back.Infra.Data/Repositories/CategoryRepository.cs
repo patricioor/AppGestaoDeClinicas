@@ -13,35 +13,42 @@ namespace GeCli.Back.Infra.Data.Repositories
             _categoryContext = context;
         }
 
-        public async Task<IEnumerable<Category>> GetCategory()
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
-            return await _categoryContext.Categories.ToListAsync();
+            return await _categoryContext.Categories.AsNoTracking().ToListAsync();
         }
 
-        public async Task<Category> GetCategoryById(int? id)
+        public async Task<Category> GetCategoryByIdAsync(int id)
         {
             return await _categoryContext.Categories.FindAsync(id);
         }
 
-        public async Task<Category> Create(Category category)
+        public async Task<Category> CreateCategoryAsync(Category category)
         {
-            _categoryContext.Categories.Add(category);
+            _categoryContext.Categories.AddAsync(category);
             await _categoryContext.SaveChangesAsync();
             return category;
         }
 
-        public async Task<Category> Update(Category category)
+        public async Task<Category> UpdateCategoryAsync(Category category)
         {
-            _categoryContext.Update(category);
+            var categoryFound = await _categoryContext.Categories.FindAsync(category.Id);
+
+            if (categoryFound == null)
+                return null;
+
+            _categoryContext.Entry(categoryFound).CurrentValues.SetValues(category);
+
             await _categoryContext.SaveChangesAsync();
-            return category;
+            return categoryFound;
         }
 
-        public async Task<Category> Remove(Category category)
+        public async Task RemoveCategoryAsync(int id)
         {
-            _categoryContext.Remove(category);
+            var categoryFound = await _categoryContext.Categories.FindAsync(id);
+
+            _categoryContext.Remove(categoryFound);
             await _categoryContext.SaveChangesAsync();
-            return category;
         }
     }
 }

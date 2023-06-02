@@ -14,7 +14,7 @@ namespace GeCli.Back.Application.CQRS.Consumables.Handlers
         }
         public async Task<Consumable> Handle(ConsumableRemoveCommand request, CancellationToken cancellationToken)
         {
-            var consumable = await _consumableRepository.GetConsumableById(request.Id);
+            var consumable = await _consumableRepository.GetConsumableByIdAsync(request.Id);
 
             if (consumable == null)
             {

@@ -4,10 +4,10 @@ namespace GeCli.Back.Application.Interfaces
 {
     public interface IDentistService
     {
-        Task<IEnumerable<DentistDTO>> GetDentists();
-        Task<DentistDTO> GetDentistById(int? id);
-        Task Create(DentistDTO dentistDTO);
-        Task Update(DentistDTO dentistDTO);
-        Task Delete(int? id);
+        Task<IEnumerable<DentistDTO>> GetDentistsAsync();
+        Task<DentistDTO> GetDentistByIdAsync(int id);
+        Task CreateDentistAsync(DentistDTO dentistDTO);
+        Task UpdateDentistAsync(DentistDTO dentistDTO);
+        Task DeleteDentistAsync(int id);
     }
 }

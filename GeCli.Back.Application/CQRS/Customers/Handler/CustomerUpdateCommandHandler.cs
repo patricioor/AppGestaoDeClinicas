@@ -16,7 +16,7 @@ namespace GeCli.Back.Application.CQRS.Customers.Handler
 
         async Task<Customer> IRequestHandler<CustomerUpdateCommand, Customer>.Handle(CustomerUpdateCommand request, CancellationToken cancellationToken)
         {
-            var customer = await _customerRepository.GetCustomerById(request.Id);
+            var customer = await _customerRepository.GetCustomerByIdAsync(request.Id);
             if (customer == null)
             {
                 throw new ArgumentNullException("Error could not be found.");

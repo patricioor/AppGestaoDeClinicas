@@ -4,11 +4,11 @@ namespace GeCli.Back.Application.Interfaces
 {
     public interface IMedicalRecordService
     {
-        Task<IEnumerable<MedicalRecordDTO>> GetMedicalRecords();
-        Task<MedicalRecordDTO> GetMedicalRecordById(int? id);
+        Task<IEnumerable<MedicalRecordDTO>> GetMedicalRecordsAsync();
+        Task<MedicalRecordDTO> GetMedicalRecordByIdAsync(int id);
 
-        Task Create(MedicalRecordDTO medRecord);
-        Task Update(MedicalRecordDTO medRecord);
-        Task Delete(int? id);
+        Task CreateMedicalRecordAsync(MedicalRecordDTO medRecord);
+        Task UpdateMedicalRecordAsync(MedicalRecordDTO medRecord);
+        Task DeleteMedicalRecordAsync(int id);
     }
 }

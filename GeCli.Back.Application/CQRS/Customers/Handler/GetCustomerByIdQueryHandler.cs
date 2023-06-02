@@ -14,7 +14,7 @@ namespace GeCli.Back.Application.CQRS.Customers.Handler
         }
         async Task<Customer> IRequestHandler<GetCustomerByIdQuery, Customer>.Handle(GetCustomerByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _customerRepository.GetCustomerById(request.Id);
+            return await _customerRepository.GetCustomerByIdAsync(request.Id);
         }
     }
 }

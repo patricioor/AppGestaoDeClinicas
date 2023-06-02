@@ -4,8 +4,8 @@ namespace GeCli.Back.Domain.Interfaces
 {
     public interface IEmploymentRepository
     {
-        Task<IEnumerable<Employment>> GetEmployments();
-        Task<Employment> GetEmploymentById(int? id);
+        Task<IEnumerable<Employment>> GetEmploymentsAsync();
+        Task<Employment> GetEmploymentByIdAsync(int id);
 
         Task<Employment> Create(Employment employment);
         Task<Employment> Update(Employment employment);

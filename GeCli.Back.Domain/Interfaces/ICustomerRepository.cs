@@ -4,8 +4,8 @@ namespace GeCli.Back.Domain.Interfaces
 {
     public interface ICustomerRepository
     {
-        Task<IEnumerable<Customer>> GetCustomers();
-        Task<Customer> GetCustomerById(int? id);
+        Task<IEnumerable<Customer>> GetCustomersAsync();
+        Task<Customer> GetCustomerByIdAsync(int id);
 
         Task<Customer> Create(Customer customer);
         Task<Customer> Update(Customer customer);

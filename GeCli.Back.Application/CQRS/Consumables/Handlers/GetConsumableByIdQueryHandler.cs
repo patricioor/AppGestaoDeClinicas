@@ -14,7 +14,7 @@ namespace GeCli.Back.Application.CQRS.Consumables.Handlers
         }
         public async Task<Consumable> Handle(GetConsumableByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _consumableRepository.GetConsumableById(request.Id);
+            return await _consumableRepository.GetConsumableByIdAsync(request.Id);
         }
     }
 }

@@ -4,11 +4,11 @@ namespace GeCli.Back.Application.Interfaces
 {
     public interface IEmploymentService
     {
-        Task<IEnumerable<EmploymentDTO>> GetEmployments();
-        Task<EmploymentDTO> GetEmploymentById(int? id);
+        Task<IEnumerable<EmploymentDTO>> GetEmploymentsAsync();
+        Task<EmploymentDTO> GetEmploymentByIdAsync(int id);
 
-        Task Create(EmploymentDTO employmentDTO);
-        Task Update(EmploymentDTO employmentDTO);
-        Task Delete(int? id);
+        Task CreateEmploymentAsync(EmploymentDTO employmentDTO);
+        Task UpdateEmploymentAsync(EmploymentDTO employmentDTO);
+        Task DeleteEmploymentAsync(int id);
     }
 }

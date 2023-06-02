@@ -16,7 +16,7 @@ namespace GeCli.Back.Application.CQRS.Dentists.Handler
 
         public async Task<Dentist> Handle(DentistRemoveCommand request, CancellationToken cancellationToken)
         {
-            var dentist = await _dentistRepository.GetDentistById(request.Id);
+            var dentist = await _dentistRepository.GetDentistByIdAsync(request.Id);
 
             if(dentist == null)
             {

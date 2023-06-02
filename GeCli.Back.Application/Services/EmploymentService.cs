@@ -16,32 +16,32 @@ namespace GeCli.Back.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<EmploymentDTO>> GetEmployments()
+        public async Task<IEnumerable<EmploymentDTO>> GetEmploymentsAsync()
         {
-            var employment = await _employmentRepository.GetEmployments();
+            var employment = await _employmentRepository.GetEmploymentsAsync();
             return _mapper.Map<IEnumerable<EmploymentDTO>>(employment);
         }
 
-        public async Task<EmploymentDTO> GetEmploymentById(int? id)
+        public async Task<EmploymentDTO> GetEmploymentByIdAsync(int id)
         {
-            var employment = await _employmentRepository.GetEmploymentById(id);
+            var employment = await _employmentRepository.GetEmploymentByIdAsync(id);
             return _mapper.Map<EmploymentDTO>(employment);
         }
-        public async Task Create(EmploymentDTO employmentDTO)
+        public async Task CreateEmploymentAsync(EmploymentDTO employmentDTO)
         {
             var employment = _mapper.Map<Employment>(employmentDTO);
             await _employmentRepository.Create(employment);
         }
 
-        public async Task Update(EmploymentDTO employmentDTO)
+        public async Task UpdateEmploymentAsync(EmploymentDTO employmentDTO)
         {
             var employment = _mapper.Map<Employment>(employmentDTO);
             await _employmentRepository.Update(employment);
         }
 
-        public async Task Delete(int? id)
+        public async Task DeleteEmploymentAsync(int id)
         {
-            var employment = _employmentRepository.GetEmploymentById(id).Result;
+            var employment = _employmentRepository.GetEmploymentByIdAsync(id).Result;
             await _employmentRepository.Remove(employment);
         }
     }

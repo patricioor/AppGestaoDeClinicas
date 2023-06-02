@@ -20,7 +20,7 @@ namespace GeCli.Back.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProcedureDTO>>> Get()
         {
-            var procedures = _procedureService.GetProcedures();
+            var procedures = _procedureService.GetProceduresAsync();
 
             if(procedures == null)
                 return NotFound("Procedures not found");
@@ -31,7 +31,7 @@ namespace GeCli.Back.API.Controllers
         [HttpGet("{id:int}", Name = "GetProcedureById")]
         public async Task<ActionResult<ProcedureDTO>> Get(int id)
         {
-            var procedure = _procedureService.GetProcedureById(id);
+            var procedure = _procedureService.GetProcedureByIdAsync(id);
 
             if (procedure == null)
                 return NotFound("Procedure not found");
@@ -45,7 +45,7 @@ namespace GeCli.Back.API.Controllers
             if (procedureDTO == null)
                 return BadRequest();
 
-            await _procedureService.Create(procedureDTO);
+            await _procedureService.CreateProcedureAsync(procedureDTO);
             return CreatedAtRoute("GetProcedureById", new {id = procedureDTO.Id}, procedureDTO);
         }
     }

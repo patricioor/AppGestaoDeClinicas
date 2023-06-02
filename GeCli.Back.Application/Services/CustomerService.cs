@@ -16,32 +16,32 @@ namespace GeCli.Back.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<CustomerDTO>> GetCustomers()
+        public async Task<IEnumerable<CustomerDTO>> GetCustomersAsync()
         {
-            var customer = await _customerRepository.GetCustomers();
+            var customer = await _customerRepository.GetCustomersAsync();
             return _mapper.Map<IEnumerable<CustomerDTO>>(customer);
         }
 
-        public async Task<CustomerDTO> GetCustomerById(int? id)
+        public async Task<CustomerDTO> GetCustomerByIdAsync(int id)
         {
-            var customer = await _customerRepository.GetCustomerById(id);
+            var customer = await _customerRepository.GetCustomerByIdAsync(id);
             return _mapper.Map<CustomerDTO>(customer);
         }
 
-        public async Task Create(CustomerDTO customerDTO)
+        public async Task CreateCustomerAsync(CustomerDTO customerDTO)
         {
             var customer = _mapper.Map<Customer>(customerDTO);
             await _customerRepository.Create(customer);
         }
 
-        public async Task Update(CustomerDTO customerDTO)
+        public async Task UpdateCustomerAsync(CustomerDTO customerDTO)
         {
             var customer = _mapper.Map<Customer>(customerDTO);
             await _customerRepository.Update(customer);
         }
-        public async Task Delete(int? id)
+        public async Task DeleteCustomerAsync(int id)
         {
-            var customer = _customerRepository.GetCustomerById(id).Result;
+            var customer = _customerRepository.GetCustomerByIdAsync(id).Result;
             await _customerRepository.Remove(customer);
 
         }

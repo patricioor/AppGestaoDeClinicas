@@ -4,11 +4,11 @@ namespace GeCli.Back.Application.Interfaces
 {
     public interface IProcedureService
     {
-        Task<IEnumerable<ProcedureDTO>> GetProcedures();
-        Task<ProcedureDTO> GetProcedureById(int? id);
+        Task<IEnumerable<ProcedureDTO>> GetProceduresAsync();
+        Task<ProcedureDTO> GetProcedureByIdAsync(int id);
 
-        Task Create(ProcedureDTO procedureDTO);
-        Task Update(ProcedureDTO procedureDTO);
-        Task Delete(int? id);
+        Task CreateProcedureAsync(ProcedureDTO procedureDTO);
+        Task UpdateProcedureAsync(ProcedureDTO procedureDTO);
+        Task DeleteProcedureAsync(int id);
     }
 }

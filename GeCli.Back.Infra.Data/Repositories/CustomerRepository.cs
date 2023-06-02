@@ -13,12 +13,12 @@ namespace GeCli.Back.Infra.Data.Repositories
             _customerContext = context;
         }
 
-        public async Task<IEnumerable<Customer>> GetCustomers()
+        public async Task<IEnumerable<Customer>> GetCustomersAsync()
         {
-            return await _customerContext.Customers.ToListAsync();
+            return await _customerContext.Customers.AsNoTracking().ToListAsync();
         }
 
-        public async Task<Customer> GetCustomerById(int? id)
+        public async Task<Customer> GetCustomerByIdAsync(int id)
         {
             return await _customerContext.Customers.FindAsync(id);
         }

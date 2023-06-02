@@ -16,32 +16,32 @@ namespace GeCli.Back.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ProcedureDTO>> GetProcedures()
+        public async Task<IEnumerable<ProcedureDTO>> GetProceduresAsync()
         {
-            var procedure = await _procedureRepository.GetProcedures();
+            var procedure = await _procedureRepository.GetProceduresAsync();
             return _mapper.Map<IEnumerable<ProcedureDTO>>(procedure);
         }
 
-        public async Task<ProcedureDTO> GetProcedureById(int? id)
+        public async Task<ProcedureDTO> GetProcedureByIdAsync(int id)
         {
-            var procedure = await _procedureRepository.GetProcedureById(id);
+            var procedure = await _procedureRepository.GetProcedureByIdAsync(id);
             return _mapper.Map<ProcedureDTO>(procedure);
         }
 
-        public async Task Create(ProcedureDTO procedureDTO)
+        public async Task CreateProcedureAsync(ProcedureDTO procedureDTO)
         {
             var procedure = _mapper.Map<Procedure>(procedureDTO);
             await _procedureRepository.Create(procedure);
         }
 
-        public async Task Update(ProcedureDTO procedureDTO)
+        public async Task UpdateProcedureAsync(ProcedureDTO procedureDTO)
         {
             var procedure = _mapper.Map<Procedure>(procedureDTO);
             await _procedureRepository.Update(procedure);
         }
-        public async Task Delete(int? id)
+        public async Task DeleteProcedureAsync(int id)
         {
-            var procedure = _procedureRepository.GetProcedureById(id).Result;
+            var procedure = _procedureRepository.GetProcedureByIdAsync(id).Result;
             await _procedureRepository.Remove(procedure);
         }
     }

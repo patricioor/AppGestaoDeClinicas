@@ -13,12 +13,12 @@ namespace GeCli.Back.Infra.Data.Repositories
             _dentistContext = context;
         }
 
-        public async Task<IEnumerable<Dentist>> GetDentists()
+        public async Task<IEnumerable<Dentist>> GetDentistsAsync()
         {
-            return await _dentistContext.Dentists.ToListAsync();
+            return await _dentistContext.Dentists.AsNoTracking().ToListAsync();
         }
 
-        public async Task<Dentist> GetDentistById(int? id)
+        public async Task<Dentist> GetDentistByIdAsync(int id)
         {
             return await _dentistContext.Dentists.FindAsync(id);
         }

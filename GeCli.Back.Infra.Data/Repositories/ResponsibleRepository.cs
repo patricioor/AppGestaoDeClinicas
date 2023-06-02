@@ -13,12 +13,12 @@ namespace GeCli.Back.Infra.Data.Repositories
             _responsibleContext = context;
         }
 
-        public async Task<IEnumerable<Responsible>> GetResponsibles()
+        public async Task<IEnumerable<Responsible>> GetResponsiblesAsync()
         {
-            return await _responsibleContext.Responsibles.ToListAsync();
+            return await _responsibleContext.Responsibles.AsNoTracking().ToListAsync();
         }
 
-        public async Task<Responsible> GetResponsiblesById(int? id)
+        public async Task<Responsible> GetResponsiblesByIdAsync(int id)
         {
             return await _responsibleContext.Responsibles.FindAsync(id);
         }

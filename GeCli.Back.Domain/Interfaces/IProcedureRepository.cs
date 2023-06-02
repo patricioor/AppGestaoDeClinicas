@@ -4,8 +4,8 @@ namespace GeCli.Back.Domain.Interfaces
 {
     public interface IProcedureRepository
     {
-        Task<IEnumerable<Procedure>> GetProcedures();
-        Task<Procedure> GetProcedureById(int? id);
+        Task<IEnumerable<Procedure>> GetProceduresAsync();
+        Task<Procedure> GetProcedureByIdAsync(int id);
 
         Task<Procedure> Create(Procedure procedure);
         Task<Procedure> Update(Procedure procedure);

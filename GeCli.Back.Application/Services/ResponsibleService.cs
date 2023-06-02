@@ -16,33 +16,33 @@ namespace GeCli.Back.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ResponsibleDTO>> GetResponsible()
+        public async Task<IEnumerable<ResponsibleDTO>> GetResponsibleAsync()
         {
-            var responsible = await _responsibleRepository.GetResponsibles();
+            var responsible = await _responsibleRepository.GetResponsiblesAsync();
             return _mapper.Map<IEnumerable<ResponsibleDTO>>(responsible);
         }
 
-        public async Task<ResponsibleDTO> GetResponsibleById(int? id)
+        public async Task<ResponsibleDTO> GetResponsibleByIdAsync(int id)
         {
-            var responsible = await _responsibleRepository.GetResponsiblesById(id);
+            var responsible = await _responsibleRepository.GetResponsiblesByIdAsync(id);
             return _mapper.Map<ResponsibleDTO>(responsible);
         }
 
-        public async Task Create(ResponsibleDTO responsibleDTO)
+        public async Task CreateResponsibleAsync(ResponsibleDTO responsibleDTO)
         {
             var responsible = _mapper.Map<Responsible>(responsibleDTO);
             await _responsibleRepository.Create(responsible);
         }
 
-        public async Task Update(ResponsibleDTO responsibleDTO)
+        public async Task UpdateResponsibleAsync(ResponsibleDTO responsibleDTO)
         {
             var responsible = _mapper.Map<Responsible>(responsibleDTO);
             await _responsibleRepository.Update(responsible);
         }
 
-        public async Task Delete(int? id)
+        public async Task DeleteResponsibleAsync(int id)
         {
-            var responsible = _responsibleRepository.GetResponsiblesById(id).Result;
+            var responsible = _responsibleRepository.GetResponsiblesByIdAsync(id).Result;
             await _responsibleRepository.Remove(responsible);
         }
     }

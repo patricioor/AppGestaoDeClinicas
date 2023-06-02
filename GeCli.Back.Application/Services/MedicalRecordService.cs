@@ -16,32 +16,32 @@ namespace GeCli.Back.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<MedicalRecordDTO>> GetMedicalRecords()
+        public async Task<IEnumerable<MedicalRecordDTO>> GetMedicalRecordsAsync()
         {
-            var record = await _medicalRecordRepository.GetMedicalRecords();
+            var record = await _medicalRecordRepository.GetMedicalRecordsAsync();
             return _mapper.Map<IEnumerable<MedicalRecordDTO>>(record);
         }
 
-        public async Task<MedicalRecordDTO> GetMedicalRecordById(int? id)
+        public async Task<MedicalRecordDTO> GetMedicalRecordByIdAsync(int id)
         {
-            var record = await _medicalRecordRepository.GetMedicalRecordById(id);
+            var record = await _medicalRecordRepository.GetMedicalRecordByIdAsync(id);
             return _mapper.Map<MedicalRecordDTO>(record);
         }
 
-        public async Task Create(MedicalRecordDTO medRecord)
+        public async Task CreateMedicalRecordAsync(MedicalRecordDTO medRecord)
         {
             var record = _mapper.Map<MedicalRecord>(medRecord);
             await _medicalRecordRepository.Create(record);
         }
 
-        public async Task Update(MedicalRecordDTO medRecord)
+        public async Task UpdateMedicalRecordAsync(MedicalRecordDTO medRecord)
         {
             var record = _mapper.Map<MedicalRecord>(medRecord);
             await _medicalRecordRepository.Update(record);
         }
-        public async Task Delete(int? id)
+        public async Task DeleteMedicalRecordAsync(int id)
         {
-            var record = _medicalRecordRepository.GetMedicalRecordById(id).Result;
+            var record = _medicalRecordRepository.GetMedicalRecordByIdAsync(id).Result;
             await _medicalRecordRepository.Remove(record);
         }
     }

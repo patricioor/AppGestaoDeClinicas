@@ -4,11 +4,11 @@ namespace GeCli.Back.Domain.Interfaces
 {
     public interface ICategoryRepository
     {
-        Task<IEnumerable<Category>> GetCategory();
-        Task<Category> GetCategoryById(int? id);
+        Task<IEnumerable<Category>> GetCategoriesAsync();
+        Task<Category> GetCategoryByIdAsync(int id);
 
-        Task<Category> Create(Category category);
-        Task<Category> Update(Category category);
-        Task<Category> Remove(Category category);
+        Task<Category> CreateCategoryAsync(Category category);
+        Task<Category> UpdateCategoryAsync(Category category);
+        Task RemoveCategoryAsync(int id);
     }
 }

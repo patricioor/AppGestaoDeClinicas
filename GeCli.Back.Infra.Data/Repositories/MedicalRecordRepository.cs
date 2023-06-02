@@ -14,12 +14,12 @@ namespace GeCli.Back.Infra.Data.Repositories
             _medicalRecordContext = context;
         }
 
-        public async Task<IEnumerable<MedicalRecord>> GetMedicalRecords()
+        public async Task<IEnumerable<MedicalRecord>> GetMedicalRecordsAsync()
         {
-            return await _medicalRecordContext.MedicalRecords.ToListAsync();
+            return await _medicalRecordContext.MedicalRecords.AsNoTracking().ToListAsync();
         }
 
-        public async Task<MedicalRecord> GetMedicalRecordById(int? id)
+        public async Task<MedicalRecord> GetMedicalRecordByIdAsync(int id)
         {
             return await _medicalRecordContext.MedicalRecords.FindAsync(id);
         }

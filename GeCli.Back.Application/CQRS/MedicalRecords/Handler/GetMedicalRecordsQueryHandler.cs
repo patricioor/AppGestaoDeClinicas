@@ -16,7 +16,7 @@ namespace GeCli.Back.Application.CQRS.MedicalRecords.Handler
 
         public async Task<IEnumerable<MedicalRecord>> Handle(GetMedicalRecordsQuery request, CancellationToken cancellationToken)
         {
-            return await _medicalRecordRepository.GetMedicalRecords();
+            return await _medicalRecordRepository.GetMedicalRecordsAsync();
         }
     }
 }

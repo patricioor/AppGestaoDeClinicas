@@ -4,11 +4,11 @@ namespace GeCli.Back.Application.Interfaces
 {
     public interface ICategoryService
     {
-        Task<IEnumerable<CategoryDTO>> GetCategories();
-        Task<CategoryDTO> GetCategoryById(int? id);
+        Task<IEnumerable<CategoryDTO>> GetCategoriesAsync();
+        Task<CategoryDTO> GetCategoryByIdAsync(int id);
 
-        Task Create(CategoryDTO categoryDTO);
-        Task Update(CategoryDTO categoryDTO);
-        Task Delete(int id);
+        Task CreateCategoryAsync(CategoryDTO categoryDTO);
+        Task UpdateCategoryAsync(CategoryDTO categoryDTO);
+        Task DeleteCategoryAsync(int id);
     }
 }

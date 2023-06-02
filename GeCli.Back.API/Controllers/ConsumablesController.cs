@@ -19,7 +19,7 @@ namespace GeCli.Back.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ConsumableDTO>>> Get()
         {
-            var consumables = await _consumableService.GetConsumables();
+            var consumables = await _consumableService.GetConsumablesAsync();
 
             if(consumables == null)
                 return NotFound("Consumables not found");
@@ -30,7 +30,7 @@ namespace GeCli.Back.API.Controllers
         [HttpGet("{id:int}", Name = "GetConsumable")]
         public async Task<ActionResult<ConsumableDTO>> Get(int id)
         {
-            var consumable = await _consumableService.GetConsumableById(id);
+            var consumable = await _consumableService.GetConsumableByIdAsync(id);
 
             if (consumable == null)
                 return NotFound("Consumable not found");
@@ -44,7 +44,7 @@ namespace GeCli.Back.API.Controllers
             if (consumableDTO == null)
                 return BadRequest();
 
-            await _consumableService.Create(consumableDTO);
+            await _consumableService.CreateConsumableAsync(consumableDTO);
             return new CreatedAtRouteResult("GetConsumable", new {id = consumableDTO.Id}, consumableDTO);
         }
 
@@ -57,18 +57,18 @@ namespace GeCli.Back.API.Controllers
             if (consumableDTO == null)
                 return BadRequest();
 
-            await _consumableService.Update(consumableDTO);
+            await _consumableService.UpdateConsumableAsync(consumableDTO);
             return Ok(consumableDTO);
         }
 
         [HttpDelete]
         public async Task<ActionResult<ConsumableDTO>> Delete(int id)
         {
-            var consumable = _consumableService.GetConsumableById(id).Result;
+            var consumable = _consumableService.GetConsumableByIdAsync(id).Result;
             if (consumable == null)
                 return NotFound("Consumable not found");
 
-            await _consumableService.Delete(id);
+            await _consumableService.DeleteConsumableAsync(id);
             return Ok(consumable);
         }
     }

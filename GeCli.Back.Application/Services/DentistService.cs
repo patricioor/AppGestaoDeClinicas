@@ -15,31 +15,31 @@ namespace GeCli.Back.Application.Services
             _dentistRepository = dentistRepository;
             _mapper = mapper;
         }
-        public async Task Create(DentistDTO dentistDTO)
+        public async Task CreateDentistAsync(DentistDTO dentistDTO)
         {
             var dentist = _mapper.Map<Dentist>(dentistDTO);
             await _dentistRepository.Create(dentist);
         }
 
-        public async Task Delete(int? id)
+        public async Task DeleteDentistAsync(int id)
         {
-            var dentist = _dentistRepository.GetDentistById(id).Result;
+            var dentist = _dentistRepository.GetDentistByIdAsync(id).Result;
             await _dentistRepository.Remove(dentist);
         }
 
-        public async Task<DentistDTO> GetDentistById(int? id)
+        public async Task<DentistDTO> GetDentistByIdAsync(int id)
         {
-            var dentist = await _dentistRepository.GetDentistById(id);
+            var dentist = await _dentistRepository.GetDentistByIdAsync(id);
             return _mapper.Map<DentistDTO>(dentist);
         }
 
-        public async Task<IEnumerable<DentistDTO>> GetDentists()
+        public async Task<IEnumerable<DentistDTO>> GetDentistsAsync()
         {
-            var dentist = await _dentistRepository.GetDentists();
+            var dentist = await _dentistRepository.GetDentistsAsync();
             return _mapper.Map<IEnumerable<DentistDTO>>(dentist);
         }
 
-        public async Task Update(DentistDTO dentistDTO)
+        public async Task UpdateDentistAsync(DentistDTO dentistDTO)
         {
             var dentist = _mapper.Map<Dentist>(dentistDTO);
             await _dentistRepository.Update(dentist);

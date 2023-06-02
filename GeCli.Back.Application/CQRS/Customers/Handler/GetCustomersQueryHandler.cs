@@ -15,7 +15,7 @@ namespace GeCli.Back.Application.CQRS.Customers.Handler
         }
         public async Task<IEnumerable<Customer>> Handle(GetCustomersQuery request, CancellationToken cancellationToken)
         {
-            return await _customerRepository.GetCustomers();
+            return await _customerRepository.GetCustomersAsync();
         }
     }
 }

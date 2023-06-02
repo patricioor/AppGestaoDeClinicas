@@ -16,32 +16,32 @@ namespace GeCli.Back.Application.Services
             _consumableRepository = consumableRepository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ConsumableDTO>> GetConsumables()
+        public async Task<IEnumerable<ConsumableDTO>> GetConsumablesAsync()
         {
-            var consumable = await _consumableRepository.GetConsumables();
+            var consumable = await _consumableRepository.GetConsumablesAsync();
             return _mapper.Map<IEnumerable<ConsumableDTO>>(consumable);
         }
 
-        public async Task<ConsumableDTO> GetConsumableById(int? id)
+        public async Task<ConsumableDTO> GetConsumableByIdAsync(int id)
         {
-            var consumable = await _consumableRepository.GetConsumableById(id);
+            var consumable = await _consumableRepository.GetConsumableByIdAsync(id);
             return _mapper.Map<ConsumableDTO>(consumable);
         }
 
-        public async Task Create(ConsumableDTO consumableDTO)
+        public async Task CreateConsumableAsync(ConsumableDTO consumableDTO)
         {
             var consumable = _mapper.Map<Consumable>(consumableDTO);
             await _consumableRepository.Create(consumable);
         }
 
-        public async Task Update(ConsumableDTO consumableDTO)
+        public async Task UpdateConsumableAsync(ConsumableDTO consumableDTO)
         {
             var consumable = _mapper.Map<Consumable>(consumableDTO);
             await _consumableRepository.Update(consumable);
         }
-        public async Task Delete(int? id)
+        public async Task DeleteConsumableAsync(int id)
         {
-            var consumable = _consumableRepository.GetConsumableById(id).Result;
+            var consumable = _consumableRepository.GetConsumableByIdAsync(id).Result;
             await _consumableRepository.Delete(consumable);
         }
     }

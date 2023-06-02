@@ -16,7 +16,7 @@ namespace GeCli.Back.Application.CQRS.Dentists.Handler
 
         public async Task<IEnumerable<Dentist>> Handle(GetDentistsQuery request, CancellationToken cancellationToken)
         {
-            return await _dentistRepository.GetDentists();
+            return await _dentistRepository.GetDentistsAsync();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace GeCli.Back.Application.CQRS.MedicalRecords.Handler
 
         public async Task<MedicalRecord> Handle(MedicalRecordUpdateCommand request, CancellationToken cancellationToken)
         {
-            var record = await _medicalRecordRepository.GetMedicalRecordById(request.Id);
+            var record = await _medicalRecordRepository.GetMedicalRecordByIdAsync(request.Id);
             if (record == null)
             {
                 throw new ArgumentNullException("Error could not be found.");

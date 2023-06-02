@@ -16,7 +16,7 @@ namespace GeCli.Back.Application.CQRS.Procedures.Handler
 
         public async Task<Procedure> Handle(GetProcedureByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _procedureRepository.GetProcedureById(request.Id);
+            return await _procedureRepository.GetProcedureByIdAsync(request.Id);
         }
     }
 }

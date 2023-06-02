@@ -4,11 +4,11 @@ namespace GeCli.Back.Application.Interfaces
 {
     public interface IResponsibleService
     {
-        Task<IEnumerable<ResponsibleDTO>> GetResponsible();
-        Task<ResponsibleDTO> GetResponsibleById(int? id);
+        Task<IEnumerable<ResponsibleDTO>> GetResponsibleAsync();
+        Task<ResponsibleDTO> GetResponsibleByIdAsync(int id);
 
-        Task Create(ResponsibleDTO responsibleDTO);
-        Task Update(ResponsibleDTO responsibleDTO);
-        Task Delete(int? id);
+        Task CreateResponsibleAsync(ResponsibleDTO responsibleDTO);
+        Task UpdateResponsibleAsync(ResponsibleDTO responsibleDTO);
+        Task DeleteResponsibleAsync(int id);
     }
 }

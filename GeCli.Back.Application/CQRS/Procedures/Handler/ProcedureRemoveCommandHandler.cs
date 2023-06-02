@@ -16,7 +16,7 @@ namespace GeCli.Back.Application.CQRS.Procedures.Handler
 
         public async Task<Procedure> Handle(ProcedureRemoveCommand request, CancellationToken cancellationToken)
         {
-            var procedure = await _procedureRepository.GetProcedureById(request.Id);
+            var procedure = await _procedureRepository.GetProcedureByIdAsync(request.Id);
             if (procedure == null)
             {
                 throw new ArgumentNullException("Error could not be found.");
