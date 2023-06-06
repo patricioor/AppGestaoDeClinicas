@@ -46,6 +46,7 @@ namespace GeCli.Back.Infra.IoC
             services.AddScoped<IResponsibleService, ResponsibleService>();
 
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+            services.AddAutoMapper(typeof(DTOToCommandMappingProfile));
 
             var myHandlers = AppDomain.CurrentDomain.Load("GeCli.Back.Application");
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(myHandlers));

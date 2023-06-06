@@ -28,16 +28,18 @@ namespace GeCli.Back.Application.Services
             return _mapper.Map<CategoryDTO>(category);
         }
 
-        public async Task CreateCategoryAsync(CategoryDTO categoryDTO)
+        public async Task<Category> CreateCategoryAsync(CategoryDTO categoryDTO)
         {
             var category = _mapper.Map<Category>(categoryDTO);
             await _categoryRepository.CreateCategoryAsync(category);
+            return category;
         }
 
-        public async Task UpdateCategoryAsync(CategoryDTO categoryDTO)
+        public async Task<Category> UpdateCategoryAsync(CategoryDTO categoryDTO)
         {
             var category = _mapper.Map<Category>(categoryDTO);
             await _categoryRepository.UpdateCategoryAsync(category);
+            return category;
         }
 
         public async Task DeleteCategoryAsync(int id)

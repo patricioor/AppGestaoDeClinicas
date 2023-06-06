@@ -1,4 +1,7 @@
-﻿namespace GeCli.Back.Domain.Entities
+﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
+
+namespace GeCli.Back.Domain.Entities
 {
     public sealed class Category : Entity
     {
@@ -18,6 +21,8 @@
             ValidateDomainName(name);
         }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         public ICollection<Consumable> Consumables { get; private set; }
 
     }

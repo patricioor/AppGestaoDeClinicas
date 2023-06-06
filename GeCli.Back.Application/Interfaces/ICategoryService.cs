@@ -1,4 +1,5 @@
 ﻿using GeCli.Back.Application.DTOs;
+using GeCli.Back.Domain.Entities;
 
 namespace GeCli.Back.Application.Interfaces
 {
@@ -7,8 +8,8 @@ namespace GeCli.Back.Application.Interfaces
         Task<IEnumerable<CategoryDTO>> GetCategoriesAsync();
         Task<CategoryDTO> GetCategoryByIdAsync(int id);
 
-        Task CreateCategoryAsync(CategoryDTO categoryDTO);
-        Task UpdateCategoryAsync(CategoryDTO categoryDTO);
+        Task<Category> CreateCategoryAsync(CategoryDTO categoryDTO);
+        Task<Category> UpdateCategoryAsync(CategoryDTO categoryDTO);
         Task DeleteCategoryAsync(int id);
     }
 }
