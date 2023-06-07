@@ -40,16 +40,9 @@ namespace GeCli.Back.API.Controllers
             return new CreatedAtRouteResult("GetCategory", new { id = category.Id }, categoryDTO);
         }
 
-        //[HttpPut]
-        //public async Task<ActionResult> Put(CategoryDTO categoryDTO)
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult> Put(int id, CategoryDTO categoryDTO)
         //{
-        //    var category = _mapper.Map<Category>(DTO);
-        //    await _categoryRepository.UpdateCategoryAsync(category);
-            
-        //    if (categoryDTO == null)
-        //        return NotFound();
-
-        //    return Ok(categoryDTO);
         //}
 
         [HttpDelete("{id}")]
