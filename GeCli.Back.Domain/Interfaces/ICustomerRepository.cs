@@ -7,8 +7,8 @@ namespace GeCli.Back.Domain.Interfaces
         Task<IEnumerable<Customer>> GetCustomersAsync();
         Task<Customer> GetCustomerByIdAsync(int id);
 
-        Task<Customer> Create(Customer customer);
-        Task<Customer> Update(Customer customer);
-        Task<Customer> Remove(Customer customer);
+        Task<Customer> InsertCustomerAsync(Customer customer);
+        Task<Customer> UpdateCustomerAsync(Customer customer);
+        Task DeleteCustomerAsync(int id);
     }
 }
