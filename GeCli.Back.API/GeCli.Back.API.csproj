@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GeCli.Back.Infra.IoC\GeCli.Back.Infra.IoC.csproj" />
+    <ProjectReference Include="..\GeCli.Back.Manager\GeCli.Back.Manager.csproj" />
   </ItemGroup>
 
 </Project>

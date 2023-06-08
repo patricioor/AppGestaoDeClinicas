@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeCli.Back.Shared\GeCli.Back.Shared.csproj" />
+    <ProjectReference Include="..\GeCli.Back.Domain\GeCli.Back.Domain.csproj" />
   </ItemGroup>
 
 </Project>

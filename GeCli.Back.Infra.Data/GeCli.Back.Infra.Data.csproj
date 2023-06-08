@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GeCli.Back.Domain\GeCli.Back.Domain.csproj" />
+    <ProjectReference Include="..\GeCli.Back.Manager\GeCli.Back.Manager.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeCli.Back.Application\GeCli.Back.Application.csproj" />
     <ProjectReference Include="..\GeCli.Back.Domain\GeCli.Back.Domain.csproj" />
     <ProjectReference Include="..\GeCli.Back.Infra.Data\GeCli.Back.Infra.Data.csproj" />
+    <ProjectReference Include="..\GeCli.Back.Manager\GeCli.Back.Manager.csproj" />
   </ItemGroup>
 
 </Project>

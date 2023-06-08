@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using GeCli.Back.Application.DTOs;
-using GeCli.Back.Application.Interfaces;
-using GeCli.Back.Domain.Entities;
-using GeCli.Back.Domain.Interfaces;
+﻿using GeCli.Back.Manager.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeCli.Back.API.Controllers
@@ -11,45 +7,44 @@ namespace GeCli.Back.API.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IMapper _mapper;
-        public CategoriesController(ICategoryService categoryService, ICategoryRepository categoryRepository, IMapper mapper)
+        private readonly ICategoryManager _categoryManager;
+        public CategoriesController(ICategoryManager categoryManager)
         {
-            _categoryService = categoryService;
-            _categoryRepository = categoryRepository;
-            _mapper = mapper;
+            _categoryManager = categoryManager;
         }
 
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            return Ok(await _categoryRepository.GetCategoriesAsync());
+            return Ok(await _categoryManager.GetCategoriesAsync());
         }
 
         [HttpGet("{id:int}", Name = "GetCategory")]
         public async Task<ActionResult> GetById(int id)
         {
-            return Ok(await _categoryRepository.GetCategoryByIdAsync(id));
+            return Ok(await _categoryManager.GetCategoryByIdAsync(id));
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Post(CategoryDTO categoryDTO)
-        {
-            var category = await _categoryService.CreateCategoryAsync(categoryDTO);
-            return new CreatedAtRouteResult("GetCategory", new { id = category.Id }, categoryDTO);
-        }
-
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult> Put(int id, CategoryDTO categoryDTO)
+        //[HttpPost]
+        //public async Task<ActionResult> Post(NewCategory newCategory)
         //{
+        //    var category = await _categoryRepository.CreateCategoryAsync(newCategory);
+        //    return new CreatedAtRouteResult("GetCategory", new { id = category.Id }, category);
         //}
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
-        {
-           await _categoryRepository.RemoveCategoryAsync(id);
-            return NoContent();
-        }
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult> Put(Category Category)
+        //{
+        //    var category = _mapper.Map<Category>(updateCategory);
+        //    await _categoryRepository.UpdateCategoryAsync(category);
+        //    return Ok(category);
+        //}
+
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult> Delete(int id)
+        //{
+        //    await _categoryRepository.RemoveCategoryAsync(id);
+        //    return NoContent();
+        //}
     }
 }

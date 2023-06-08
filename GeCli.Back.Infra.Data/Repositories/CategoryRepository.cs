@@ -1,6 +1,7 @@
 ﻿using GeCli.Back.Domain.Entities;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
+using GeCli.Back.Manager.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeCli.Back.Infra.Data.Repositories
@@ -23,9 +24,9 @@ namespace GeCli.Back.Infra.Data.Repositories
             return await _categoryContext.Categories.FindAsync(id);
         }
 
-        public async Task<Category> CreateCategoryAsync(Category category)
+        public async Task<Category> InsertCategoryAsync(Category category)
         {
-            _categoryContext.Categories.AddAsync(category);
+            await _categoryContext.Categories.AddAsync(category);
             await _categoryContext.SaveChangesAsync();
             return category;
         }
