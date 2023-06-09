@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GeCli.Back.API</name>
+    </assembly>
+    <members>
+        <member name="M:GeCli.Back.API.Controllers.CustomerController.Get">
+            <summary>
+            Return all customers registered in the database.
+            </summary>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.CustomerController.GetById(System.Int32)">
+            <summary>
+            Returns a customer queried by id.
+            </summary>
+            <param name="id" example="1"> Id of customer.</param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.CustomerController.Post(GeCli.Back.Shared.ModelView.Customer.NewCustomer)">
+            <summary>
+            Insert a new customer
+            </summary>
+            <param name="newCustomer"></param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.CustomerController.Put(GeCli.Back.Shared.ModelView.Customer.UpdateCustomer)">
+            <summary>
+            Update an existing customer.
+            </summary>
+            <param name="updateCustomer"></param>
+            <remarks>When modifying a customer, it will be permanently changed in the database.</remarks>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.CustomerController.Delete(System.Int32)">
+            <summary>
+            Delete an existing customer based on id.
+            </summary>
+            <param name="id" example="1">Id of customer</param>
+            <remarks>When deleting a customer, it will be permanently removed from the database.</remarks>
+        </member>
+    </members>
+</doc>

@@ -3,9 +3,9 @@ using GeCli.Back.Domain.Entities;
 
 namespace GeCli.Back.Manager.Validator
 {
-    public class CategoryValidator : AbstractValidator<Category>
+    public class NewCategoryValidator : AbstractValidator<Category>
     {
-        public CategoryValidator()
+        public NewCategoryValidator()
         {
             RuleFor(x => x.Name).NotNull().NotEmpty().MinimumLength(10).MaximumLength(100);
         }

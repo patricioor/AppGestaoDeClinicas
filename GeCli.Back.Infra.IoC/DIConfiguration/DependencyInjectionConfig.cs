@@ -10,12 +10,14 @@ namespace GeCli.Back.Infra.IoC.DIConfiguration
 {
     public static class DependencyInjectionConfig
     {
-        public static void UseDependencyInjectionConfiguration(this IServiceCollection services)
+        public static void UseDependencyInjectionEntityConfiguration(this IServiceCollection services)
         {
             services.AddScoped<IAuthenticate, AuthenticateService>();
 
+            //Category
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryManager, CategoryManager>();
+            //Customer
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerManager, CustomerManager>();
         }

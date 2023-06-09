@@ -23,7 +23,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             return await _context.Customers.FindAsync(id);
         }
 
-       public async Task<Customer> InsertCustomerAsync(Customer customer)
+        public async Task<Customer> InsertCustomerAsync(Customer customer)
         {
             await _context.AddAsync(customer);
             await _context.SaveChangesAsync();
@@ -32,18 +32,18 @@ namespace GeCli.Back.Infra.Data.Repositories
 
         public async Task<Customer> UpdateCustomerAsync(Customer customer)
         {
-            var CustomerFound = await _context.Customers.FindAsync(customer.Id);
-            if (CustomerFound == null)
+            var customerFound = await _context.Customers.FindAsync(customer.Id);
+            if (customerFound == null)
                 return null;
 
-            _context.Entry(CustomerFound).CurrentValues.SetValues(customer);
+            _context.Entry(customerFound).CurrentValues.SetValues(customer);
             await _context.SaveChangesAsync();
-            return CustomerFound;
+            return customerFound;
         }
         public async Task DeleteCustomerAsync(int id)
         {
-            var CustomerFound = await _context.Customers.FindAsync(id);
-            _context.Customers.Remove(CustomerFound);
+            var customerFound = await _context.Customers.FindAsync(id);
+            _context.Customers.Remove(customerFound);
             await _context.SaveChangesAsync();
         }
     }

@@ -41,6 +41,11 @@ namespace GeCli.Back.Manager.Implementation
         public async Task<Customer> UpdateCustomerAsync(UpdateCustomer updateCustomer)
         {
             var customer = _mapper.Map<Customer>(updateCustomer);
+            var customerCreate = await _customerRepository.GetCustomerByIdAsync(customer.Id);
+            if (customerCreate == null)
+                return null;
+
+            customer.CreationDate = customerCreate.CreationDate;
             return await _customerRepository.UpdateCustomerAsync(customer);
         }
     }

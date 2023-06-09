@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace GeCli.Back.API.ProgramConfigurations
 {
@@ -25,6 +26,11 @@ namespace GeCli.Back.API.ProgramConfigurations
                             Name = "All rigths reserveds."
                         }
                     });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+                xmlPath = Path.Combine(AppContext.BaseDirectory, "GeCli.Back.Shared.xml");
+                c.IncludeXmlComments(xmlPath);
             });
         }
 

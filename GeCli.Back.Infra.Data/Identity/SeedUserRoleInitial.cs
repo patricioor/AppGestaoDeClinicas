@@ -14,7 +14,7 @@ namespace GeCli.Back.Infra.Data.Identity
             _roleManager = roleManager;
         }
 
-        public async void SeedUsers()
+        public void SeedUsers()
         {
             if (_userManager.FindByEmailAsync("usuario@teste").Result == null)
             {

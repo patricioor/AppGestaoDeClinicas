@@ -20,7 +20,7 @@ namespace GeCli.Back.Infra.IoC
                 AddEntityFrameworkStores<ApplicationDbContext>().
                 AddDefaultTokenProviders();
 
-            services.UseDependencyInjectionConfiguration();
+            services.UseDependencyInjectionEntityConfiguration();
 
             services.UseAutoMapperConfiguration();
 
