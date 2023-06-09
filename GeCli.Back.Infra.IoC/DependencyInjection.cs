@@ -1,11 +1,6 @@
-﻿using GeCli.Back.Domain.Account;
-using GeCli.Back.Domain.Interfaces;
-using GeCli.Back.Infra.Data.Context;
+﻿using GeCli.Back.Infra.Data.Context;
 using GeCli.Back.Infra.Data.Identity;
-using GeCli.Back.Infra.Data.Repositories;
-using GeCli.Back.Manager.Implementation;
-using GeCli.Back.Manager.Interfaces;
-using GeCli.Back.Manager.Mappings;
+using GeCli.Back.Infra.IoC.DIConfiguration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,17 +20,9 @@ namespace GeCli.Back.Infra.IoC
                 AddEntityFrameworkStores<ApplicationDbContext>().
                 AddDefaultTokenProviders();
 
-            services.AddScoped<IAuthenticate, AuthenticateService>();
+            services.UseDependencyInjectionConfiguration();
 
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<ICategoryManager, CategoryManager>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<ICustomerManager, CustomerManager>();
-
-            services.AddAutoMapper(
-                typeof(NewCustomerMappingProfile),
-                typeof(UpdateCustomerMappingProfile)
-                );
+            services.UseAutoMapperConfiguration();
 
             return services;
 

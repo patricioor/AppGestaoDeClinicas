@@ -1,17 +1,13 @@
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using GeCli.Back.API.Configuration;
+using GeCli.Back.API.ProgramConfigurations;
 using GeCli.Back.Infra.IoC;
-using GeCli.Back.Manager.Validator;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddFluentValidationClientsideAdapters();
-builder.Services.AddValidatormAssemblyContaining();
+
+builder.Services.AddFluentValidationConfigurations();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
