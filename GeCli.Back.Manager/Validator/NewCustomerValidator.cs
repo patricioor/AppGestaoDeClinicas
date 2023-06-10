@@ -9,7 +9,7 @@ namespace GeCli.Back.Manager.Validator
         {
             RuleFor(x => x.Name).NotEmpty().NotNull().MinimumLength(3).MaximumLength(100);
             RuleFor(x => x.Address).NotNull().NotEmpty().MinimumLength(3).MaximumLength(200);
-            RuleFor(x => x.Cellphone).NotNull().NotEmpty().Matches("[2-9][0-9]{10}").WithMessage("Cell input : [2-9][0-9]{10}");
+            RuleFor(x => x.Cellphone).NotNull().NotEmpty().Matches("[1-9]{4}[0-9]{7}").WithMessage("Cell input : [1-9]{4}[0-9]{7}");
             RuleFor(x => x.BirthDay).NotNull().NotEmpty().LessThan(DateTime.Now).GreaterThan(DateTime.Now.AddYears(-110));
             RuleFor(x => x.Gender).NotNull().NotEmpty().Must(MorF).WithMessage("Gender input: 'M' or 'F'");
             RuleFor(x => x.CPF).NotNull().NotEmpty().Matches("[0-9]{11}").Must(CPFValidator);

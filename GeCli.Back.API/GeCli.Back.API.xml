@@ -17,7 +17,7 @@
         </member>
         <member name="M:GeCli.Back.API.Controllers.CustomerController.Post(GeCli.Back.Shared.ModelView.Customer.NewCustomer)">
             <summary>
-            Insert a new customer
+            Insert new customer
             </summary>
             <param name="newCustomer"></param>
         </member>

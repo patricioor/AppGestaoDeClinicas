@@ -22,6 +22,7 @@
     <PackageReference Include="automapper.extensions.microsoft.dependencyinjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="fluentValidation.Dependencyinjectionextensions" Version="11.5.2" />
+    <PackageReference Include="MicroElements.Swashbuckle.FLuentValidation" Version="5.7.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.16">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

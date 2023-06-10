@@ -21,6 +21,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
     app.UseSwaggerConfiguration();
 
+app.UseInfrastructure();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

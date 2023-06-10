@@ -1,6 +1,7 @@
 ﻿using GeCli.Back.Infra.Data.Context;
 using GeCli.Back.Infra.Data.Identity;
 using GeCli.Back.Infra.IoC.DIConfiguration;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +11,7 @@ namespace GeCli.Back.Infra.IoC
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
@@ -23,9 +24,14 @@ namespace GeCli.Back.Infra.IoC
             services.UseDependencyInjectionEntityConfiguration();
 
             services.UseAutoMapperConfiguration();
+        }
 
-            return services;
-
+        public static void UseInfrastructure(this IApplicationBuilder app)
+        {
+            using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            using var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+            context.Database.Migrate();
+            context.Database.EnsureCreated();
         }
     }
 }

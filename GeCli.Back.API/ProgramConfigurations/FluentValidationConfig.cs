@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using GeCli.Back.Manager.Validator;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 
 namespace GeCli.Back.API.ProgramConfigurations
 {
@@ -9,6 +10,7 @@ namespace GeCli.Back.API.ProgramConfigurations
         public static void AddFluentValidationConfigurations(this IServiceCollection services)
         {
             services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationRulesToSwagger();
             services.AddFluentValidationClientsideAdapters();
 
             services.AddValidatorsFromAssemblyContaining<NewCustomerValidator>();

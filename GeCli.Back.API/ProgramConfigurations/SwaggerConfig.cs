@@ -9,10 +9,10 @@ namespace GeCli.Back.API.ProgramConfigurations
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", 
-                    new OpenApiInfo 
-                    { 
-                        Title = "App para Gestão de Clínicas", 
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "App para Gestão de Clínicas",
                         Version = "v1",
                         Description = "API da aplicação 'GeCli'",
                         Contact = new OpenApiContact
@@ -41,7 +41,7 @@ namespace GeCli.Back.API.ProgramConfigurations
             {
                 c.RoutePrefix = string.Empty;
                 c.SwaggerEndpoint("./swagger/v1/swagger.json", "GeCli v1");
-            });          
+            });
         }
     }
 }
