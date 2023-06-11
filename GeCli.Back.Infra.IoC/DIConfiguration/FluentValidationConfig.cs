@@ -2,6 +2,7 @@
 using FluentValidation.AspNetCore;
 using GeCli.Back.Manager.Validator;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GeCli.Back.API.ProgramConfigurations
 {

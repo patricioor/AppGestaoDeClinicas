@@ -1,32 +1,51 @@
-using GeCli.Back.API.ProgramConfigurations;
+using GeCli.Back.API.Configurations;
 using GeCli.Back.Infra.IoC;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Host.UseSerilog();
 
-builder.Services.AddControllers();
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File("log.txt", fileSizeLimitBytes: 100000, rollOnFileSizeLimit: true, rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
-builder.Services.AddFluentValidationConfigurations();
+try
+{
+    Log.Information("initializing WebApi");
+    // Add services to the container.
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerConfiguration();
+    builder.Services.AddInfrastructure(builder.Configuration);
+    builder.Services.AddControllers();
 
-builder.Services.AddInfrastructure(builder.Configuration);
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerConfiguration();
 
-var app = builder.Build();
+    var app = builder.Build();
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+        app.UseSwaggerConfiguration();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-    app.UseSwaggerConfiguration();
+    app.UseInfrastructure();
 
-app.UseInfrastructure();
+    app.UseHttpsRedirection();
 
-app.UseHttpsRedirection();
+    app.UseAuthorization();
 
-app.UseAuthorization();
+    app.MapControllers();
 
-app.MapControllers();
+    app.Run();
 
-app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Critical Error");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+

@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using System.Reflection;
 
-namespace GeCli.Back.API.ProgramConfigurations
+namespace GeCli.Back.API.Configurations
 {
     public static class SwaggerConfig
     {

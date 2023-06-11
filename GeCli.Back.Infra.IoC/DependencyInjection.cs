@@ -1,4 +1,5 @@
-﻿using GeCli.Back.Infra.Data.Context;
+﻿using GeCli.Back.API.ProgramConfigurations;
+using GeCli.Back.Infra.Data.Context;
 using GeCli.Back.Infra.Data.Identity;
 using GeCli.Back.Infra.IoC.DIConfiguration;
 using Microsoft.AspNetCore.Builder;
@@ -22,7 +23,7 @@ namespace GeCli.Back.Infra.IoC
                 AddDefaultTokenProviders();
 
             services.UseDependencyInjectionEntityConfiguration();
-
+            services.AddFluentValidationConfigurations();
             services.UseAutoMapperConfiguration();
         }
 

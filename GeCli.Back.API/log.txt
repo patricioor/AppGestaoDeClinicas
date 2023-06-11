@@ -1,0 +1,107 @@
+2023-06-10 21:03:44.385 -03:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Consumable'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2023-06-10 21:03:44.587 -03:00 [INF] Entity Framework Core 6.0.16 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.16' with options: MigrationsAssembly=GeCli.Back.Infra.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2023-06-10 21:03:45.025 -03:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-06-10 21:03:45.082 -03:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-06-10 21:03:45.089 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-06-10 21:03:45.092 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-06-10 21:03:45.116 -03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-06-10 21:03:45.138 -03:00 [INF] No migrations were applied. The database is already up to date.
+2023-06-10 21:03:45.142 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-06-10 21:03:45.187 -03:00 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2023-06-10 21:03:45.315 -03:00 [INF] User profile is available. Using 'C:\Users\patri\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-06-10 21:03:45.493 -03:00 [INF] Now listening on: https://localhost:7270
+2023-06-10 21:03:45.495 -03:00 [INF] Now listening on: http://localhost:5172
+2023-06-10 21:03:45.500 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-10 21:03:45.502 -03:00 [INF] Hosting environment: Development
+2023-06-10 21:03:45.503 -03:00 [INF] Content root path: D:\Repositório Estudos\GeCli\GeCli.Back\GeCli.Back.API\
+2023-06-10 21:03:46.104 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7270/index.html - -
+2023-06-10 21:03:46.547 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7270/index.html - - - 200 - text/html;charset=utf-8 448.3127ms
+2023-06-10 21:03:46.608 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7270/_framework/aspnetcore-browser-refresh.js - -
+2023-06-10 21:03:46.608 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7270/_vs/browserLink - -
+2023-06-10 21:03:46.615 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7270/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 7.0211ms
+2023-06-10 21:03:46.641 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7270/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 33.3463ms
+2023-06-10 21:03:46.728 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7270/swagger/v1/swagger.json - -
+2023-06-10 21:03:46.979 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7270/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 251.2380ms
+2023-06-10 21:15:38.138 -03:00 [INF] initializang WebApi
+2023-06-10 21:17:40.741 -03:00 [INF] initializang WebApi
+2023-06-10 21:17:42.509 -03:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Consumable'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2023-06-10 21:17:42.694 -03:00 [INF] Entity Framework Core 6.0.16 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.16' with options: MigrationsAssembly=GeCli.Back.Infra.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2023-06-10 21:17:43.109 -03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-06-10 21:17:43.165 -03:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-06-10 21:17:43.171 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-06-10 21:17:43.175 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-06-10 21:17:43.195 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-06-10 21:17:43.218 -03:00 [INF] No migrations were applied. The database is already up to date.
+2023-06-10 21:17:43.222 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-06-10 21:17:43.261 -03:00 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2023-06-10 21:17:43.391 -03:00 [INF] User profile is available. Using 'C:\Users\patri\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-06-10 21:17:43.584 -03:00 [INF] Now listening on: https://localhost:7270
+2023-06-10 21:17:43.586 -03:00 [INF] Now listening on: http://localhost:5172
+2023-06-10 21:17:43.590 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-06-10 21:17:43.592 -03:00 [INF] Hosting environment: Development
+2023-06-10 21:17:43.593 -03:00 [INF] Content root path: D:\Repositório Estudos\GeCli\GeCli.Back\GeCli.Back.API\
+2023-06-10 21:17:44.123 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7270/index.html - -
+2023-06-10 21:17:44.575 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7270/index.html - - - 200 - text/html;charset=utf-8 456.0496ms
+2023-06-10 21:17:44.638 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7270/_framework/aspnetcore-browser-refresh.js - -
+2023-06-10 21:17:44.638 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7270/_vs/browserLink - -
+2023-06-10 21:17:44.645 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7270/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 6.5731ms
+2023-06-10 21:17:44.661 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7270/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 22.8472ms
+2023-06-10 21:17:44.762 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7270/swagger/v1/swagger.json - -
+2023-06-10 21:17:44.992 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7270/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 230.5726ms
+2023-06-10 21:18:16.816 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7270/api/Customer - -
+2023-06-10 21:18:16.829 -03:00 [INF] Executing endpoint 'GeCli.Back.API.Controllers.CustomerController.Get (GeCli.Back.API)'
+2023-06-10 21:18:16.856 -03:00 [INF] Route matched with {action = "Get", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Get() on controller GeCli.Back.API.Controllers.CustomerController (GeCli.Back.API).
+2023-06-10 21:18:16.992 -03:00 [INF] Entity Framework Core 6.0.16 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.16' with options: MigrationsAssembly=GeCli.Back.Infra.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null 
+2023-06-10 21:18:17.332 -03:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Address], [c].[BirthDay], [c].[CPF], [c].[Cellphone], [c].[CreationDate], [c].[Gender], [c].[LastUpdate], [c].[Name], [c].[ResponsibleId]
+FROM [Customers] AS [c]
+2023-06-10 21:18:17.363 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GeCli.Back.Domain.Entities.Customer, GeCli.Back.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-06-10 21:18:17.400 -03:00 [INF] Executed action GeCli.Back.API.Controllers.CustomerController.Get (GeCli.Back.API) in 535.169ms
+2023-06-10 21:18:17.404 -03:00 [INF] Executed endpoint 'GeCli.Back.API.Controllers.CustomerController.Get (GeCli.Back.API)'
+2023-06-10 21:18:17.411 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7270/api/Customer - - - 200 - application/json;+charset=utf-8 594.9100ms
