@@ -28,12 +28,12 @@
         /// <summary>
         /// Customer's gender
         /// </summary>
-        /// <example>'M' or 'F'</example>
+        /// <example>'M'</example>
         public char Gender { get; set; }
         /// <summary>
         /// Brazilian identification document: CPF(Validation on)
         /// </summary>
-        /// <example>12312312344</example>
+        /// <example>79656843061</example>
         public string CPF { get; set; }
     }
 }
