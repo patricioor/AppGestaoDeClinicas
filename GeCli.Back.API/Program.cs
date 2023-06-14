@@ -4,40 +4,24 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog();
+// Add services to the container.
 
-Log.Logger = new LoggerConfiguration()
-    .Enrich.FromLogContext()
-    .WriteTo.Console()
-    .WriteTo.File("log.txt", fileSizeLimitBytes: 100000, rollOnFileSizeLimit: true, rollingInterval: RollingInterval.Day)
-    .CreateLogger();
+builder.Host.UseSerilog();
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddControllers();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerConfiguration();
+
+IConfigurationRoot configuration = GetConfiguration();
+
+ConfigureLog(configuration);
 
 try
 {
     Log.Information("initializing WebApi");
-    // Add services to the container.
-
-    builder.Services.AddInfrastructure(builder.Configuration);
-    builder.Services.AddControllers();
-
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerConfiguration();
-
-    var app = builder.Build();
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-        app.UseSwaggerConfiguration();
-
-    app.UseInfrastructure();
-
-    app.UseHttpsRedirection();
-
-    app.UseAuthorization();
-
-    app.MapControllers();
-
-    app.Run();
+    builder.AppConfigurations();
 
 }
 catch (Exception ex)
@@ -49,3 +33,21 @@ finally
     Log.CloseAndFlush();
 }
 
+static IConfigurationRoot GetConfiguration()
+{
+    string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+    var configuration = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json")
+        .AddJsonFile($"appsettings.{environment}.json")
+        .Build();
+    return configuration;
+}
+
+static void ConfigureLog(IConfigurationRoot configuration)
+{
+    Log.Logger = new LoggerConfiguration()
+        .ReadFrom.Configuration(configuration)
+        .CreateLogger();
+}

@@ -28,7 +28,7 @@
         /// <summary>
         /// Customer's gender
         /// </summary>
-        /// <example>'M'</example>
+        /// <example>M</example>
         public char Gender { get; set; }
         /// <summary>
         /// Brazilian identification document: CPF(Validation on)

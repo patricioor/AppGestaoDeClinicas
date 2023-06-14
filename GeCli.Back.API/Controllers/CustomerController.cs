@@ -2,6 +2,7 @@
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Customer;
 using Microsoft.AspNetCore.Mvc;
+using SerilogTimings;
 
 namespace GeCli.Back.API.Controllers
 {
@@ -10,10 +11,11 @@ namespace GeCli.Back.API.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerManager _customerManager;
-
-        public CustomerController(ICustomerManager customerManager)
+        private readonly ILogger _logger;
+        public CustomerController(ICustomerManager customerManager, ILogger<Customer> logger)
         {
             _customerManager = customerManager;
+            _logger = logger;
         }
         /// <summary>
         /// Return all customers registered in the database.
@@ -47,7 +49,13 @@ namespace GeCli.Back.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Post(NewCustomer newCustomer)
         {
-            var insertCustomer = await _customerManager.InsertCustomerAsync(newCustomer);
+            Customer insertCustomer;
+            _logger.LogInformation("Receive Object Name: {newCustomer.Name}");
+            using (Operation.Time("Time for insert customer."))
+            {
+                _logger.LogInformation("new customer has been requested to be inserted");
+                insertCustomer = await _customerManager.InsertCustomerAsync(newCustomer);
+            }
             return new CreatedAtRouteResult("GetCustomer", new { id = insertCustomer.Id }, insertCustomer);
         }
 
@@ -62,7 +70,6 @@ namespace GeCli.Back.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Put(UpdateCustomer updateCustomer)
          {
-
             var customerUpdated = await _customerManager.UpdateCustomerAsync(updateCustomer);
             if (customerUpdated == null)
                 return NotFound();
