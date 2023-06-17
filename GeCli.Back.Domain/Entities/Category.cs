@@ -5,6 +5,7 @@ namespace GeCli.Back.Domain.Entities
 {
     public sealed class Category : Entity
     {
+        public string Name { get; set; }
         //[JsonIgnore]
         //[IgnoreDataMember]
         //public ICollection<Consumable> Consumables { get; private set; }

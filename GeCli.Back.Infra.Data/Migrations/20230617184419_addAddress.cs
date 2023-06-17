@@ -4,7 +4,7 @@
 
 namespace GeCli.Back.Infra.Data.Migrations
 {
-    public partial class InserindoCustomerManager2 : Migration
+    public partial class addAddress : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

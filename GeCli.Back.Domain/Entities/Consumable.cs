@@ -3,7 +3,7 @@
     public sealed class Consumable : Entity
     {
         public int Stock { get; protected set; }
-        public decimal Price { get; protected set; }
+        //public decimal Price { get; protected set; }
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }

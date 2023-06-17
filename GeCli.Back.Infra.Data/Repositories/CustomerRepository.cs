@@ -15,12 +15,16 @@ namespace GeCli.Back.Infra.Data.Repositories
 
         public async Task<IEnumerable<Customer>> GetCustomersAsync()
         {
-            return await _context.Customers.AsNoTracking().ToListAsync();
+            return await _context.Customers
+                .Include(p => p.Address)
+                .AsNoTracking().ToListAsync();
         }
 
         public async Task<Customer> GetCustomerByIdAsync(int id)
         {
-            return await _context.Customers.FindAsync(id);
+            return await _context.Customers
+               .Include(p => p.Address)
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<Customer> InsertCustomerAsync(Customer customer)

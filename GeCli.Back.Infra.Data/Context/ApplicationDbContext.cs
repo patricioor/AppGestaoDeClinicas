@@ -9,6 +9,7 @@ namespace GeCli.Back.Infra.Data.Context
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
+        public DbSet<Address> Adresses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Consumable> Consumables { get; set; } = null!;
         public DbSet<Customer> Customers { get; set; }

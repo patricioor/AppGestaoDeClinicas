@@ -20,7 +20,8 @@ namespace GeCli.Back.Infra.Data.Repositories
 
         public async Task<Category> GetCategoryByIdAsync(int id)
         {
-            return await _context.Categories.FindAsync(id);
+            return await _context.Categories
+                .FindAsync(id);
         }
 
         public async Task<Category> InsertCategoryAsync(Category category)
@@ -45,8 +46,6 @@ namespace GeCli.Back.Infra.Data.Repositories
         public async Task RemoveCategoryAsync(int id)
         {
             var categoryFound = await _context.Categories.FindAsync(id);
-
-            _context.Remove(categoryFound);
             await _context.SaveChangesAsync();
         }
     }

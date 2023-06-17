@@ -10,11 +10,9 @@
         /// </summary>
         /// <example>Patrício Osterno Rios</example>
         public string Name { get; set; }
-        /// <summary>
-        /// Customer's full address
-        /// </summary>
-        /// <example>Rua dos Loucos 0</example>
-        public string Address { get; set; }
+
+
+        public NewAddress Address { get; set; }
         /// <summary>
         /// Customer's cellphone number.
         /// </summary>
@@ -35,5 +33,7 @@
         /// </summary>
         /// <example>79656843061</example>
         public string CPF { get; set; }
+
+        
     }
 }

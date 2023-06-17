@@ -37,7 +37,10 @@ namespace GeCli.Back.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetById(int id)
         {
-            return Ok(await _customerManager.GetCustomerByIdAsync(id));
+            var customer = await _customerManager.GetCustomerByIdAsync(id);
+            if (customer == null)
+                return NotFound();
+            return Ok(customer);
         }
 
         /// <summary>

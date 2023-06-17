@@ -6,9 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Host.UseSerilog();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -22,6 +20,8 @@ try
 {
     Log.Information("initializing WebApi");
     builder.AppConfigurations();
+    builder.Logging.ClearProviders();
+    builder.Logging.AddSerilog();
 
 }
 catch (Exception ex)
@@ -40,7 +40,7 @@ static IConfigurationRoot GetConfiguration()
     var configuration = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("appsettings.json")
-        .AddJsonFile($"appsettings.{environment}.json")
+        .AddJsonFile($"appsettings.{environment}.json", optional: true)
         .Build();
     return configuration;
 }
@@ -51,3 +51,5 @@ static void ConfigureLog(IConfigurationRoot configuration)
         .ReadFrom.Configuration(configuration)
         .CreateLogger();
 }
+
+

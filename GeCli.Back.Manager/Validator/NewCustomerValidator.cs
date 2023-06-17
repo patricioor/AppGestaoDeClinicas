@@ -8,11 +8,11 @@ namespace GeCli.Back.Manager.Validator
         public NewCustomerValidator()
         {
             RuleFor(x => x.Name).NotEmpty().NotNull().MinimumLength(3).MaximumLength(100);
-            RuleFor(x => x.Address).NotNull().NotEmpty().MinimumLength(3).MaximumLength(200);
             RuleFor(x => x.Cellphone).NotNull().NotEmpty().Matches("[1-9]{4}[0-9]{7}").WithMessage("Cell input : [1-9]{4}[0-9]{7}");
             RuleFor(x => x.BirthDay).NotNull().NotEmpty().LessThan(DateTime.Now).GreaterThan(DateTime.Now.AddYears(-110));
             RuleFor(x => x.Gender).NotNull().NotEmpty().Must(MorF).WithMessage("Gender input: 'M' or 'F'");
             RuleFor(x => x.CPF).NotNull().NotEmpty().Matches("[0-9]{11}").Must(CPFValidator);
+            RuleFor(x => x.Address).SetValidator(new NewAddressValidator());
         }
 
         private bool MorF(char sexo)
@@ -22,41 +22,41 @@ namespace GeCli.Back.Manager.Validator
 
         private bool CPFValidator(string cpf)
         {
-            // Removendo caracteres não numéricos
+            // Removing non-numeric characters
             cpf = new string(cpf.Where(char.IsDigit).ToArray());
 
-            // Verificando se o CPF possui 11 dígitos
+            // Checking if the CPF has 11 digits
             if (cpf.Length != 11)
                 return false;
 
-            // Verificando se todos os dígitos são iguais
+            // Checking if all digits are equal
             if (cpf.Distinct().Count() == 1)
                 return false;
 
-            // Calculando o primeiro dígito verificador
-            int soma = 0;
+            // Calculating the first check digit
+            int sum = 0;
             for (int i = 0; i < 9; i++)
             {
-                soma += int.Parse(cpf[i].ToString()) * (10 - i);
+                sum += int.Parse(cpf[i].ToString()) * (10 - i);
             }
-            int resto = soma % 11;
-            int digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
+            int remainder = sum % 11;
+            int digitCheck1 = remainder < 2 ? 0 : 11 - remainder;
 
-            // Verificando o primeiro dígito verificador
-            if (int.Parse(cpf[9].ToString()) != digitoVerificador1)
+            // Checking the first check digit
+            if (int.Parse(cpf[9].ToString()) != digitCheck1)
                 return false;
 
-            // Calculando o segundo dígito verificador
-            soma = 0;
+            // Calculating the second check digit
+            sum = 0;
             for (int i = 0; i < 10; i++)
             {
-                soma += int.Parse(cpf[i].ToString()) * (11 - i);
+                sum += int.Parse(cpf[i].ToString()) * (11 - i);
             }
-            resto = soma % 11;
-            int digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
+            remainder = sum % 11;
+            int digitCheck2 = remainder < 2 ? 0 : 11 - remainder;
 
-            // Verificando o segundo dígito verificador
-            if (int.Parse(cpf[10].ToString()) != digitoVerificador2)
+            // Checking the second check digit
+            if (int.Parse(cpf[10].ToString()) != digitCheck2)
                 return false;
 
             return true;

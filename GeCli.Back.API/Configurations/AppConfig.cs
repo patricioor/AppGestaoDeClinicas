@@ -1,4 +1,5 @@
 ﻿using GeCli.Back.Infra.IoC;
+using Serilog;
 
 namespace GeCli.Back.API.Configurations
 {
@@ -6,11 +7,17 @@ namespace GeCli.Back.API.Configurations
     {
         public static void AppConfigurations(this WebApplicationBuilder builder)
         {
-
             var app = builder.Build();
+
+            app.UseExceptionHandler("/error");
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
-                app.UseSwaggerConfiguration();
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            
+            app.UseSwaggerConfiguration();
 
             app.UseInfrastructure();
 

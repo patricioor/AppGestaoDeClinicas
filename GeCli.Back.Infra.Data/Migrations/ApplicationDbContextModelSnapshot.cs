@@ -17,7 +17,7 @@ namespace GeCli.Back.Infra.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.16")
+                .HasAnnotation("ProductVersion", "6.0.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -35,6 +35,39 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.HasIndex("ProceduresId");
 
                     b.ToTable("ConsumableProcedure");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Address", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CEP")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Complement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Adresses");
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Category", b =>
@@ -65,13 +98,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
@@ -89,10 +115,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("BirthDay")
                         .HasColumnType("datetime2");
@@ -117,7 +139,8 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int?>("ResponsibleId")
                         .HasColumnType("int");
@@ -144,10 +167,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.Property<int>("EmploymentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmploymentId");
@@ -162,10 +181,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -209,10 +224,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.Property<string>("Medicate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProcedureId")
                         .HasColumnType("int");
 
@@ -243,10 +254,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.Property<int>("ConsumableId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Procedures");
@@ -259,10 +266,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -482,6 +485,17 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Address", b =>
+                {
+                    b.HasOne("GeCli.Back.Domain.Entities.Customer", "Customer")
+                        .WithOne("Address")
+                        .HasForeignKey("GeCli.Back.Domain.Entities.Address", "CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Consumable", b =>
                 {
                     b.HasOne("GeCli.Back.Domain.Entities.Category", "Category")
@@ -586,6 +600,12 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("Address")
                         .IsRequired();
                 });
 

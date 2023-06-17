@@ -58,18 +58,19 @@ namespace GeCli.Back.Infra.Data.Repositories
             return procedureUpdate;
         }
 
-        private async Task UpdateProcedureConsumables(Procedure procedure, Procedure? procedureUpdate)
+        private async Task UpdateProcedureConsumables(Procedure procedure, Procedure procedureUpdate)
         {
             foreach (var consumable in procedure.Consumables)
             {
                 var consumableFound = await _procedureContext.Consumables.FindAsync(consumable.Id);
                 procedureUpdate.Consumables.Append(consumableFound);
+                
             }
         }
 
         public async Task<Procedure> Remove(Procedure procedure)
         {
-            _procedureContext?.Procedures.Remove(procedure);
+            //_procedureContext?.Procedures.Remove(procedure);
             await _procedureContext.SaveChangesAsync();
             return procedure;
         }
