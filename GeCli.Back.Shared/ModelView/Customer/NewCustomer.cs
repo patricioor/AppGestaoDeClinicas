@@ -11,13 +11,9 @@
         /// <example>Patrício Osterno Rios</example>
         public string Name { get; set; }
 
-
         public NewAddress Address { get; set; }
-        /// <summary>
-        /// Customer's cellphone number.
-        /// </summary>
-        /// <example>11987654321</example>
-        public string Cellphone { get; set; }
+
+        public ICollection<NewCellphone> Cellphones { get; set; }
         /// <summary>
         /// Customer's Birth day
         /// </summary>

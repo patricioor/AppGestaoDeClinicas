@@ -1,4 +1,4 @@
-﻿namespace GeCli.Back.Domain.Entities
+﻿namespace GeCli.Back.Domain.Entities.Customers
 {
     public class Address
     {

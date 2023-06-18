@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GeCli.Back.Domain.Entities;
+using GeCli.Back.Domain.Entities.Customers;
 using GeCli.Back.Shared.ModelView.Customer;
 
 namespace GeCli.Back.Manager.Mappings

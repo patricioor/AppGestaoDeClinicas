@@ -1,4 +1,4 @@
-﻿using GeCli.Back.Domain.Entities;
+﻿using GeCli.Back.Domain.Entities.Customers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

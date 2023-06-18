@@ -1,4 +1,4 @@
-﻿using GeCli.Back.Domain.Entities;
+﻿using GeCli.Back.Domain.Entities.Customers;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +17,7 @@ namespace GeCli.Back.Infra.Data.Repositories
         {
             return await _context.Customers
                 .Include(p => p.Address)
+                .Include(p => p.Cellphones)
                 .AsNoTracking().ToListAsync();
         }
 
@@ -24,6 +25,7 @@ namespace GeCli.Back.Infra.Data.Repositories
         {
             return await _context.Customers
                .Include(p => p.Address)
+               .Include(p => p.Cellphones)
                 .SingleOrDefaultAsync(p => p.Id == id);
         }
 

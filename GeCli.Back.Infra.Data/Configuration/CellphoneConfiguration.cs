@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GeCli.Back.Infra.Data.Configuration
 {
-    public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+    public class CellphoneConfiguration : IEntityTypeConfiguration<Cellphone>
     {
-        public void Configure(EntityTypeBuilder<Customer> builder)
+        public void Configure(EntityTypeBuilder<Cellphone> builder)
         {
-            builder.Property(p => p.Name).HasMaxLength(200).IsRequired();
+            builder.HasKey(p => new { p.CustomerId, p.Number });
         }
     }
 }

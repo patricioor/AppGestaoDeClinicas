@@ -21,6 +21,8 @@ namespace GeCli.Back.API.ProgramConfigurations
             services.AddValidatorsFromAssemblyContaining<NewCustomerValidator>();
             services.AddValidatorsFromAssemblyContaining<UpdateCustomerValidator>();
             services.AddValidatorsFromAssemblyContaining<NewAddressValidator>();
+            services.AddValidatorsFromAssemblyContaining<NewCellphoneValidator>();
+
         }
     }
 }

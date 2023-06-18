@@ -1,4 +1,6 @@
-﻿namespace GeCli.Back.Domain.Entities
+﻿using GeCli.Back.Domain.Entities.Customers;
+
+namespace GeCli.Back.Domain.Entities
 {
     public sealed class MedicalRecord : Entity
     {
