@@ -1,4 +1,5 @@
-﻿using GeCli.Back.Domain.Entities.Customers;
+﻿using AutoMapper;
+using GeCli.Back.Domain.Entities.Customers;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Customer;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,7 @@ namespace GeCli.Back.API.Controllers
     {
         private readonly ICustomerManager _customerManager;
         private readonly ILogger _logger;
-        public CustomerController(ICustomerManager customerManager, ILogger<Customer> logger)
+        public CustomerController(ICustomerManager customerManager,IMapper mapper, ILogger<Customer> logger)
         {
             _customerManager = customerManager;
             _logger = logger;
@@ -57,8 +58,9 @@ namespace GeCli.Back.API.Controllers
             using (Operation.Time("Time for insert customer."))
             {
                 _logger.LogInformation("new customer has been requested to be inserted");
-                insertCustomer = await _customerManager.InsertCustomerAsync(newCustomer);
+                insertCustomer = await _customerManager.InsertCustomerAsync(newCustomer);    
             }
+            
             return new CreatedAtRouteResult("GetCustomer", new { id = insertCustomer.Id }, insertCustomer);
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
+using GeCli.Back.Domain.Entities.AbstractClasses;
 
 namespace GeCli.Back.Domain.Entities
 {

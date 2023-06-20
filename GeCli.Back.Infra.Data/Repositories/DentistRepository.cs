@@ -1,4 +1,5 @@
-﻿using GeCli.Back.Domain.Entities;
+﻿using GeCli.Back.Domain.Entities.Customers;
+using GeCli.Back.Domain.Entities.Employees;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -7,41 +8,52 @@ namespace GeCli.Back.Infra.Data.Repositories
 {
     public class DentistRepository : IDentistRepository
     {
-        ApplicationDbContext _dentistContext;
+        ApplicationDbContext _context;
         public DentistRepository(ApplicationDbContext context)
         {
-            _dentistContext = context;
+            _context = context;
         }
 
         public async Task<IEnumerable<Dentist>> GetDentistsAsync()
         {
-            return await _dentistContext.Dentists.AsNoTracking().ToListAsync();
+            return await _context.Dentists
+                        .Include(p => p.DentistAddress)
+                        .Include(p => p.DentistCellphones)
+                        .AsNoTracking().ToListAsync();
         }
 
         public async Task<Dentist> GetDentistByIdAsync(int id)
         {
-            return await _dentistContext.Dentists.FindAsync(id);
+            return await _context.Dentists
+                        .Include(p => p.DentistAddress)
+                        .Include(p => p.DentistCellphones)
+                        .SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<Dentist> Create(Dentist dentist)
+        public async Task<Dentist> InsertDentistAsync(Dentist dentist)
         {
-            _dentistContext.Dentists.Add(dentist);
-            await _dentistContext.SaveChangesAsync();
+            await _context.Dentists.AddAsync(dentist);
+            await _context.SaveChangesAsync();
             return dentist;
         }
 
-        public async Task<Dentist> Update(Dentist dentist)
+        public async Task<Dentist> UpdateDentistAsync(Dentist dentist)
         {
-            _dentistContext.Dentists.Update(dentist);
-            await _dentistContext.SaveChangesAsync();
-            return dentist;
+            var dentistFound = await _context.Dentists.FindAsync(dentist.Id);
+            if (dentistFound == null)
+                return null;
+
+            _context.Entry(dentistFound).CurrentValues.SetValues(dentist);
+
+            await _context.SaveChangesAsync();
+            return dentistFound;
         }
 
-        public async Task<Dentist> Remove(Dentist dentist)
+        public async Task DeleteDentistAsync(int id)
         {
-            _dentistContext.Dentists.Remove(dentist);
-            await _dentistContext.SaveChangesAsync();
-            return dentist;
+            var dentistFound = await _context.Dentists.FindAsync(id);
+            _context.Dentists.Remove(dentistFound);
+            await _context.SaveChangesAsync();
         }
 
     }

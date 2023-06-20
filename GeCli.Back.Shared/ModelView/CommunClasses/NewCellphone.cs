@@ -1,6 +1,6 @@
-﻿namespace GeCli.Back.Shared.ModelView.Customer
+﻿namespace GeCli.Back.Shared.ModelView.CommumClasses
 {
-    public class NewCellphone
+    public abstract class NewCellphone
     {
         /// <summary>
         /// Customer's cellphone number.

@@ -1,26 +1,13 @@
-﻿using FluentValidation;
-using GeCli.Back.Shared.ModelView.Customer;
-
-namespace GeCli.Back.Manager.Validator
+﻿namespace GeCli.Back.Manager.Validator
 {
-    public class NewCustomerValidator : AbstractValidator<NewCustomer>
+    internal static class FunctionsValidator
     {
-        public NewCustomerValidator()
-        {
-            RuleFor(x => x.Name).NotEmpty().NotNull().MinimumLength(3).MaximumLength(100);
-            RuleFor(x => x.Cellphones).NotNull().NotEmpty();
-            RuleFor(x => x.BirthDay).NotNull().NotEmpty().LessThan(DateTime.Now).GreaterThan(DateTime.Now.AddYears(-110));
-            RuleFor(x => x.Gender).NotNull().NotEmpty().Must(MorF).WithMessage("Gender input: 'M' or 'F'");
-            RuleFor(x => x.CPF).NotNull().NotEmpty().Matches("[0-9]{11}").Must(CPFValidator);
-            RuleFor(x => x.Address).SetValidator(new NewAddressValidator());
-        }
-
-        private bool MorF(char sexo)
+        public static bool MorF(char sexo)
         {
             return sexo == 'M' || sexo == 'F';
         }
 
-        private bool CPFValidator(string cpf)
+        public static bool CPFValidator(string cpf)
         {
             // Removing non-numeric characters
             cpf = new string(cpf.Where(char.IsDigit).ToArray());

@@ -1,4 +1,6 @@
-﻿namespace GeCli.Back.Domain.Entities
+﻿using GeCli.Back.Domain.Entities.AbstractClasses;
+
+namespace GeCli.Back.Domain.Entities
 {
     public sealed class Procedure : Entity
     {

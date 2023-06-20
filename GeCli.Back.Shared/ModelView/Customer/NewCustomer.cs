@@ -1,4 +1,6 @@
-﻿namespace GeCli.Back.Shared.ModelView.Customer
+﻿using GeCli.Back.Shared.ModelView.CommumClasses;
+
+namespace GeCli.Back.Shared.ModelView.Customer
 {
     /// <summary>
     /// Object used to insert a new customer.

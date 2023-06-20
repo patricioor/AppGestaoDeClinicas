@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>D:\Repositório Estudos\GeCli\GeCli.Back\GeCli.Back.API\obj\Debug\net6.0\GeCli.Back.Shared.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\patricio.rios\source\repos\AppGestaoDeClinicas\GeCli.Back.API\GeCli.Back.Shared.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

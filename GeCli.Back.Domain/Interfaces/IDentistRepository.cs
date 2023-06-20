@@ -1,4 +1,4 @@
-﻿using GeCli.Back.Domain.Entities;
+﻿using GeCli.Back.Domain.Entities.Employees;
 
 namespace GeCli.Back.Domain.Interfaces
 {
@@ -7,8 +7,8 @@ namespace GeCli.Back.Domain.Interfaces
         Task<IEnumerable<Dentist>> GetDentistsAsync();
         Task<Dentist> GetDentistByIdAsync(int id);
 
-        Task<Dentist> Create(Dentist dentist);
-        Task<Dentist> Update(Dentist dentist);
-        Task<Dentist> Remove(Dentist dentist);
+        Task<Dentist> InsertDentistAsync(Dentist dentist);
+        Task<Dentist> UpdateDentistAsync(Dentist dentist);
+        Task DeleteDentistAsync(int id);
     }
 }

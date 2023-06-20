@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GeCli.Back.Infra.Data.Configuration
+namespace GeCli.Back.Infra.Data.Configuration.CustomerConf
 {
-    public class AddressConfiguration : IEntityTypeConfiguration<Address>
+    public class CustomerAddressConfiguration : IEntityTypeConfiguration<CustomerAddress>
     {
-        public void Configure(EntityTypeBuilder<Address> builder)
+        public void Configure(EntityTypeBuilder<CustomerAddress> builder)
         {
             builder.HasKey(p => p.CustomerId);
         }

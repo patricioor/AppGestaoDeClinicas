@@ -1,4 +1,6 @@
-﻿using GeCli.Back.Domain.Entities.Customers;
+﻿using GeCli.Back.Domain.Entities.AbstractClasses;
+using GeCli.Back.Domain.Entities.Customers;
+using GeCli.Back.Domain.Entities.Employees;
 
 namespace GeCli.Back.Domain.Entities
 {

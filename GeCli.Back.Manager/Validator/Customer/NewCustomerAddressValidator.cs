@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using GeCli.Back.Shared.ModelView.Customer;
+using GeCli.Back.Shared.ModelView.CommumClasses;
 
-namespace GeCli.Back.Manager.Validator
+namespace GeCli.Back.Manager.Validator.Customer
 {
-    public class NewAddressValidator : AbstractValidator<NewAddress>
+    public class NewCustomerAddressValidator : AbstractValidator<NewAddress>
     {
-        public NewAddressValidator() 
+        public NewCustomerAddressValidator()
         {
             RuleFor(p => p.CEP).NotEmpty().NotNull();
             RuleFor(p => p.State).NotNull();

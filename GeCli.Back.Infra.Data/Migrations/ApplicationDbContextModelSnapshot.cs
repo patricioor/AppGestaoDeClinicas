@@ -37,6 +37,21 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.ToTable("ConsumableProcedure");
                 });
 
+            modelBuilder.Entity("DentistSpecialty", b =>
+                {
+                    b.Property<int>("DentistsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpecialtiesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DentistsId", "SpecialtiesId");
+
+                    b.HasIndex("SpecialtiesId");
+
+                    b.ToTable("DentistSpecialty");
+                });
+
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -75,7 +90,46 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.ToTable("Consumables");
                 });
 
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.Address", b =>
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("BirthDay")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<DateTime?>("LastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ResponsibleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ResponsibleId");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.CustomerAddress", b =>
                 {
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -105,10 +159,10 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.ToTable("Adresses");
+                    b.ToTable("CustomersAdresses");
                 });
 
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.Cellphone", b =>
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.CustomerCellphone", b =>
                 {
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -118,10 +172,10 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("CustomerId", "Number");
 
-                    b.ToTable("Cellphones");
+                    b.ToTable("CustomersCellphones");
                 });
 
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.Customer", b =>
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.Dentist", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,8 +190,15 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CRO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("EmploymentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -148,33 +209,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int?>("ResponsibleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ResponsibleId");
-
-                    b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Dentist", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Cro")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EmploymentId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -183,7 +218,53 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.ToTable("Dentists");
                 });
 
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employment", b =>
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.DentistAddress", b =>
+                {
+                    b.Property<int>("DentistId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CEP")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Complement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DentistId");
+
+                    b.ToTable("DentistsAdresses");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.DentistCellphone", b =>
+                {
+                    b.Property<int>("DentistId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("DentistId", "Number");
+
+                    b.ToTable("DentistsCellphones");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.Employment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -194,6 +275,23 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Employments");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.Specialty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Specialtys");
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.MedicalRecord", b =>
@@ -243,8 +341,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("DentistId")
-                        .IsUnique();
+                    b.HasIndex("DentistId");
 
                     b.HasIndex("ProcedureId")
                         .IsUnique();
@@ -494,6 +591,21 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DentistSpecialty", b =>
+                {
+                    b.HasOne("GeCli.Back.Domain.Entities.Employees.Dentist", null)
+                        .WithMany()
+                        .HasForeignKey("DentistsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GeCli.Back.Domain.Entities.Employees.Specialty", null)
+                        .WithMany()
+                        .HasForeignKey("SpecialtiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Consumable", b =>
                 {
                     b.HasOne("GeCli.Back.Domain.Entities.Category", "Category")
@@ -505,28 +617,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.Address", b =>
-                {
-                    b.HasOne("GeCli.Back.Domain.Entities.Customers.Customer", "Customer")
-                        .WithOne("Address")
-                        .HasForeignKey("GeCli.Back.Domain.Entities.Customers.Address", "CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.Cellphone", b =>
-                {
-                    b.HasOne("GeCli.Back.Domain.Entities.Customers.Customer", "Customer")
-                        .WithMany("Cellphones")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.Customer", b =>
                 {
                     b.HasOne("GeCli.Back.Domain.Entities.Responsible", null)
@@ -534,15 +624,55 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .HasForeignKey("ResponsibleId");
                 });
 
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Dentist", b =>
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.CustomerAddress", b =>
                 {
-                    b.HasOne("GeCli.Back.Domain.Entities.Employment", "Employment")
-                        .WithMany("Dentists")
-                        .HasForeignKey("EmploymentId")
+                    b.HasOne("GeCli.Back.Domain.Entities.Customers.Customer", "Customer")
+                        .WithOne("CustomerAddress")
+                        .HasForeignKey("GeCli.Back.Domain.Entities.Customers.CustomerAddress", "CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Employment");
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.CustomerCellphone", b =>
+                {
+                    b.HasOne("GeCli.Back.Domain.Entities.Customers.Customer", "Customer")
+                        .WithMany("CustomerCellphones")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.Dentist", b =>
+                {
+                    b.HasOne("GeCli.Back.Domain.Entities.Employees.Employment", null)
+                        .WithMany("Dentists")
+                        .HasForeignKey("EmploymentId");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.DentistAddress", b =>
+                {
+                    b.HasOne("GeCli.Back.Domain.Entities.Employees.Dentist", "Dentist")
+                        .WithOne("DentistAddress")
+                        .HasForeignKey("GeCli.Back.Domain.Entities.Employees.DentistAddress", "DentistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dentist");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.DentistCellphone", b =>
+                {
+                    b.HasOne("GeCli.Back.Domain.Entities.Employees.Dentist", "Dentist")
+                        .WithMany("DentistCellphones")
+                        .HasForeignKey("DentistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dentist");
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.MedicalRecord", b =>
@@ -553,9 +683,9 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GeCli.Back.Domain.Entities.Dentist", "Dentist")
-                        .WithOne("MedicalRecord")
-                        .HasForeignKey("GeCli.Back.Domain.Entities.MedicalRecord", "DentistId")
+                    b.HasOne("GeCli.Back.Domain.Entities.Employees.Dentist", "Dentist")
+                        .WithMany()
+                        .HasForeignKey("DentistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -625,19 +755,21 @@ namespace GeCli.Back.Infra.Data.Migrations
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.Customer", b =>
                 {
-                    b.Navigation("Address")
+                    b.Navigation("CustomerAddress")
                         .IsRequired();
 
-                    b.Navigation("Cellphones");
+                    b.Navigation("CustomerCellphones");
                 });
 
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Dentist", b =>
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.Dentist", b =>
                 {
-                    b.Navigation("MedicalRecord")
+                    b.Navigation("DentistAddress")
                         .IsRequired();
+
+                    b.Navigation("DentistCellphones");
                 });
 
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employment", b =>
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.Employment", b =>
                 {
                     b.Navigation("Dentists");
                 });

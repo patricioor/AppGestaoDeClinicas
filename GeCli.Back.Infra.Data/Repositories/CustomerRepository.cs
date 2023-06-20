@@ -7,50 +7,51 @@ namespace GeCli.Back.Infra.Data.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        ApplicationDbContext _context;
-        public CustomerRepository(ApplicationDbContext context)
+        ApplicationDbContext _customerContext;
+        public CustomerRepository(ApplicationDbContext customerContext)
         {
-            _context = context;
+            _customerContext = customerContext;
         }
 
         public async Task<IEnumerable<Customer>> GetCustomersAsync()
         {
-            return await _context.Customers
-                .Include(p => p.Address)
-                .Include(p => p.Cellphones)
+            return await _customerContext.Customers
+                .Include(p => p.CustomerAddress)
+                .Include(p => p.CustomerCellphones)
                 .AsNoTracking().ToListAsync();
         }
 
         public async Task<Customer> GetCustomerByIdAsync(int id)
         {
-            return await _context.Customers
-               .Include(p => p.Address)
-               .Include(p => p.Cellphones)
+            return await _customerContext.Customers
+               .Include(p => p.CustomerAddress)
+               .Include(p => p.CustomerCellphones)
                 .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<Customer> InsertCustomerAsync(Customer customer)
         {
-            await _context.AddAsync(customer);
-            await _context.SaveChangesAsync();
+            await _customerContext.AddAsync(customer);        
+            await _customerContext.SaveChangesAsync();
             return customer;
         }
 
         public async Task<Customer> UpdateCustomerAsync(Customer customer)
         {
-            var customerFound = await _context.Customers.FindAsync(customer.Id);
+            var customerFound = await _customerContext.Customers.FindAsync(customer.Id);
             if (customerFound == null)
                 return null;
 
-            _context.Entry(customerFound).CurrentValues.SetValues(customer);
-            await _context.SaveChangesAsync();
+            _customerContext.Entry(customerFound).CurrentValues.SetValues(customer);
+
+            await _customerContext.SaveChangesAsync();
             return customerFound;
         }
         public async Task DeleteCustomerAsync(int id)
         {
-            var customerFound = await _context.Customers.FindAsync(id);
-            _context.Customers.Remove(customerFound);
-            await _context.SaveChangesAsync();
+            var customerFound = await _customerContext.Customers.FindAsync(id);
+            _customerContext.Customers.Remove(customerFound);
+            await _customerContext.SaveChangesAsync();
         }
     }
 }

@@ -8,8 +8,12 @@ namespace GeCli.Back.Infra.IoC.DIConfiguration
         public static void UseAutoMapperConfiguration(this IServiceCollection services)
         {
             services.AddAutoMapper(
+                //Customer
                 typeof(NewCustomerMappingProfile),
-                typeof(UpdateCustomerMappingProfile)
+                typeof(UpdateCustomerMappingProfile),
+                //Dentist
+                typeof(NewDentistMappingProfile),
+                typeof(UpdateDentistMappingProfile)
                 );
         }
     }

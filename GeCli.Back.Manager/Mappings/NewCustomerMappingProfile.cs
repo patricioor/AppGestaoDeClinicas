@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using GeCli.Back.Domain.Entities.Customers;
+using GeCli.Back.Domain.Entities.Employees;
+using GeCli.Back.Shared.ModelView.CommumClasses;
 using GeCli.Back.Shared.ModelView.Customer;
 
 namespace GeCli.Back.Manager.Mappings
@@ -10,10 +12,10 @@ namespace GeCli.Back.Manager.Mappings
         {
             CreateMap<NewCustomer, Customer>()
                 .ForMember(d => d.CreationDate, o => o.MapFrom(x => DateTime.Now))
-                .ForMember(d => d.BirthDay, o=> o.MapFrom(x => x.BirthDay.Date));
+                .ForMember(d => d.BirthDay, o => o.MapFrom(x => x.BirthDay.Date));
 
-            CreateMap<NewAddress, Address>();
-            CreateMap<NewCellphone, Cellphone>();
+            CreateMap<NewAddress, DentistAddress>();
+            CreateMap<NewCellphone, DentistCellphone>();
         }
     }
 }

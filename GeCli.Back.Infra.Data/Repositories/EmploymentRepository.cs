@@ -1,4 +1,4 @@
-﻿using GeCli.Back.Domain.Entities;
+﻿using GeCli.Back.Domain.Entities.Employees;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;

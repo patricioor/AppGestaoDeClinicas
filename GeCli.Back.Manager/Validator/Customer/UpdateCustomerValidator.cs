@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using GeCli.Back.Shared.ModelView.Customer;
 
-namespace GeCli.Back.Manager.Validator
+namespace GeCli.Back.Manager.Validator.Customer
 {
     public class UpdateCustomerValidator : AbstractValidator<UpdateCustomer>
     {

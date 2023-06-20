@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GeCli.Back.Shared.ModelView.Customer
+﻿namespace GeCli.Back.Shared.ModelView.CommumClasses
 {
-    public class NewAddress
+    public abstract class NewAddress
     {
         /// <example>60000000</example>
         public int CEP { get; set; }
