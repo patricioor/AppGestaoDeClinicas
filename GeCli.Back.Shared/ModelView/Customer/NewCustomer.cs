@@ -13,9 +13,9 @@ namespace GeCli.Back.Shared.ModelView.Customer
         /// <example>Patrício Osterno Rios</example>
         public string Name { get; set; }
 
-        public NewAddress Address { get; set; }
+        public NewCustomerAddress Address { get; set; }
 
-        public ICollection<NewCellphone> Cellphones { get; set; }
+        public ICollection<NewCustomerCellphone> Cellphones { get; set; }
         /// <summary>
         /// Customer's Birth day
         /// </summary>

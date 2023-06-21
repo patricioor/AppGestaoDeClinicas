@@ -1,10 +1,6 @@
-﻿using GeCli.Back.Domain.Entities.Customers;
-using GeCli.Back.Domain.Entities.Employees;
-using GeCli.Back.Manager.Implementation;
+﻿using GeCli.Back.Domain.Entities.Employees;
 using GeCli.Back.Manager.Interfaces;
-using GeCli.Back.Shared.ModelView.Customer;
 using GeCli.Back.Shared.ModelView.Employees;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SerilogTimings;
 
@@ -17,7 +13,7 @@ namespace GeCli.Back.API.Controllers
         private readonly IDentistManager _dentistManager;
         private readonly ILogger _logger;
 
-        public DentistController(IDentistManager dentistManager, ILogger logger)
+        public DentistController(IDentistManager dentistManager, ILogger<Dentist> logger)
         {
             _dentistManager = dentistManager;
             _logger = logger;
@@ -43,10 +39,10 @@ namespace GeCli.Back.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetById(int id)
         {
-            var customer = await _dentistManager.GetDentistByIdAsync(id);
-            if (customer == null)
+            var dentist = await _dentistManager.GetDentistByIdAsync(id);
+            if (dentist == null)
                 return NotFound();
-            return Ok(customer);
+            return Ok(dentist);
         }
 
         /// <summary>

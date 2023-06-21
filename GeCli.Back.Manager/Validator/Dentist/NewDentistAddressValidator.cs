@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using GeCli.Back.Shared.ModelView.CommumClasses;
+using GeCli.Back.Shared.ModelView.Employees;
 
 namespace GeCli.Back.Manager.Validator.Dentist
 {
-    public class NewDentistAddressValidator : AbstractValidator<NewAddress>
+    public class NewDentistAddressValidator : AbstractValidator<NewDentistAddress>
     {
         public NewDentistAddressValidator()
         {

@@ -44,9 +44,9 @@ namespace GeCli.Back.Manager.Implementation
 
             var customerUpdate = await _customerRepository.GetCustomerByIdAsync(customer.Id);
 
-            foreach (var cellphone in customer.CustomerCellphones)
+            foreach (var cellphone in customer.Cellphones)
                 if(!customer.Equals(cellphone))
-                customerUpdate.CustomerCellphones.Add(cellphone);
+                customerUpdate.Cellphones.Add(cellphone);
 
             customer.CreationDate = customerUpdate.CreationDate;
             return await _customerRepository.UpdateCustomerAsync(customer);

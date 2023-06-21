@@ -2,7 +2,7 @@
 
 namespace GeCli.Back.Domain.Entities.Employees
 {
-    public class DentistAddress : Address
+    public sealed class DentistAddress : Address
     {
         public int DentistId { get; set; }
         public Dentist Dentist { get; set; }

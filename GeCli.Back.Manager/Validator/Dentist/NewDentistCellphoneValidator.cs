@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using GeCli.Back.Shared.ModelView.CommumClasses;
+using GeCli.Back.Shared.ModelView.Employees;
 
 namespace GeCli.Back.Manager.Validator.Dentist
 {
-    public class NewDentistCellphoneValidator : AbstractValidator<NewCellphone>
+    public class NewDentistCellphoneValidator : AbstractValidator<NewDentistCellphone>
     {
         public NewDentistCellphoneValidator()
         {

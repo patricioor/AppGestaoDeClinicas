@@ -13,7 +13,7 @@ namespace GeCli.Back.Manager.Validator.Dentist
             RuleFor(x => x.BirthDay).NotNull().NotEmpty().LessThan(DateTime.Now).GreaterThan(DateTime.Now.AddYears(-110));
             RuleFor(x => x.Gender).NotNull().NotEmpty().Must(FunctionsValidator.MorF).WithMessage("Gender input: 'M' or 'F'");
             RuleFor(x => x.CPF).NotNull().NotEmpty().Matches("[0-9]{11}").Must(FunctionsValidator.CPFValidator);
-            RuleFor(x => x.Address).SetValidator(new NewCustomerAddressValidator());
+            RuleFor(x => x.Address).SetValidator(new NewDentistAddressValidator());
             RuleFor(x => x.CRO).NotNull().NotEmpty().Matches("[A-z]{2}[0-9]{5}");
         }
     }

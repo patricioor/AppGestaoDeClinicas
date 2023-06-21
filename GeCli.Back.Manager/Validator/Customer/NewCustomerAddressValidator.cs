@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using GeCli.Back.Shared.ModelView.CommumClasses;
+using GeCli.Back.Shared.ModelView.Customer;
 
 namespace GeCli.Back.Manager.Validator.Customer
 {
-    public class NewCustomerAddressValidator : AbstractValidator<NewAddress>
+    public class NewCustomerAddressValidator : AbstractValidator<NewCustomerAddress>
     {
         public NewCustomerAddressValidator()
         {

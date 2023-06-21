@@ -1,6 +1,4 @@
-﻿using GeCli.Back.Shared.ModelView.CommumClasses;
-
-namespace GeCli.Back.Shared.ModelView.Employees
+﻿namespace GeCli.Back.Shared.ModelView.Employees
 {
     /// <summary>
     /// Object used to insert a new Dentist.
@@ -13,11 +11,11 @@ namespace GeCli.Back.Shared.ModelView.Employees
         /// <example>Patrício Osterno Rios</example>
         public string Name { get; set; }
 
-        public NewAddress Address { get; set; }
+        public NewDentistAddress Address { get; set; }
 
-        public NewSpecialty Specialty { get; set; }
+        public ICollection<NewSpecialty> Specialties { get; set; }
 
-        public ICollection<NewCellphone> Cellphones { get; set; }
+        public ICollection<NewDentistCellphone> Cellphones { get; set; }
         /// <summary>
         /// Dentist's Birth day
         /// </summary>

@@ -1,5 +1,4 @@
-﻿using GeCli.Back.Domain.Entities.Customers;
-using GeCli.Back.Domain.Entities.Employees;
+﻿using GeCli.Back.Domain.Entities.Employees;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -17,16 +16,18 @@ namespace GeCli.Back.Infra.Data.Repositories
         public async Task<IEnumerable<Dentist>> GetDentistsAsync()
         {
             return await _context.Dentists
-                        .Include(p => p.DentistAddress)
-                        .Include(p => p.DentistCellphones)
+                        .Include(p => p.Address)
+                        .Include(p => p.Cellphones)
+                        .Include(p => p.Specialties)
                         .AsNoTracking().ToListAsync();
         }
 
         public async Task<Dentist> GetDentistByIdAsync(int id)
         {
             return await _context.Dentists
-                        .Include(p => p.DentistAddress)
-                        .Include(p => p.DentistCellphones)
+                        .Include(p => p.Address)
+                        .Include(p => p.Cellphones)
+                        .Include(p => p.Specialties)
                         .SingleOrDefaultAsync(p => p.Id == id);
         }
 
