@@ -1,6 +1,4 @@
-﻿using GeCli.Back.Shared.ModelView.CommumClasses;
-
-namespace GeCli.Back.Shared.ModelView.Customer
+﻿namespace GeCli.Back.Shared.ModelView.Customer
 {
     /// <summary>
     /// Object used to insert a new customer.
@@ -32,6 +30,6 @@ namespace GeCli.Back.Shared.ModelView.Customer
         /// <example>79656843061</example>
         public string CPF { get; set; }
 
-        
+
     }
 }

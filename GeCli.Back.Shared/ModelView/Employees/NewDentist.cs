@@ -13,7 +13,7 @@
 
         public NewDentistAddress Address { get; set; }
 
-        public ICollection<NewSpecialty> Specialties { get; set; }
+        public ICollection<SpecialtyReference> Specialties { get; set; }
 
         public ICollection<NewDentistCellphone> Cellphones { get; set; }
         /// <summary>

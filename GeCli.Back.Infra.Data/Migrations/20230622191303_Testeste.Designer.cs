@@ -4,6 +4,7 @@ using GeCli.Back.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeCli.Back.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230622191303_Testeste")]
+    partial class Testeste
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,12 +256,21 @@ namespace GeCli.Back.Infra.Data.Migrations
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.DentistCellphone", b =>
                 {
                     b.Property<int>("DentistId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DentistId"), 1L, 1);
+
+                    b.Property<int>("DentistId1")
                         .HasColumnType("int");
 
                     b.Property<string>("Number")
-                        .HasColumnType("nvarchar(450)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("DentistId", "Number");
+                    b.HasKey("DentistId");
+
+                    b.HasIndex("DentistId1");
 
                     b.ToTable("DentistsCellphones");
                 });
@@ -668,7 +679,7 @@ namespace GeCli.Back.Infra.Data.Migrations
                 {
                     b.HasOne("GeCli.Back.Domain.Entities.Employees.Dentist", "Dentist")
                         .WithMany("Cellphones")
-                        .HasForeignKey("DentistId")
+                        .HasForeignKey("DentistId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

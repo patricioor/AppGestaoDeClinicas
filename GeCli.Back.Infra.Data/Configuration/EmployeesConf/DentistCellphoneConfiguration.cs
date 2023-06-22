@@ -8,7 +8,7 @@ namespace GeCli.Back.Infra.Data.Configuration.Employees
     {
         public void Configure(EntityTypeBuilder<DentistCellphone> builder)
         {
-           builder.HasKey(p => new { p.DentistId, p.Number });
+           builder.HasKey(p => new {p.DentistId, p.Number});
         }
     }
 }

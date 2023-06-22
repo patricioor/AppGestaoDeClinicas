@@ -22,26 +22,26 @@ namespace GeCli.Back.Manager.Implementation
             return _dentistRepository.DeleteDentistAsync(id);
         }
 
-        public async Task<Dentist> GetDentistByIdAsync(int id)
+        public async Task<DentistView> GetDentistByIdAsync(int id)
         {
-            return await _dentistRepository.GetDentistByIdAsync(id);
+            return _mapper.Map<DentistView>(await _dentistRepository.GetDentistByIdAsync(id));
         }
 
-        public async Task<IEnumerable<Dentist>> GetDentistsAsync()
+        public async Task<IEnumerable<DentistView>> GetDentistsAsync()
         {
-            return await _dentistRepository.GetDentistsAsync();
+            return _mapper.Map<IEnumerable<DentistView>>(await _dentistRepository.GetDentistsAsync());
         }
 
-        public async Task<Dentist> InsertDentistAsync(NewDentist newDentist)
+        public async Task<DentistView> InsertDentistAsync(NewDentist newDentist)
         {
             var dentist = _mapper.Map<Dentist>(newDentist);
-            return await _dentistRepository.InsertDentistAsync(dentist);
+            return _mapper.Map<DentistView>(await _dentistRepository.InsertDentistAsync(dentist));
         }
 
-        public async Task<Dentist> UpdateDentistAsync(UpdateDentist updateDentist)
+        public async Task<DentistView> UpdateDentistAsync(UpdateDentist updateDentist)
         {
             var dentistFound = _mapper.Map<Dentist>(updateDentist);
-            return await _dentistRepository.InsertDentistAsync(dentistFound);
+            return _mapper.Map<DentistView>(await _dentistRepository.UpdateDentistAsync(dentistFound));
         }
     }
 }

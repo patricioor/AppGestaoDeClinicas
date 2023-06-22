@@ -54,14 +54,7 @@ namespace GeCli.Back.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Post(NewDentist newDentist)
         {
-            Dentist insertDentist;
-            _logger.LogInformation("Receive Object Name: {newDentist.Name}");
-            using (Operation.Time("Time for insert dentist."))
-            {
-                _logger.LogInformation("new dentist has been requested to be inserted");
-                insertDentist = await _dentistManager.InsertDentistAsync(newDentist);
-            }
-
+            var insertDentist = await _dentistManager.InsertDentistAsync(newDentist);
             return new CreatedAtRouteResult("GetDentist", new { id = insertDentist.Id }, insertDentist);
         }
 

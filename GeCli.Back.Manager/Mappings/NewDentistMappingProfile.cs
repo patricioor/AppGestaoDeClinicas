@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GeCli.Back.Domain.Entities.AbstractClasses;
 using GeCli.Back.Domain.Entities.Employees;
 using GeCli.Back.Shared.ModelView.Employees;
 
@@ -14,9 +13,20 @@ namespace GeCli.Back.Manager.Mappings
                     .ForMember(d => d.CreationDate, o => o.MapFrom(x => DateTime.Now))
                     .ForMember(d => d.BirthDay, o => o.MapFrom(x => x.BirthDay.Date));
 
-            CreateMap<NewDentistAddress, DentistAddress>().ReverseMap();
-            CreateMap<NewDentistCellphone, DentistCellphone>().ReverseMap();
-            CreateMap<NewSpecialty, Specialty>().ReverseMap();
+            CreateMap<Dentist, DentistView>();
+            CreateMap<SpecialtyReference, Specialty>().ReverseMap();
+            CreateMap<SpecialtyView, Specialty>().ReverseMap();
+
+            CreateMap<DentistAddressView, DentistAddress>().ReverseMap();
+            CreateMap<NewDentistAddress, DentistAddress>();
+
+            CreateMap<DentistCellphoneView, DentistCellphone>().ReverseMap();
+            CreateMap<NewDentistCellphone, DentistCellphone>();
+
+            CreateMap<UpdateDentist, Dentist>()
+                .ForMember(d => d.LastUpdate, o => o.MapFrom(x => DateTime.Now))
+                .ForMember(d => d.BirthDay, o => o.MapFrom(x => x.BirthDay.Date))
+                .ReverseMap();
         }
     }
 }
