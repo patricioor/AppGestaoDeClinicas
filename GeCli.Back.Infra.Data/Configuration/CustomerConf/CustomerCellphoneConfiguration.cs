@@ -8,7 +8,7 @@ namespace GeCli.Back.Infra.Data.Configuration.CustomerConf
     {
         public void Configure(EntityTypeBuilder<CustomerCellphone> builder)
         {
-            builder.HasKey(p => new { p.CustomerId, p.Number });
+            builder.HasKey(p => new { p.CustomerId, p.Number});
         }
     }
 }

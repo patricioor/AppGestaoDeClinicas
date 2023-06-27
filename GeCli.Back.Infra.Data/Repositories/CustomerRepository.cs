@@ -13,7 +13,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             _customerContext = customerContext;
         }
 
-        public async Task<IEnumerable<Customer>> GetCustomersAsync()
+        public async Task<ICollection<Customer>> GetCustomersAsync()
         {
             return await _customerContext.Customers
                 .Include(p => p.Address)

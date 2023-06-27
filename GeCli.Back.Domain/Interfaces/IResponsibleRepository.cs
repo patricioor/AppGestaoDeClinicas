@@ -4,7 +4,7 @@ namespace GeCli.Back.Domain.Interfaces
 {
     public interface IResponsibleRepository
     {
-        Task<IEnumerable<Responsible>> GetResponsiblesAsync();
+        Task<ICollection<Responsible>> GetResponsiblesAsync();
         Task<Responsible> GetResponsiblesByIdAsync(int Id);
 
         Task<Responsible> Create(Responsible responsible);

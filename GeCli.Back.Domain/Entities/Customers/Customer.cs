@@ -16,6 +16,6 @@ namespace GeCli.Back.Domain.Entities.Customers
 
         //public int? ResponsibleId { get; set; }
         //public Responsible Responsible { get; set; }
-        //public IEnumerable<MedicalRecord> MedicalRecords { get; set; }
+        //public ICollection<MedicalRecord> MedicalRecords { get; set; }
     }
 }

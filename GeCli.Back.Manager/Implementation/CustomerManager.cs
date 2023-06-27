@@ -22,7 +22,7 @@ namespace GeCli.Back.Manager.Implementation
             return await _customerRepository.GetCustomerByIdAsync(id);
         }
 
-        public async Task<IEnumerable<Customer>> GetCustomersAsync()
+        public async Task<ICollection<Customer>> GetCustomersAsync()
         {
             return await _customerRepository.GetCustomersAsync();
         }
@@ -30,6 +30,9 @@ namespace GeCli.Back.Manager.Implementation
         public async Task<Customer> InsertCustomerAsync(NewCustomer newCustomer)
         {
             var customer = _mapper.Map<Customer>(newCustomer);
+            foreach (var cellphone in customer.Cellphones)
+                if (!customer.Equals(cellphone))
+                    customer.Cellphones.Add(cellphone);
             return await _customerRepository.InsertCustomerAsync(customer);
         }
 

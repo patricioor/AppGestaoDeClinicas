@@ -18,7 +18,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             _consumableContext = context;
         }
 
-        public async Task<IEnumerable<Consumable>> GetConsumablesAsync()
+        public async Task<ICollection<Consumable>> GetConsumablesAsync()
         {
             return await _consumableContext.Consumables.AsNoTracking().ToListAsync();
         }

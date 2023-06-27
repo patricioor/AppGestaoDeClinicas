@@ -27,13 +27,13 @@ namespace GeCli.Back.Manager.Implementation
             return _mapper.Map<DentistView>(await _dentistRepository.GetDentistByIdAsync(id));
         }
 
-        public async Task<IEnumerable<DentistView>> GetDentistsAsync()
+        public async Task<ICollection<DentistView>> GetDentistsAsync()
         {
-            return _mapper.Map<IEnumerable<DentistView>>(await _dentistRepository.GetDentistsAsync());
+            return _mapper.Map<ICollection<DentistView>>(await _dentistRepository.GetDentistsAsync());
         }
 
         public async Task<DentistView> InsertDentistAsync(NewDentist newDentist)
-        {
+        {          
             var dentist = _mapper.Map<Dentist>(newDentist);
             return _mapper.Map<DentistView>(await _dentistRepository.InsertDentistAsync(dentist));
         }

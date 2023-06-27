@@ -13,7 +13,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Category>> GetCategoriesAsync()
+        public async Task<ICollection<Category>> GetCategoriesAsync()
         {
             return await _context.Categories.AsNoTracking().ToListAsync();
         }

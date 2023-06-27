@@ -4,7 +4,7 @@ namespace GeCli.Back.Manager.Interfaces
 {
     public interface ICategoryManager
     {
-        Task<IEnumerable<Category>> GetCategoriesAsync();
+        Task<ICollection<Category>> GetCategoriesAsync();
         Task<Category> GetCategoryByIdAsync(int id);
 
         //Task<Category> InsertCategoryAsync(Category Category);
