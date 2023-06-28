@@ -8,6 +8,7 @@ namespace GeCli.Back.Manager.Mappings
     {
         public NewDentistMappingProfile()
         {
+            //Insert
             CreateMap<NewDentist, Dentist>()
                     .ForMember(d => d.CRO, o => o.MapFrom(x => x.CRO.ToUpper()))
                     .ForMember(d => d.CreationDate, o => o.MapFrom(x => DateTime.Now))
@@ -23,6 +24,7 @@ namespace GeCli.Back.Manager.Mappings
             CreateMap<DentistCellphoneView, DentistCellphone>().ReverseMap();
             CreateMap<NewDentistCellphone, DentistCellphone>();
 
+            //Update
             CreateMap<UpdateDentist, Dentist>()
                 .ForMember(d => d.LastUpdate, o => o.MapFrom(x => DateTime.Now))
                 .ForMember(d => d.BirthDay, o => o.MapFrom(x => x.BirthDay.Date))

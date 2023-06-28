@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using GeCli.Back.Manager.Validator.Customer;
+using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Shared.ModelView.Employees;
 
 namespace GeCli.Back.Manager.Validator.Dentist
 {
     public class NewDentistValidator : AbstractValidator<NewDentist>
     {
-        public NewDentistValidator()
+        public NewDentistValidator(ISpecialtyRepository repository)
         {
             RuleFor(x => x.Name).NotEmpty().NotNull().MinimumLength(3).MaximumLength(100);
             RuleFor(x => x.Cellphones).NotNull().NotEmpty();

@@ -5,11 +5,11 @@ namespace GeCli.Back.Manager.Interfaces
 {
     public interface ICustomerManager
     {
-        Task<ICollection<Customer>> GetCustomersAsync();
+        Task<IEnumerable<Customer>> GetCustomersAsync();
         Task<Customer> GetCustomerByIdAsync(int id);
 
-        Task<Customer> InsertCustomerAsync(NewCustomer newCustomer);
-        Task<Customer> UpdateCustomerAsync(UpdateCustomer updateCustomer);
+        Task<CustomerView> InsertCustomerAsync(NewCustomer newCustomer);
+        Task<CustomerView> UpdateCustomerAsync(UpdateCustomer updateCustomer);
         Task DeleteCustomerAsync(int id);
     }
 }

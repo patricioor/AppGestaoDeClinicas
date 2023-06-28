@@ -2,7 +2,6 @@
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Employees;
 using Microsoft.AspNetCore.Mvc;
-using SerilogTimings;
 
 namespace GeCli.Back.API.Controllers
 {
@@ -11,12 +10,10 @@ namespace GeCli.Back.API.Controllers
     public class DentistController : ControllerBase
     {
         private readonly IDentistManager _dentistManager;
-        private readonly ILogger _logger;
 
-        public DentistController(IDentistManager dentistManager, ILogger<Dentist> logger)
+        public DentistController(IDentistManager dentistManager)
         {
             _dentistManager = dentistManager;
-            _logger = logger;
         }
 
         /// <summary>
@@ -69,7 +66,8 @@ namespace GeCli.Back.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Put(UpdateDentist updateDentist)
         {
-            var dentistUpdated = await _dentistManager.UpdateDentistAsync(updateDentist);
+            var dentistUpdated = await _dentistManager
+                .UpdateDentistAsync(updateDentist);
             if (dentistUpdated == null)
                 return NotFound();
 

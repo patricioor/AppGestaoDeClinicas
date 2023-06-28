@@ -7,9 +7,9 @@
 
         public DentistAddressView Address { get; set; }
 
-        public ICollection<DentistCellphoneView> Cellphones { get; set; }
+        public IEnumerable<DentistCellphoneView> Cellphones { get; set; }
 
-        public ICollection<SpecialtyView> Specialties { get; set; }
+        public IEnumerable<SpecialtyView> Specialties { get; set; }
 
         public DateTime BirthDay { get; set; }
 

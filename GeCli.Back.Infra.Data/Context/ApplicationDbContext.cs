@@ -17,11 +17,11 @@ namespace GeCli.Back.Infra.Data.Context
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerAddress> CustomersAdresses { get; set; }
         public DbSet<CustomerCellphone> CustomersCellphones { get; set; }
-        public DbSet<Specialty> Specialtys { get; set; }
         //Dentist
         public DbSet<Dentist> Dentists { get; set; }
         public DbSet<DentistAddress> DentistsAdresses { get; set; }
         public DbSet<DentistCellphone> DentistsCellphones { get; set; }
+        public DbSet<Specialty> Specialtys { get; set; }
         public DbSet<Employment> Employments { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Procedure> Procedures { get; set; }

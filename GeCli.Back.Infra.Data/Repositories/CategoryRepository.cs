@@ -7,13 +7,13 @@ namespace GeCli.Back.Infra.Data.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        ApplicationDbContext _context;
+        readonly ApplicationDbContext _context;
         public CategoryRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ICollection<Category>> GetCategoriesAsync()
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
             return await _context.Categories.AsNoTracking().ToListAsync();
         }
@@ -45,7 +45,7 @@ namespace GeCli.Back.Infra.Data.Repositories
 
         public async Task RemoveCategoryAsync(int id)
         {
-            var categoryFound = await _context.Categories.FindAsync(id);
+            await _context.Categories.FindAsync(id);
             await _context.SaveChangesAsync();
         }
     }

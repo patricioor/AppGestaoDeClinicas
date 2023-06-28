@@ -9,6 +9,6 @@ namespace GeCli.Back.Domain.Entities
         public string Name { get; set; }
         //[JsonIgnore]
         //[IgnoreDataMember]
-        //public ICollection<Consumable> Consumables { get; private set; }
+        //public IEnumerable<Consumable> Consumables { get; private set; }
     }
 }

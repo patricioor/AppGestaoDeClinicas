@@ -10,10 +10,8 @@ namespace GeCli.Back.Infra.IoC.DIConfiguration
             services.AddAutoMapper(
                 //Customer
                 typeof(NewCustomerMappingProfile),
-                typeof(UpdateCustomerMappingProfile),
                 //Dentist
-                typeof(NewDentistMappingProfile),
-                typeof(UpdateDentistMappingProfile)
+                typeof(NewDentistMappingProfile)
                 );
         }
     }

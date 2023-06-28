@@ -14,7 +14,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             _medicalRecordContext = context;
         }
 
-        public async Task<ICollection<MedicalRecord>> GetMedicalRecordsAsync()
+        public async Task<IEnumerable<MedicalRecord>> GetMedicalRecordsAsync()
         {
             return await _medicalRecordContext.MedicalRecords.AsNoTracking().ToListAsync();
         }

@@ -5,6 +5,6 @@ namespace GeCli.Back.Domain.Entities
 {
     public sealed class Responsible : Entity
     {
-        public ICollection<Customer> Customers { get; set; }
+        public IEnumerable<Customer> Customers { get; set; }
     }
 }

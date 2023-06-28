@@ -7,6 +7,6 @@ namespace GeCli.Back.Domain.Entities
         public MedicalRecord MedicalRecord { get; set; }
 
         public int ConsumableId { get; set; }
-        public ICollection<Consumable> Consumables { get; set; }
+        public IEnumerable<Consumable> Consumables { get; set; }
     }
 }

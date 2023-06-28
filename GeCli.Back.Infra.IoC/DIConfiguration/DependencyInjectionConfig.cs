@@ -23,6 +23,7 @@ namespace GeCli.Back.Infra.IoC.DIConfiguration
             //Dentist
             services.AddScoped<IDentistRepository, DentistRepository>();
             services.AddScoped<IDentistManager, DentistManager>();
+            services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
         }
     }
 }

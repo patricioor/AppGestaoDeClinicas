@@ -7,13 +7,13 @@ namespace GeCli.Back.Infra.Data.Repositories
 {
     public class DentistRepository : IDentistRepository
     {
-        ApplicationDbContext _context;
+        readonly ApplicationDbContext _context;
         public DentistRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ICollection<Dentist>> GetDentistsAsync()
+        public async Task<IEnumerable<Dentist>> GetDentistsAsync()
         {
             return await _context.Dentists
                         .Include(p => p.Address)
@@ -46,7 +46,8 @@ namespace GeCli.Back.Infra.Data.Repositories
             var dentistConsulted = new List<Specialty>();
             foreach (var specialty in dentist.Specialties)
             {
-                var specialityConsulted = await _context.Specialtys.FindAsync(specialty.Id);
+                var specialityConsulted = await _context.Specialtys
+                    .FindAsync(specialty.Id);
                 dentistConsulted.Add(specialityConsulted);
             }
             dentist.Specialties = dentistConsulted;
@@ -57,12 +58,12 @@ namespace GeCli.Back.Infra.Data.Repositories
             var dentistConsulted = new List<DentistCellphone>();
             foreach (var cellphone in dentist.Cellphones)
             {
-                var cellphoneConsulted = await _context.DentistsCellphones.FindAsync(cellphone.DentistId, cellphone.Number);
+                var cellphoneConsulted = await _context.DentistsCellphones
+                    .FindAsync(cellphone.DentistId, cellphone.Number);
                 if (cellphoneConsulted == null)
                     dentistConsulted.Add(cellphone);
             }
             dentist.Cellphones = dentistConsulted;
-
         }
 
         public async Task<Dentist> UpdateDentistAsync(Dentist dentist)
@@ -88,21 +89,25 @@ namespace GeCli.Back.Infra.Data.Repositories
 
         private async Task UpdateDentistSpecialty(Dentist dentist, Dentist dentistFound)
         {
+            var dentistSpec = new List<Specialty>();
             foreach (var specialty in dentist.Specialties)
             {
                 var specialtyFound = await _context.Specialtys.FindAsync(specialty.Id);
                 if(specialtyFound == null)
-                    dentistFound.Specialties.Add(specialtyFound);
+                    dentistSpec.Add(specialtyFound);
             }
+            dentistFound.Specialties = dentistSpec;
         }
         private async Task UpdateDentistCellphone(Dentist dentist, Dentist dentistFound)
         {
+            var dentistCell = new List<DentistCellphone>();
             foreach (var cellphone in dentist.Cellphones)
             {
                 var cellphoneFound = await _context.DentistsCellphones.FindAsync(cellphone.DentistId, cellphone.Number);
                 if (cellphoneFound == null)
-                    dentistFound.Cellphones.Add(cellphone);
+                    dentistCell.Add(cellphone);
             }
+            dentistFound.Cellphones = dentistCell;
         }
 
         public async Task DeleteDentistAsync(int id)

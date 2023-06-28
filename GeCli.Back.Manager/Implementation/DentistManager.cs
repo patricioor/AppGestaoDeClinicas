@@ -27,9 +27,9 @@ namespace GeCli.Back.Manager.Implementation
             return _mapper.Map<DentistView>(await _dentistRepository.GetDentistByIdAsync(id));
         }
 
-        public async Task<ICollection<DentistView>> GetDentistsAsync()
+        public async Task<IEnumerable<DentistView>> GetDentistsAsync()
         {
-            return _mapper.Map<ICollection<DentistView>>(await _dentistRepository.GetDentistsAsync());
+            return _mapper.Map<IEnumerable<DentistView>>(await _dentistRepository.GetDentistsAsync());
         }
 
         public async Task<DentistView> InsertDentistAsync(NewDentist newDentist)
@@ -40,8 +40,8 @@ namespace GeCli.Back.Manager.Implementation
 
         public async Task<DentistView> UpdateDentistAsync(UpdateDentist updateDentist)
         {
-            var dentistFound = _mapper.Map<Dentist>(updateDentist);
-            return _mapper.Map<DentistView>(await _dentistRepository.UpdateDentistAsync(dentistFound));
+            var dentist = _mapper.Map<Dentist>(updateDentist);
+            return _mapper.Map<DentistView>(await _dentistRepository.UpdateDentistAsync(dentist));
         }
     }
 }
