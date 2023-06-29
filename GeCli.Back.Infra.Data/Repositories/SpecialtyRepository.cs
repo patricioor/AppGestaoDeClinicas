@@ -1,7 +1,5 @@
-﻿using GeCli.Back.Infra.Data.Context;
-using GeCli.Back.Domain.Interfaces;
-using GeCli.Back.Manager.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using GeCli.Back.Domain.Interfaces;
+using GeCli.Back.Infra.Data.Context;
 
 namespace GeCli.Back.Infra.Data.Repositories
 {
@@ -13,9 +11,9 @@ namespace GeCli.Back.Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<bool> ExistAsync(int id)
+        public bool Exist(int id)
         {
-            return await _context.Specialtys.AnyAsync(p => p.Id == id);
+            return _context.Specialtys.Any(p => p.Id == id);
         }
     }
 }

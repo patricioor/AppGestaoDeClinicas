@@ -1,4 +1,6 @@
-﻿namespace GeCli.Back.Shared.ModelView.Employees
+﻿using GeCli.Back.Shared.ModelView.CommunClasses;
+
+namespace GeCli.Back.Shared.ModelView.Employees
 {
     /// <summary>
     /// Object used to insert a new Dentist.
@@ -25,7 +27,7 @@
         /// Customer's gender
         /// </summary>
         /// <example>M</example>
-        public char Gender { get; set; }
+        public NewGender Gender { get; set; }
         /// <summary>
         /// Brazilian identification document: CPF(Validation on)
         /// </summary>

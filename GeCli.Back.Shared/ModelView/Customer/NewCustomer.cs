@@ -1,4 +1,6 @@
-﻿namespace GeCli.Back.Shared.ModelView.Customer
+﻿using GeCli.Back.Shared.ModelView.CommunClasses;
+
+namespace GeCli.Back.Shared.ModelView.Customer
 {
     /// <summary>
     /// Object used to insert a new customer.
@@ -23,7 +25,7 @@
         /// Customer's gender
         /// </summary>
         /// <example>M</example>
-        public char Gender { get; set; }
+        public NewGender Gender { get; set; }
         /// <summary>
         /// Brazilian identification document: CPF(Validation on)
         /// </summary>

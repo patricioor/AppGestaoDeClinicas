@@ -2,10 +2,6 @@
 {
     internal static class FunctionsValidator
     {
-        public static bool MorF(char sexo)
-        {
-            return sexo == 'M' || sexo == 'F';
-        }
 
         public static bool CPFValidator(string cpf)
         {

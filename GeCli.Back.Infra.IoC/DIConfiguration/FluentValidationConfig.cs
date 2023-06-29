@@ -3,8 +3,11 @@ using FluentValidation.AspNetCore;
 using GeCli.Back.Manager.Validator.Customer;
 using GeCli.Back.Manager.Validator.Dentist;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace GeCli.Back.API.ProgramConfigurations
 {
@@ -13,7 +16,14 @@ namespace GeCli.Back.API.ProgramConfigurations
         public static void AddFluentValidationConfigurations(this IServiceCollection services)
         {
             services.AddControllers()
-                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+                .AddNewtonsoftJson(x =>
+                {
+                    x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    x.SerializerSettings.Converters.Add(new StringEnumConverter());
+                })
+                .AddJsonOptions(p => 
+                    p.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()
+                ));
 
             services.AddFluentValidationAutoValidation();
             services.AddFluentValidationRulesToSwagger();

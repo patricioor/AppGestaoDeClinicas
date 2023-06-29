@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GeCli.Back.Domain.Entities.Customers;
+using GeCli.Back.Shared.ModelView.CommunClasses;
 using GeCli.Back.Shared.ModelView.Customer;
 
 namespace GeCli.Back.Manager.Mappings
@@ -20,6 +21,8 @@ namespace GeCli.Back.Manager.Mappings
 
             CreateMap<CustomerCellphoneView, CustomerCellphone>().ReverseMap();
             CreateMap<NewCustomerCellphone, CustomerCellphone>();
+
+            CreateMap<CustomerView, NewGender>().ReverseMap();
 
             //Update
             CreateMap<UpdateCustomer, Customer>()

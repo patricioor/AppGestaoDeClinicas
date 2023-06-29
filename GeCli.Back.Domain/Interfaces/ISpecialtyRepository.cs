@@ -2,6 +2,6 @@
 {
     public interface ISpecialtyRepository
     {
-        Task<bool> ExistAsync(int id);
+        bool Exist(int id);
     }
 }

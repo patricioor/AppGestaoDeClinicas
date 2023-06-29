@@ -1,24 +1,12 @@
 ﻿using FluentValidation;
 using GeCli.Back.Shared.ModelView.Employees;
 
-namespace GeCli.Back.Domain.Interfaces;
+namespace GeCli.Back.Manager.Validator.Dentist;
 
 public class SpecialtyReferenceValidator : AbstractValidator<SpecialtyReference>
 {
-    private readonly ISpecialtyRepository _specialtyRepository;
-    public SpecialtyReferenceValidator(ISpecialtyRepository repository) 
+    public SpecialtyReferenceValidator() 
     {
-        this._specialtyRepository = repository;
-        RuleFor(p => p.Id).NotEmpty().NotNull().GreaterThan(0)
-            .MustAsync(async (id,_) => 
-            { 
-                return await ExistOnBase(id); 
-            })
-            .WithMessage("Especialidade não cadastradas.");
-    }
-
-    private async Task<bool> ExistOnBase(int id)
-    {
-        return await _specialtyRepository.ExistAsync(id);
+        RuleFor(p => p.Id).NotEmpty().NotNull().GreaterThan(0);
     }
 }

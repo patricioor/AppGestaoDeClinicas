@@ -7,7 +7,7 @@ namespace GeCli.Back.Domain.Entities.Customers
         public string Name { get; set; }
         public IEnumerable<CustomerCellphone> Cellphones { get; set; }
         public DateTime BirthDay { get; set; }
-        public char Gender { get; set; }
+        public Gender Gender { get; set; }
         public string CPF { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime? LastUpdate { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace GeCli.Back.Shared.ModelView.Customer
+﻿using GeCli.Back.Shared.ModelView.CommunClasses;
+
+namespace GeCli.Back.Shared.ModelView.Customer
 {
     public class CustomerView
     {
@@ -7,7 +9,7 @@
         public CustomerAddressView Address { get; set; }
         public IEnumerable<CustomerCellphoneView> Cellphones { get; set; }
         public DateTime BirthDay { get; set; }
-        public char Gender { get; set; }
+        public NewGender Gender { get; set; }
         public string CPF { get; set; }
     }
 }

@@ -5,14 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GeCli.Back.Infra.Data.Configuration.CustomerConf
 {
-    public class CustomerAddressConfiguration : IEntityTypeConfiguration<CustomerAddress>
+    public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
-        public void Configure(EntityTypeBuilder<CustomerAddress> builder)
+        public void Configure(EntityTypeBuilder<Customer> builder)
         {
-            builder.HasKey(p => p.CustomerId);
-            builder.Property(p => p.State).HasConversion(
+            builder.Property(p => p.Gender).HasConversion(
                 p => p.ToString(),
-                p => (State)Enum.Parse(typeof(State),p)
+                p => (Gender)Enum.Parse(typeof(Gender), p)
                 );
         }
     }

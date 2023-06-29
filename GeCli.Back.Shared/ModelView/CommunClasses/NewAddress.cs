@@ -1,4 +1,6 @@
-﻿namespace GeCli.Back.Shared.ModelView.CommumClasses
+﻿using GeCli.Back.Shared.ModelView.CommunClasses;
+
+namespace GeCli.Back.Shared.ModelView.CommumClasses
 {
     public abstract class NewAddress
     {
@@ -9,7 +11,7 @@
         /// <example>Fortaleza</example>
         public string City { get; set; }
         /// <example>CE</example>
-        public string State { get; set; }
+        public NewState State { get; set; }
         /// <summary> Letters can be inserted next to the number</summary>
         /// <example>0</example>
         public string Number { get; set; }

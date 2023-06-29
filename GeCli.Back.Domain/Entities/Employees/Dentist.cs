@@ -7,7 +7,7 @@ namespace GeCli.Back.Domain.Entities.Employees
         public string Name { get; set; }
         public IEnumerable<DentistCellphone> Cellphones { get; set; }
         public DateTime BirthDay { get; set; }
-        public char Gender { get; set; }
+        public Gender Gender { get; set; }
         public string CPF { get; set; }
         public DentistAddress Address { get; set; }
         public string CRO { get; set; }

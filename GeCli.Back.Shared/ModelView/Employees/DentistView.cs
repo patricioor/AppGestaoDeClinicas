@@ -1,4 +1,6 @@
-﻿namespace GeCli.Back.Shared.ModelView.Employees
+﻿using GeCli.Back.Shared.ModelView.CommunClasses;
+
+namespace GeCli.Back.Shared.ModelView.Employees
 {
     public class DentistView
     {
@@ -13,7 +15,7 @@
 
         public DateTime BirthDay { get; set; }
 
-        public char Gender { get; set; }
+        public NewGender Gender { get; set; }
 
         public string CPF { get; set; }
 
