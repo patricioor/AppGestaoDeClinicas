@@ -79,7 +79,8 @@ namespace GeCli.Back.Infra.Data.Repositories
                 if (cellphoneFound == null)
                     customerCell.Add(cellphone);
             }
-            customerFound.Cellphones = customerCell;
+            if (customerCell.Count != customerFound.Cellphones.Count())
+                customerFound.Cellphones = customerCell;
         }
 
         public async Task DeleteCustomerAsync(int id)
