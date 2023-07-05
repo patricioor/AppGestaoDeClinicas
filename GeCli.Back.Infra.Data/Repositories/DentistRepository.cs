@@ -93,11 +93,10 @@ namespace GeCli.Back.Infra.Data.Repositories
             foreach (var specialty in dentist.Specialties)
             {
                 var specialtyFound = await _context.Specialtys.FindAsync(specialty.Id);
-                if(specialtyFound != null)
+                if (specialtyFound != null)
                     dentistSpec.Add(specialtyFound);
             }
-            if (dentistSpec.Count > 0)
-                dentistFound.Specialties = dentistSpec;
+            dentistFound.Specialties = dentistSpec;
         }
         private async Task UpdateDentistCellphone(Dentist dentist, Dentist dentistFound)
         {
@@ -108,8 +107,7 @@ namespace GeCli.Back.Infra.Data.Repositories
                 if (cellphoneFound == null)
                     dentistCell.Add(cellphone);
             }
-            if(dentistCell.Count != dentistFound.Cellphones.Count())
-                dentistFound.Cellphones = dentistCell;
+            dentistFound.Cellphones = dentistCell;
         }
 
         public async Task DeleteDentistAsync(int id)
