@@ -14,7 +14,7 @@ namespace GeCli.Back.Manager.Mappings
                 .ForMember(d => d.CreationDate, o => o.MapFrom(x => DateTime.Now))
                 .ForMember(d => d.BirthDay, o => o.MapFrom(x => x.BirthDay.Date));
 
-            CreateMap<Customer, CustomerView>();
+            CreateMap<Customer, CustomerView>().ReverseMap();
 
             CreateMap<CustomerAddressView, CustomerAddress>().ReverseMap();
             CreateMap<NewCustomerAddress, CustomerAddress>();
