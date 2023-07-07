@@ -17,14 +17,14 @@ namespace GeCli.Back.Manager.Implementation
             _mapper = mapper;
         }
 
-        public async Task<Customer> GetCustomerByIdAsync(int id)
+        public async Task<CustomerView> GetCustomerByIdAsync(int id)
         {
-            return await _customerRepository.GetCustomerByIdAsync(id);
+            return _mapper.Map<CustomerView>( await _customerRepository.GetCustomerByIdAsync(id));
         }
 
-        public async Task<IEnumerable<Customer>> GetCustomersAsync()
+        public async Task<IEnumerable<CustomerView>> GetCustomersAsync()
         {
-            return await _customerRepository.GetCustomersAsync();
+            return _mapper.Map<IEnumerable<CustomerView>>(await _customerRepository.GetCustomersAsync());
         }
 
         public async Task<CustomerView> InsertCustomerAsync(NewCustomer newCustomer)

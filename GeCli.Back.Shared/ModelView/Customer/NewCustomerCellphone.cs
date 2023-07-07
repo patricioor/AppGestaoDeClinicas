@@ -4,6 +4,5 @@ namespace GeCli.Back.Shared.ModelView.Customer
 {
     public class NewCustomerCellphone : NewCellphone
     {
-
     }
 }

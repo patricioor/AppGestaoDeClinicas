@@ -27,8 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GeCli.Back. FakeData\GeCli.Back. FakeData.csproj" />
     <ProjectReference Include="..\GeCli.Back.API\GeCli.Back.API.csproj" />
     <ProjectReference Include="..\GeCli.Back.Manager\GeCli.Back.Manager.csproj" />
+    <ProjectReference Include="..\GeCli.Back.Shared\GeCli.Back.Shared.csproj" />
   </ItemGroup>
 
 </Project>
