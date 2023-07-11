@@ -5,7 +5,7 @@ namespace GeCli.Back.Shared.ModelView.Customer
     /// <summary>
     /// Object used to insert a new customer.
     /// </summary>
-    public class NewCustomer
+    public class NewCustomer : ICloneable
     {
         /// <summary>
         /// Customer's full name.
@@ -32,6 +32,19 @@ namespace GeCli.Back.Shared.ModelView.Customer
         /// <example>79656843061</example>
         public string CPF { get; set; }
 
+        public object Clone()
+        {
+            var customer = (NewCustomer)MemberwiseClone();
+            customer.Address = (NewCustomerAddress)customer.Address.Clone();
+            var cellphone = new List<NewCustomerCellphone>();
+            customer.Cellphones.ToList().ForEach(p => cellphone.Add((NewCustomerCellphone)p.Clone()));
+            customer.Cellphones = cellphone;
+            return customer;
+        }
 
+        public NewCustomer CloneNewTyped()
+        {
+            return (NewCustomer)MemberwiseClone();
+        }
     }
 }

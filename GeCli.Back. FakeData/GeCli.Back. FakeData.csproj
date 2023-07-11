@@ -15,8 +15,4 @@
     <ProjectReference Include="..\GeCli.Back.Shared\GeCli.Back.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CustomerData\" />
-  </ItemGroup>
-
 </Project>

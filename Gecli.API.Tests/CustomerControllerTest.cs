@@ -15,6 +15,7 @@ namespace Gecli.API.Tests
         readonly ICustomerManager _manager;
         readonly CustomerController _controller;
         private readonly CustomerView _customerView;
+        private readonly NewCustomer _newCustomer;
         private readonly List<CustomerView> _listCustomerView;
 
         public CustomerControllerTest()
@@ -22,13 +23,13 @@ namespace Gecli.API.Tests
             _manager = Substitute.For<ICustomerManager>();
             _controller = new CustomerController(_manager);
 
-            _listCustomerView = new CustomerViewFake().Generate(1);
+            _listCustomerView = new CustomerViewFake().Generate(4);
             _customerView = new CustomerViewFake().Generate();
+            _newCustomer = new NewCustomerFake().Generate();
         }
         [Fact]
         public async Task Get_Ok()
         {
-
             var control = new List<CustomerView>();
             _listCustomerView.ForEach(p => control.Add(p.CloneTyped()));
             _manager.GetCustomersAsync().Returns(_listCustomerView);
@@ -50,6 +51,7 @@ namespace Gecli.API.Tests
             await _manager.Received().GetCustomersAsync();
             result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
+
         [Fact]
         public async Task GetById_Ok()
         {
@@ -66,10 +68,22 @@ namespace Gecli.API.Tests
         {
             _manager.GetCustomerByIdAsync(Arg.Any<int>()).Returns(new CustomerView());
 
-            var result = (StatusCodeResult) await _controller.GetById(100);
+            var result = (StatusCodeResult) await _controller.GetById(1);
 
             await _manager.Received().GetCustomerByIdAsync(Arg.Any<int>());
             result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+        }
+
+        [Fact]
+        public async Task Insert_Ok()
+        {
+            _manager.InsertCustomerAsync(Arg.Any<NewCustomer>()).Returns(_customerView.CloneTyped());
+
+            var result = (ObjectResult)await _controller.Post(_newCustomer);
+
+            await _manager.Received().InsertCustomerAsync(Arg.Any<NewCustomer>());
+            result.StatusCode.Should().Be(StatusCodes.Status201Created);
+            result.Value.Should().BeEquivalentTo(_customerView);
         }
     }
 }
