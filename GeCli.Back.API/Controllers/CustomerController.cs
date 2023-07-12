@@ -84,16 +84,15 @@ namespace GeCli.Back.API.Controllers
         /// <param name="id" example="1">Id of customer</param>
         /// <remarks>When deleting a customer, it will be permanently removed from the database.</remarks>
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(CustomerView), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Delete(int id)
         {
-            var customer = await _customerManager.GetCustomerByIdAsync(id);
+            var customer = await _customerManager.DeleteCustomerAsync(id);
             if (customer == null)
                 return NotFound();
 
-            await _customerManager.DeleteCustomerAsync(id);
             return NoContent();
         }
     }

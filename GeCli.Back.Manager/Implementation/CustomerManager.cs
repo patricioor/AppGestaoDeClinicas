@@ -38,9 +38,11 @@ namespace GeCli.Back.Manager.Implementation
             return _mapper.Map<CustomerView>(await _customerRepository.UpdateCustomerAsync(customer));
         }
 
-        public async Task DeleteCustomerAsync(int id)
+        public async Task<CustomerView> DeleteCustomerAsync(int id)
         {
-            await _customerRepository.DeleteCustomerAsync(id);
+            var customerDeleted = await _customerRepository.DeleteCustomerAsync(id);
+            return _mapper.Map<CustomerView>(customerDeleted);
+
         }
     }
 }

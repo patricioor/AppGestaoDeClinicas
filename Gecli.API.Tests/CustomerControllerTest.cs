@@ -6,6 +6,7 @@ using GeCli.Back.Shared.ModelView.Customer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 using Xunit;
 
 namespace Gecli.API.Tests
@@ -84,6 +85,51 @@ namespace Gecli.API.Tests
             await _manager.Received().InsertCustomerAsync(Arg.Any<NewCustomer>());
             result.StatusCode.Should().Be(StatusCodes.Status201Created);
             result.Value.Should().BeEquivalentTo(_customerView);
+        }
+
+        [Fact]
+        public async Task Put_Ok()
+        {
+            _manager.UpdateCustomerAsync(Arg.Any<UpdateCustomer>()).Returns(_customerView.CloneTyped());
+
+            var result = (ObjectResult)await _controller.Put(new UpdateCustomer());
+
+            await _manager.Received().UpdateCustomerAsync(Arg.Any<UpdateCustomer>());
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
+            result.Value.Should().BeEquivalentTo(_customerView);
+        }
+
+        [Fact]
+        public async Task Put_NotFound()
+        {
+            _manager.UpdateCustomerAsync(Arg.Any<UpdateCustomer>()).ReturnsNull();
+
+            var result = (StatusCodeResult) await _controller.Put(new UpdateCustomer());
+
+            await _manager.Received().UpdateCustomerAsync(Arg.Any<UpdateCustomer>());
+            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+        }
+
+        [Fact]
+        public async Task Delete_NoContent()
+        {
+            _manager.DeleteCustomerAsync(Arg.Any<int>()).Returns(_customerView.CloneTyped());
+
+            var result = (StatusCodeResult)await _controller.Delete(1);
+
+            await _manager.Received().DeleteCustomerAsync(Arg.Any<int>());
+            result.StatusCode.Should().Be(StatusCodes.Status204NoContent);
+        }
+
+        [Fact]
+        public async Task Delete_NotFound()
+        {
+            _manager.DeleteCustomerAsync(Arg.Any<int>()).ReturnsNull();
+
+            var result = (StatusCodeResult)await _controller.Delete(1);
+
+            await _manager.Received().DeleteCustomerAsync(Arg.Any<int>());
+            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
     }
 }

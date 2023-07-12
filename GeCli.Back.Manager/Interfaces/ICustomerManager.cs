@@ -10,6 +10,6 @@ namespace GeCli.Back.Manager.Interfaces
 
         Task<CustomerView> InsertCustomerAsync(NewCustomer newCustomer);
         Task<CustomerView> UpdateCustomerAsync(UpdateCustomer updateCustomer);
-        Task DeleteCustomerAsync(int id);
+        Task<CustomerView> DeleteCustomerAsync(int id);
     }
 }

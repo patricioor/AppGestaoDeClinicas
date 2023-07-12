@@ -83,11 +83,15 @@ namespace GeCli.Back.Infra.Data.Repositories
                 customerFound.Cellphones = customerCell;
         }
 
-        public async Task DeleteCustomerAsync(int id)
+        public async Task<Customer> DeleteCustomerAsync(int id)
         {
             var customerFound = await _customerContext.Customers.FindAsync(id);
-            _customerContext.Customers.Remove(customerFound);
+
+            if(customerFound == null) return null;
+            
+            var customerRemoved = _customerContext.Customers.Remove(customerFound);
             await _customerContext.SaveChangesAsync();
+            return customerRemoved.Entity;
         }
     }
 }

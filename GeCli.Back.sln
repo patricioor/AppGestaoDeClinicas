@@ -25,9 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeCli.Back.Shared", "GeCli.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.GeCli.Tests", "05.GeCli.Tests", "{02AC0697-254C-4FC0-B252-768F34C6AD55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gecli.API.Tests", "Gecli.API.Tests\Gecli.API.Tests.csproj", "{20403740-84FF-4BB9-9C18-1DAE492CEE5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gecli.API.Tests", "Gecli.API.Tests\Gecli.API.Tests.csproj", "{20403740-84FF-4BB9-9C18-1DAE492CEE5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeCli.Back. FakeData", "GeCli.Back. FakeData\GeCli.Back. FakeData.csproj", "{E3FDA266-5FB7-46B1-8875-0076B1D41310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeCli.Back. FakeData", "GeCli.Back. FakeData\GeCli.Back. FakeData.csproj", "{E3FDA266-5FB7-46B1-8875-0076B1D41310}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeCli.Repository.Tests", "GeCli.Repository.Tests\GeCli.Repository.Tests.csproj", "{0BEAE61F-99E0-49F0-9462-204D3EE33B83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{E3FDA266-5FB7-46B1-8875-0076B1D41310}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3FDA266-5FB7-46B1-8875-0076B1D41310}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3FDA266-5FB7-46B1-8875-0076B1D41310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BEAE61F-99E0-49F0-9462-204D3EE33B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BEAE61F-99E0-49F0-9462-204D3EE33B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BEAE61F-99E0-49F0-9462-204D3EE33B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BEAE61F-99E0-49F0-9462-204D3EE33B83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{55CF1F87-F417-42D3-BB1C-398D655B86E4} = {81DF57A8-39D8-41FF-8B10-68E825ED83E1}
 		{20403740-84FF-4BB9-9C18-1DAE492CEE5E} = {02AC0697-254C-4FC0-B252-768F34C6AD55}
 		{E3FDA266-5FB7-46B1-8875-0076B1D41310} = {02AC0697-254C-4FC0-B252-768F34C6AD55}
+		{0BEAE61F-99E0-49F0-9462-204D3EE33B83} = {02AC0697-254C-4FC0-B252-768F34C6AD55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52E1E344-EC27-47E0-A8A1-9D6344D81786}

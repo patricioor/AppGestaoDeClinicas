@@ -9,6 +9,6 @@ namespace GeCli.Back.Domain.Interfaces
 
         Task<Customer> InsertCustomerAsync(Customer customer);
         Task<Customer> UpdateCustomerAsync(Customer customer);
-        Task DeleteCustomerAsync(int id);
+        Task<Customer> DeleteCustomerAsync(int id);
     }
 }
