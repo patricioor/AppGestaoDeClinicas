@@ -20,6 +20,7 @@ namespace GeCli.Back._FakeData.CustomerData
             RuleFor(x => x.LastUpdate, f => f.Date.Past());
             RuleFor(x => x.Cellphones, _ => new CellphonesFake(id).Generate(3));
             RuleFor(x => x.Address, _ => new AddressFake(id).Generate());
+            RuleFor(x => x.BirthDay, f => f.Date.Past());
         }
     }
 }

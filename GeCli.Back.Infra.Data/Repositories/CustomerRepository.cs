@@ -26,7 +26,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             return await _customerContext.Customers
                .Include(p => p.Address)
                .Include(p => p.Cellphones)
-               .AsNoTracking().SingleOrDefaultAsync(p => p.Id == id);
+               .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<Customer> InsertCustomerAsync(Customer customer)

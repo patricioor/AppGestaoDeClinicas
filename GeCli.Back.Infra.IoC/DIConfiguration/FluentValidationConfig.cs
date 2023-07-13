@@ -3,7 +3,6 @@ using FluentValidation.AspNetCore;
 using GeCli.Back.Manager.Validator.Customer;
 using GeCli.Back.Manager.Validator.Dentist;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -21,7 +20,7 @@ namespace GeCli.Back.API.ProgramConfigurations
                     x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     x.SerializerSettings.Converters.Add(new StringEnumConverter());
                 })
-                .AddJsonOptions(p => 
+                .AddJsonOptions(p =>
                     p.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()
                 ));
 

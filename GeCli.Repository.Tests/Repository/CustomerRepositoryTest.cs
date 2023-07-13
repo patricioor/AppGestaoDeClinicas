@@ -1,20 +1,23 @@
-﻿using GeCli.Back._FakeData.CustomerData;
+﻿using FluentAssertions;
+using GeCli.Back._FakeData.CustomerData;
 using GeCli.Back.Domain.Entities.Customers;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using GeCli.Back.Infra.Data.Repositories;
+using GeCli.Back.Manager.Implementation;
+using GeCli.Back.Manager.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using FluentAssertions;
 using Xunit;
 
 namespace GeCli.Repository.Tests.Repository
 {
-    public class CustomerRepositoryTest
+    public class CustomerRepositoryTest :IDisposable
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly ApplicationDbContext _context;
         private readonly Customer _customer;
         private CustomerFake _customerFaker;
+
         public CustomerRepositoryTest()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
@@ -27,7 +30,7 @@ namespace GeCli.Repository.Tests.Repository
             _customer = _customerFaker.Generate();
         }
 
-        private async Task<List<Customer>> RegisterInsert()
+        private async Task<List<Customer>> RecordInsert()
         {
             var customers = _customerFaker.Generate(100);
 
@@ -43,15 +46,39 @@ namespace GeCli.Repository.Tests.Repository
         [Fact]
         public async Task GetCustomersAsync_WithReturn()
         {
-            var register = await RegisterInsert();
+            var record = await RecordInsert();
             var returnRegister = await _customerRepository.GetCustomersAsync();
 
-            returnRegister.Should().HaveCount(register.Count);
+            returnRegister.Should().HaveCount(record.Count);
             returnRegister.First().Address.Should().NotBeNull();
             returnRegister.First().Cellphones.Should().NotBeNull();
         }
 
-        internal void Dispose() => _context.Database.EnsureDeleted();
-        
+        [Fact]
+        public async Task GetCustomersAsync_Void()
+        {
+            var returnResult = await _customerRepository.GetCustomersAsync();
+            returnResult.Should().HaveCount(0);
+        }
+
+        [Fact]
+        public async Task GetCustomerById_Found()
+        {
+            var records = await RecordInsert();
+            var returnResult = await _customerRepository.GetCustomerByIdAsync(records.First().Id);
+            returnResult.Should().BeEquivalentTo(records.First());
+        }
+
+        [Fact]
+        public async Task GetCustomerById_NotFound()
+        {
+            var returnResult = await _customerRepository.GetCustomerByIdAsync(1);
+            returnResult.Should().BeNull();
+        }
+
+        public void Dispose()
+        {
+            _context.Database.EnsureDeleted();
+        }
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -28,6 +28,7 @@
     <ProjectReference Include="..\GeCli.Back. FakeData\GeCli.Back. FakeData.csproj" />
     <ProjectReference Include="..\GeCli.Back.Domain\GeCli.Back.Domain.csproj" />
     <ProjectReference Include="..\GeCli.Back.Infra.Data\GeCli.Back.Infra.Data.csproj" />
+    <ProjectReference Include="..\GeCli.Back.Manager\GeCli.Back.Manager.csproj" />
   </ItemGroup>
 
 </Project>

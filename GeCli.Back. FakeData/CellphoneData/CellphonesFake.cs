@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using GeCli.Back.Domain.Entities.Customers;
+using System.Text.Json.Serialization;
 
 namespace GeCli.Back._FakeData.CellphoneData
 {
