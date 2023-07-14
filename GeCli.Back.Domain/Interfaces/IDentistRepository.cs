@@ -4,7 +4,7 @@ namespace GeCli.Back.Domain.Interfaces
 {
     public interface IDentistRepository
     {
-        Task<IEnumerable<Dentist>> GetDentistsAsync();
+        Task<ICollection<Dentist>> GetDentistsAsync();
         Task<Dentist> GetDentistByIdAsync(int id);
 
         Task<Dentist> InsertDentistAsync(Dentist dentist);

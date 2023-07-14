@@ -13,7 +13,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Dentist>> GetDentistsAsync()
+        public async Task<ICollection<Dentist>> GetDentistsAsync()
         {
             return await _context.Dentists
                         .Include(p => p.Address)

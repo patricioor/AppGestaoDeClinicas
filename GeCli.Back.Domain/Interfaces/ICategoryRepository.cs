@@ -5,7 +5,7 @@ namespace GeCli.Back.Domain.Interfaces
 {
     public interface ICategoryRepository
     {
-        Task<IEnumerable<Category>> GetCategoriesAsync();
+        Task<ICollection<Category>> GetCategoriesAsync();
         Task<Category> GetCategoryByIdAsync(int id);
 
         Task<Category> InsertCategoryAsync(Category Category);

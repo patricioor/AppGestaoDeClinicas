@@ -5,7 +5,7 @@ namespace GeCli.Back.Manager.Interfaces
 {
     public interface IDentistManager
     {
-        Task<IEnumerable<DentistView>> GetDentistsAsync();
+        Task<ICollection<DentistView>> GetDentistsAsync();
         Task<DentistView> GetDentistByIdAsync(int id);
 
         Task<DentistView> InsertDentistAsync(NewDentist newDentist);

@@ -22,9 +22,9 @@ namespace GeCli.Back.Manager.Implementation
             return _mapper.Map<CustomerView>( await _customerRepository.GetCustomerByIdAsync(id));
         }
 
-        public async Task<IEnumerable<CustomerView>> GetCustomersAsync()
+        public async Task<ICollection<CustomerView>> GetCustomersAsync()
         {
-            return _mapper.Map<IEnumerable<CustomerView>>(await _customerRepository.GetCustomersAsync());
+            return _mapper.Map<ICollection<CustomerView>>(await _customerRepository.GetCustomersAsync());
         }
 
         public async Task<CustomerView> InsertCustomerAsync(NewCustomer newCustomer)

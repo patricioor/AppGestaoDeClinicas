@@ -4,6 +4,6 @@ namespace GeCli.Back.Domain.Entities.Employees
 {
     public sealed class Employment : Entity
     {
-        public IEnumerable<Dentist> Dentists { get; private set; }
+        public ICollection<Dentist> Dentists { get; private set; }
     }
 }

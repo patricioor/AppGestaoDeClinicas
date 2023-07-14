@@ -13,7 +13,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             _customerContext = customerContext;
         }
 
-        public async Task<IEnumerable<Customer>> GetCustomersAsync()
+        public async Task<ICollection<Customer>> GetCustomersAsync()
         {
             return await _customerContext.Customers
                 .Include(p => p.Address)
@@ -55,7 +55,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             var customerFound = await _customerContext.Customers
                                 .Include(p => p.Address)
                                 .Include(p => p.Cellphones)
-                                .SingleOrDefaultAsync(p => p.Id == customer.Id);
+                                .FirstOrDefaultAsync(p => p.Id == customer.Id);
 
             if (customerFound == null)
                 return null;

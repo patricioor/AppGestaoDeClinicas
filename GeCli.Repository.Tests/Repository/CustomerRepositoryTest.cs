@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using GeCli.Back._FakeData.CellphoneData;
 using GeCli.Back._FakeData.CustomerData;
 using GeCli.Back.Domain.Entities.Customers;
 using GeCli.Back.Domain.Interfaces;
@@ -7,6 +8,7 @@ using GeCli.Back.Infra.Data.Repositories;
 using GeCli.Back.Manager.Implementation;
 using GeCli.Back.Manager.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using Xunit;
 
 namespace GeCli.Repository.Tests.Repository
@@ -73,6 +75,77 @@ namespace GeCli.Repository.Tests.Repository
         public async Task GetCustomerById_NotFound()
         {
             var returnResult = await _customerRepository.GetCustomerByIdAsync(1);
+            returnResult.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task InsertCustomer_Ok()
+        {
+            var returnResult = await _customerRepository.InsertCustomerAsync(_customer);
+            returnResult.Should().BeEquivalentTo(_customer);
+        }
+
+        [Fact]
+        public async Task UpdateCustomer_Ok()
+        {
+            var register = await RecordInsert();
+            var alterCustomer = _customerFaker.Generate();
+            alterCustomer.Id = register.First().Id;
+            alterCustomer.Cellphones = register.First().Cellphones;
+            var returnResult = await _customerRepository.UpdateCustomerAsync(alterCustomer);
+            returnResult.Should().BeEquivalentTo(alterCustomer);      
+        }
+
+        [Fact]
+        public async Task UpdateCustomer_AddCellphone()
+        {
+            var register = await RecordInsert();
+            var alterCustomer = register.First();
+            alterCustomer.Cellphones.Add(new CellphonesFake(alterCustomer.Id).Generate());
+            var returnResult = await _customerRepository.UpdateCustomerAsync(alterCustomer);
+            returnResult.Should().BeEquivalentTo(alterCustomer);
+        }
+
+        [Fact]
+        public async Task UpdateCustomer_RemoveCellphone()
+        {
+            var register = await RecordInsert();
+            var alterCustomer = register.First();
+            alterCustomer.Cellphones.Remove(alterCustomer.Cellphones.First());
+            var returnResult = await _customerRepository.UpdateCustomerAsync(alterCustomer);
+            returnResult.Should().BeEquivalentTo(alterCustomer);
+        }
+
+        [Fact]
+        public async Task UpdateCustomer_RemoveAllCellphones()
+        {
+            var register = await RecordInsert();
+            var alterCustomer = register.First();
+            alterCustomer.Cellphones.Clear();
+            var returnResult = await _customerRepository.UpdateCustomerAsync(alterCustomer);
+            returnResult.Should().BeEquivalentTo(alterCustomer);
+        }
+
+        [Fact]
+        public async Task UpdateCustomer_NotFound()
+        {
+            var returnResult = await _customerRepository.UpdateCustomerAsync(_customer);
+            returnResult.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task DeleteCustomer_Ok()
+        {
+            var register = await RecordInsert();
+
+            var returnResult = await _customerRepository.DeleteCustomerAsync(register.First().Id);
+            returnResult.Should().BeEquivalentTo(register.First());
+        }
+
+        [Fact]
+        public async Task DeleteCustomer_NotFound()
+        {
+            var returnResult = await _customerRepository.DeleteCustomerAsync(1);
             returnResult.Should().BeNull();
         }
 

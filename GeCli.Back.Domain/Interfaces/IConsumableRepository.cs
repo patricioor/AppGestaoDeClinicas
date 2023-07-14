@@ -4,7 +4,7 @@ namespace GeCli.Back.Domain.Interfaces
 {
     public interface IConsumableRepository
     {
-        Task<IEnumerable<Consumable>> GetConsumablesAsync();
+        Task<ICollection<Consumable>> GetConsumablesAsync();
         Task<Consumable> GetConsumableByIdAsync(int id);
 
         Task<Consumable> Create(Consumable consumable);
