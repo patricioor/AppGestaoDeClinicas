@@ -62,6 +62,8 @@ namespace GeCli.Back.Infra.Data.Repositories
 
             _customerContext.Entry(customerFound).CurrentValues.SetValues(customer);
             customerFound.CreationDate = customer.CreationDate;
+            customerFound.Address = customer.Address;
+            customerFound.Cellphones = customer.Cellphones;
 
             await UpdateCustomerCellphone(customer, customerFound);
 
@@ -79,7 +81,7 @@ namespace GeCli.Back.Infra.Data.Repositories
                 if (cellphoneFound == null)
                     customerCell.Add(cellphone);
             }
-            if (customerCell.Count != customerFound.Cellphones.Count())
+            if (customerCell.Count != customerFound.Cellphones.Count)
                 customerFound.Cellphones = customerCell;
         }
 
