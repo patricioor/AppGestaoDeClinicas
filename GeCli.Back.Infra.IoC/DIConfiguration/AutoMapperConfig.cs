@@ -11,7 +11,9 @@ namespace GeCli.Back.Infra.IoC.DIConfiguration
                 //Customer
                 typeof(NewCustomerMappingProfile),
                 //Dentist
-                typeof(NewDentistMappingProfile)
+                typeof(NewDentistMappingProfile),
+                //User
+                typeof(UserMappingProfile)
                 );
         }
     }

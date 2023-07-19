@@ -4,6 +4,7 @@ using GeCli.Back.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeCli.Back.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230719140541_adicionando-classe-user")]
+    partial class adicionandoclasseuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,21 +52,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.HasIndex("SpecialtiesId");
 
                     b.ToTable("DentistSpecialty");
-                });
-
-            modelBuilder.Entity("FunctionUser", b =>
-                {
-                    b.Property<int>("FunctionsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UsersLogin")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("FunctionsId", "UsersLogin");
-
-                    b.HasIndex("UsersLogin");
-
-                    b.ToTable("FunctionUser");
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Category", b =>
@@ -393,24 +380,7 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.ToTable("Responsibles");
                 });
 
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.User.Function", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Functions");
-                });
-
-            modelBuilder.Entity("GeCli.Back.Domain.Entities.User.User", b =>
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.User", b =>
                 {
                     b.Property<string>("Login")
                         .HasColumnType("nvarchar(450)");
@@ -421,7 +391,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("Login");
 
-                    b.ToTable("DbUsers");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("GeCli.Back.Infra.Data.Identity.ApplicationUser", b =>
@@ -648,21 +618,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.HasOne("GeCli.Back.Domain.Entities.Employees.Specialty", null)
                         .WithMany()
                         .HasForeignKey("SpecialtiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FunctionUser", b =>
-                {
-                    b.HasOne("GeCli.Back.Domain.Entities.User.Function", null)
-                        .WithMany()
-                        .HasForeignKey("FunctionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GeCli.Back.Domain.Entities.User.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersLogin")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

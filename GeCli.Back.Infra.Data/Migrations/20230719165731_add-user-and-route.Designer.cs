@@ -4,6 +4,7 @@ using GeCli.Back.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeCli.Back.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230719165731_add-user-and-route")]
+    partial class adduserandroute
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,21 +52,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.HasIndex("SpecialtiesId");
 
                     b.ToTable("DentistSpecialty");
-                });
-
-            modelBuilder.Entity("FunctionUser", b =>
-                {
-                    b.Property<int>("FunctionsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UsersLogin")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("FunctionsId", "UsersLogin");
-
-                    b.HasIndex("UsersLogin");
-
-                    b.ToTable("FunctionUser");
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Category", b =>
@@ -415,11 +402,16 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.Property<string>("Login")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int?>("FunctionId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Login");
+
+                    b.HasIndex("FunctionId");
 
                     b.ToTable("DbUsers");
                 });
@@ -652,21 +644,6 @@ namespace GeCli.Back.Infra.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FunctionUser", b =>
-                {
-                    b.HasOne("GeCli.Back.Domain.Entities.User.Function", null)
-                        .WithMany()
-                        .HasForeignKey("FunctionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GeCli.Back.Domain.Entities.User.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersLogin")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Consumable", b =>
                 {
                     b.HasOne("GeCli.Back.Domain.Entities.Category", "Category")
@@ -763,6 +740,13 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.Navigation("Procedure");
                 });
 
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.User.User", b =>
+                {
+                    b.HasOne("GeCli.Back.Domain.Entities.User.Function", null)
+                        .WithMany("Users")
+                        .HasForeignKey("FunctionId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -844,6 +828,11 @@ namespace GeCli.Back.Infra.Data.Migrations
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Responsible", b =>
                 {
                     b.Navigation("Customers");
+                });
+
+            modelBuilder.Entity("GeCli.Back.Domain.Entities.User.Function", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

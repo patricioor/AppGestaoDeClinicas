@@ -1,6 +1,7 @@
 ﻿using GeCli.Back.Domain.Entities;
 using GeCli.Back.Domain.Entities.Customers;
 using GeCli.Back.Domain.Entities.Employees;
+using GeCli.Back.Domain.Entities.User;
 using GeCli.Back.Infra.Data.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,9 @@ namespace GeCli.Back.Infra.Data.Context
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Procedure> Procedures { get; set; }
         public DbSet<Responsible> Responsibles { get; set; }
+        //User
+        public DbSet<User> DbUsers { get; set; }
+        public DbSet<Function> Functions { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
