@@ -26,6 +26,29 @@ namespace GeCli.Back.API.Configurations
                             Name = "All rigths reserveds."
                         }
                     });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Insert the token",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference= new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id ="Bearer"
+                        }
+                    },
+                        Array.Empty<string>()
+                    }
+            });
+
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);

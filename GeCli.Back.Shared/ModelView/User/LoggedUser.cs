@@ -4,7 +4,7 @@
     {
         public string Login { get; set; }
 
-        public IEnumerable<FunctionView> Function { get; set; }
+        public IEnumerable<FunctionView> Functions { get; set; }
 
         public string Token { get; set; }
     }

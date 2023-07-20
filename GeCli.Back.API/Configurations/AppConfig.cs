@@ -23,7 +23,7 @@ namespace GeCli.Back.API.Configurations
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseJWTConfiguration();
 
             app.MapControllers();
 

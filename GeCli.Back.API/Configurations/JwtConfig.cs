@@ -20,9 +20,9 @@ namespace GeCli.Back.API.Configurations
                     p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 }
                 )
-                .AddJwtBearer( p =>
+                .AddJwtBearer(p =>
                 {
-                    p.RequireHttpsMetadata = true;
+                    p.RequireHttpsMetadata = false;
                     p.SaveToken = true;
                     p.TokenValidationParameters = new TokenValidationParameters
                     {
@@ -30,11 +30,17 @@ namespace GeCli.Back.API.Configurations
                         IssuerSigningKey = new SymmetricSecurityKey(key),
                         ValidateIssuer = true,
                         ValidIssuer = configuration.GetSection("JWT:Issuer").Value,
-                        ValidAudience = true,
-                        ValidAudiences = configuration.GetSection("JWT:Audience").Value;
-                    }
-                }
-                )
+                        ValidateAudience = true,
+                        ValidAudience = configuration.GetSection("JWT:Audience").Value,
+                        ValidateLifetime = true
+                    };
+                });
+        }
+
+        public static void UseJWTConfiguration(this IApplicationBuilder app) 
+        {
+            app.UseAuthentication();
+            app.UseAuthorization();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace GeCli.Back.Manager.Implementation
             _mapper = mapper;
             _jwt = jwt;
         }
+
         public async Task<UserView> GetUserAsync(string login)
         {
             return _mapper.Map<UserView>(await _userRepository.GetUserAsync(login));
@@ -46,12 +47,13 @@ namespace GeCli.Back.Manager.Implementation
         public async Task<LoggedUser> ValidateUserGenerateTokenAsync(User user)
         {
             var userFounded = await _userRepository.GetUserAsync(user.Login);
-            if (userFounded != null)
+            if (userFounded == null)
                 return null;
 
             if( await ValidateAndUpdateHashAsync(user, userFounded.Password))
             {
                 var loggedUser = _mapper.Map<LoggedUser>(userFounded);
+                //loggedUser.Functions = userFounded.Functions;
                 loggedUser.Token = _jwt.TokenGenerate(userFounded);
                 return loggedUser;
             }
@@ -64,7 +66,7 @@ namespace GeCli.Back.Manager.Implementation
             user.Password = passwordHasher.HashPassword(user, user.Password);
         }
 
-        private async Task<bool> ValidateAndUpdateHashAsync(User User, string hash)
+        private async Task<bool> ValidateAndUpdateHashAsync(User user, string hash)
         {
             var passwordHasher = new PasswordHasher<User>();
             var status = passwordHasher.VerifyHashedPassword(user, hash, user.Password);
