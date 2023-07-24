@@ -1,5 +1,4 @@
 ﻿using GeCli.Back.Domain.Entities.User;
-using GeCli.Back.Manager.Implementation;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.User;
 using Microsoft.AspNetCore.Authorization;
@@ -37,7 +36,6 @@ namespace GeCli.Back.API.Controllers
             var user = await _userManager.GetUserAsync(login);
             return Ok(user);
         }
-
 
         [HttpPost]
         public async Task<ActionResult> Post(NewUser user)

@@ -15,9 +15,9 @@ namespace GeCli.Back.Shared.ModelView.Employees
 
         public NewDentistAddress Address { get; set; }
 
-        public ICollection<SpecialtyReference> Specialties { get; set; }
+        public IEnumerable<SpecialtyReference> Specialties { get; set; }
 
-        public ICollection<NewDentistCellphone> Cellphones { get; set; }
+        public IEnumerable<NewDentistCellphone> Cellphones { get; set; }
         /// <summary>
         /// Dentist's Birth day
         /// </summary>

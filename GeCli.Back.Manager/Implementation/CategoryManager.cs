@@ -13,7 +13,7 @@ namespace GeCli.Back.Manager.Implementation
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<ICollection<Category>> GetCategoriesAsync()
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
             return await _categoryRepository.GetCategoriesAsync();
         }

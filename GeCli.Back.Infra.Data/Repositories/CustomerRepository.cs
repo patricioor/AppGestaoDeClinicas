@@ -13,7 +13,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             _customerContext = customerContext;
         }
 
-        public async Task<ICollection<Customer>> GetCustomersAsync()
+        public async Task<IEnumerable<Customer>> GetCustomersAsync()
         {
             return await _customerContext.Customers
                 .Include(p => p.Address)
@@ -52,23 +52,23 @@ namespace GeCli.Back.Infra.Data.Repositories
 
         public async Task<Customer> UpdateCustomerAsync(Customer customer)
         {
-            var customerFound = await _customerContext.Customers
+            var customerInsert = await _customerContext.Customers
                                 .Include(p => p.Address)
                                 .Include(p => p.Cellphones)
                                 .FirstOrDefaultAsync(p => p.Id == customer.Id);
 
-            if (customerFound == null)
+            if (customerInsert == null)
                 return null;
 
-            _customerContext.Entry(customerFound).CurrentValues.SetValues(customer);
-            customerFound.CreationDate = customer.CreationDate;
-            customerFound.Address = customer.Address;
-            customerFound.Cellphones = customer.Cellphones;
+            _customerContext.Entry(customerInsert).CurrentValues.SetValues(customer);
+            customerInsert.CreationDate = customer.CreationDate;
+            customerInsert.Address = customer.Address;
+            customerInsert.Cellphones = customer.Cellphones;
 
-            await UpdateCustomerCellphone(customer, customerFound);
+            await UpdateCustomerCellphone(customer, customerInsert);
 
             await _customerContext.SaveChangesAsync();
-            return customerFound;
+            return customerInsert;
         }
 
         private async Task UpdateCustomerCellphone(Customer customer, Customer customerFound)
@@ -81,7 +81,7 @@ namespace GeCli.Back.Infra.Data.Repositories
                 if (cellphoneFound == null)
                     customerCell.Add(cellphone);
             }
-            if (customerCell.Count != customerFound.Cellphones.Count)
+            if (customerCell.Count != customerFound.Cellphones.Count())
                 customerFound.Cellphones = customerCell;
         }
 

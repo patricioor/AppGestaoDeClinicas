@@ -4,7 +4,7 @@ namespace GeCli.Back.Domain.Interfaces
 {
     public interface IMedicalRecordRepository
     {
-        Task<ICollection<MedicalRecord>> GetMedicalRecordsAsync();
+        Task<IEnumerable<MedicalRecord>> GetMedicalRecordsAsync();
         Task<MedicalRecord> GetMedicalRecordByIdAsync(int id);
 
         Task<MedicalRecord> Create(MedicalRecord record);

@@ -7,7 +7,7 @@ namespace GeCli.Back.Shared.ModelView.Customer
         public int Id { get; set; }
         public string Name { get; set; }
         public CustomerAddressView Address { get; set; }
-        public ICollection<CustomerCellphoneView> Cellphones { get; set; }
+        public IEnumerable<CustomerCellphoneView> Cellphones { get; set; }
         public DateTime BirthDay { get; set; }
         public NewGender Gender { get; set; }
         public string CPF { get; set; }

@@ -5,7 +5,7 @@ namespace GeCli.Back.Manager.Interfaces
 {
     public interface ICustomerManager
     {
-        Task<ICollection<CustomerView>> GetCustomersAsync();
+        Task<IEnumerable<CustomerView>> GetCustomersAsync();
         Task<CustomerView> GetCustomerByIdAsync(int id);
 
         Task<CustomerView> InsertCustomerAsync(NewCustomer newCustomer);

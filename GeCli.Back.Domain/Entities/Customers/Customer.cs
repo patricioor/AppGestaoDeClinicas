@@ -5,7 +5,7 @@ namespace GeCli.Back.Domain.Entities.Customers
     public sealed class Customer : Entity
     {
         public string Name { get; set; }
-        public ICollection<CustomerCellphone> Cellphones { get; set; }
+        public IEnumerable<CustomerCellphone> Cellphones { get; set; }
         public DateTime BirthDay { get; set; }
         public Gender Gender { get; set; }
         public string CPF { get; set; }
@@ -16,6 +16,6 @@ namespace GeCli.Back.Domain.Entities.Customers
 
         //public int? ResponsibleId { get; set; }
         //public Responsible Responsible { get; set; }
-        //public ICollection<MedicalRecord> MedicalRecords { get; set; }
+        //public IEnumerable<MedicalRecord> MedicalRecords { get; set; }
     }
 }

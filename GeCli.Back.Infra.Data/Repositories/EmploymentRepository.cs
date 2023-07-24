@@ -13,7 +13,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             _employmentContext = context;
         }
 
-        public async Task<ICollection<Employment>> GetEmploymentsAsync()
+        public async Task<IEnumerable<Employment>> GetEmploymentsAsync()
         {
             return await _employmentContext.Employments.AsNoTracking().ToListAsync();
         }
