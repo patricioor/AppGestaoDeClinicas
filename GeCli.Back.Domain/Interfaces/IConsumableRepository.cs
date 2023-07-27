@@ -1,14 +1,11 @@
-﻿using GeCli.Back.Domain.Entities;
+﻿using GeCli.Back.Domain.Entities.Consumable;
 
-namespace GeCli.Back.Domain.Interfaces
+namespace GeCli.Back.Domain.Interfaces;
+public interface IConsumableRepository
 {
-    public interface IConsumableRepository
-    {
-        Task<IEnumerable<Consumable>> GetConsumablesAsync();
-        Task<Consumable> GetConsumableByIdAsync(int id);
-
-        Task<Consumable> InsertConsumableAsync(Consumable consumable);
-        Task<Consumable> UpdateConsumableAsync(Consumable consumable);
-        Task<Consumable> DeleteConsumableAsync(int id);
-    }
+    Task<IEnumerable<Consumable>> GetConsumablesAsync();
+    Task<Consumable> GetConsumableByIdAsync(int id);
+    Task<Consumable> InsertConsumableAsync(Consumable consumable);
+    Task<Consumable> UpdateConsumableAsync(Consumable consumable);
+    Task<Consumable> DeleteConsumableAsync(int id);
 }

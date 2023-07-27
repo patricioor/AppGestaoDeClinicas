@@ -1,5 +1,4 @@
-﻿using GeCli.Back.Domain.Entities.Customers;
-using GeCli.Back.Shared.ModelView.Customer;
+﻿using GeCli.Back.Shared.ModelView.Customer;
 
 namespace GeCli.Back.Manager.Interfaces
 {
@@ -7,7 +6,6 @@ namespace GeCli.Back.Manager.Interfaces
     {
         Task<IEnumerable<CustomerView>> GetCustomersAsync();
         Task<CustomerView> GetCustomerByIdAsync(int id);
-
         Task<CustomerView> InsertCustomerAsync(NewCustomer newCustomer);
         Task<CustomerView> UpdateCustomerAsync(UpdateCustomer updateCustomer);
         Task<CustomerView> DeleteCustomerAsync(int id);

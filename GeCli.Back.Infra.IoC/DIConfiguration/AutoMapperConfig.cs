@@ -1,20 +1,22 @@
 ﻿using GeCli.Back.Manager.Mappings;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GeCli.Back.Infra.IoC.DIConfiguration
+namespace GeCli.Back.Infra.IoC.DIConfiguration;
+public static class AutoMapperConfig
 {
-    public static class AutoMapperConfig
+    public static void UseAutoMapperConfiguration(this IServiceCollection services)
     {
-        public static void UseAutoMapperConfiguration(this IServiceCollection services)
-        {
-            services.AddAutoMapper(
-                //Customer
-                typeof(NewCustomerMappingProfile),
-                //Dentist
-                typeof(NewDentistMappingProfile),
-                //User
-                typeof(UserMappingProfile)
-                );
-        }
+        services.AddAutoMapper(
+            //Category
+            typeof(CategoryMappingProfile),
+            //Consumable
+            typeof(ConsumableMappingProfile),
+            //Customer
+            typeof(CustomerMappingProfile),
+            //Dentist
+            typeof(DentistMappingProfile),
+            //User
+            typeof(UserMappingProfile)
+            );
     }
 }

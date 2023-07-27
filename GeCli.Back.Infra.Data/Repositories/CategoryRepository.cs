@@ -7,46 +7,49 @@ namespace GeCli.Back.Infra.Data.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        readonly ApplicationDbContext _context;
+        readonly ApplicationDbContext _categoryContext;
         public CategoryRepository(ApplicationDbContext context)
         {
-            _context = context;
+            _categoryContext = context;
         }
 
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
-            return await _context.Categories.AsNoTracking().ToListAsync();
+            return await _categoryContext.Categories.AsNoTracking().ToListAsync();
         }
 
         public async Task<Category> GetCategoryByIdAsync(int id)
         {
-            return await _context.Categories
-                .FindAsync(id);
+            return await _categoryContext.Categories
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<Category> InsertCategoryAsync(Category category)
         {
-            await _context.Categories.AddAsync(category);
-            await _context.SaveChangesAsync();
+            await _categoryContext.Categories.AddAsync(category);
+            await _categoryContext.SaveChangesAsync();
             return category;
         }
 
         public async Task<Category> UpdateCategoryAsync(Category category)
         {
-            var categoryFound = await _context.Categories.FindAsync(category.Id);
-
+            var categoryFound = await _categoryContext.Categories.FirstOrDefaultAsync(p => p.Id == category.Id);
             if (categoryFound == null)
                 return null;
 
-            _context.Entry(categoryFound).CurrentValues.SetValues(category);
-            await _context.SaveChangesAsync();
-            return categoryFound;
+            _categoryContext.Entry(categoryFound).CurrentValues.SetValues(category);
+            await _categoryContext.SaveChangesAsync();
+            return category;
         }
 
-        public async Task RemoveCategoryAsync(int id)
+        public async Task<Category> RemoveCategoryAsync(int id)
         {
-            await _context.Categories.FindAsync(id);
-            await _context.SaveChangesAsync();
+            var categoryFound = await _categoryContext.Categories.FindAsync(id);
+            if(categoryFound == null) return null;
+
+            var categoryRemoved = _categoryContext.Categories.Remove(categoryFound);
+            await _categoryContext.SaveChangesAsync();
+            return categoryRemoved.Entity;
         }
     }
 }

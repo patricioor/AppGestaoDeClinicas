@@ -4,9 +4,9 @@ using GeCli.Back.Shared.ModelView.Employees;
 
 namespace GeCli.Back.Manager.Mappings
 {
-    public class NewDentistMappingProfile : Profile
+    public class DentistMappingProfile : Profile
     {
-        public NewDentistMappingProfile()
+        public DentistMappingProfile()
         {
             //Insert
             CreateMap<NewDentist, Dentist>()

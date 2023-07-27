@@ -13,15 +13,29 @@ namespace GeCli.Back.Manager.Implementation
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<IEnumerable<Category>> GetCategoriesAsync()
+        public Task<IEnumerable<CategoryView>> GetCategoriesAsync()
         {
-            return await _categoryRepository.GetCategoriesAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<Category> GetCategoryByIdAsync(int id)
+        public Task<CategoryView> GetCategoryByIdAsync(int id)
         {
-            return await _categoryRepository.GetCategoryByIdAsync(id);
+            throw new NotImplementedException();
         }
 
+        public Task<CategoryView> InsertCategoryAsync(NewCategory newCategory)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CategoryView> RemoveCategoryAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CategoryView> UpdateCategoryAsync(UpdateCategory updateCategory)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

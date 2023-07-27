@@ -1,14 +1,14 @@
-﻿using GeCli.Back.Domain.Entities;
+﻿using GeCli.Back.Shared.ModelView.Category;
 
 namespace GeCli.Back.Manager.Interfaces
 {
     public interface ICategoryManager
     {
-        Task<IEnumerable<Category>> GetCategoriesAsync();
-        Task<Category> GetCategoryByIdAsync(int id);
+        Task<IEnumerable<CategoryView>> GetCategoriesAsync();
+        Task<CategoryView> GetCategoryByIdAsync(int id);
 
-        //Task<Category> InsertCategoryAsync(Category Category);
-        //Task<Category> UpdateCategoryAsync(Category Category);
-        //Task RemoveCategoryAsync(int id);
+        Task<CategoryView> InsertCategoryAsync(NewCategory newCategory);
+        Task<CategoryView> UpdateCategoryAsync(UpdateCategory updateCategory);
+        Task<CategoryView> RemoveCategoryAsync(int id);
     }
 }

@@ -5,9 +5,9 @@ using GeCli.Back.Shared.ModelView.Customer;
 
 namespace GeCli.Back.Manager.Mappings
 {
-    public class NewCustomerMappingProfile : Profile
+    public class CustomerMappingProfile : Profile
     {
-        public NewCustomerMappingProfile()
+        public CustomerMappingProfile()
         {
             //Insert
             CreateMap<NewCustomer, Customer>()
