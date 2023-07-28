@@ -7,13 +7,13 @@ namespace GeCli.Back.Infra.Data.Repositories
 {
     public class EmploymentRepository : IEmploymentRepository
     {
-        ApplicationDbContext _employmentContext;
+        readonly ApplicationDbContext _employmentContext;
         public EmploymentRepository(ApplicationDbContext context)
         {
             _employmentContext = context;
         }
 
-        public async Task<IEnumerable<Employment>> GetEmploymentsAsync()
+        public async Task<ICollection<Employment>> GetEmploymentsAsync()
         {
             return await _employmentContext.Employments.AsNoTracking().ToListAsync();
         }

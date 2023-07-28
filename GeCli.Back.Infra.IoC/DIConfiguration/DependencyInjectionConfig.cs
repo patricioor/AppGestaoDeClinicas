@@ -1,6 +1,4 @@
-﻿using GeCli.Back.Domain.Account;
-using GeCli.Back.Domain.Interfaces;
-using GeCli.Back.Infra.Data.Identity;
+﻿using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Repositories;
 using GeCli.Back.Manager.Implementation;
 using GeCli.Back.Manager.Interfaces;
@@ -12,11 +10,18 @@ namespace GeCli.Back.Infra.IoC.DIConfiguration
     {
         public static void UseDependencyInjectionEntityConfiguration(this IServiceCollection services)
         {
-            services.AddScoped<IAuthenticate, AuthenticateService>();
-
             //Category
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryManager, CategoryManager>();
+
+            //Consumable
+            services.AddScoped<IConsumableRepository, ConsumableRepository>();
+            services.AddScoped<IConsumableManager, ConsumableManager>();
+
+            //Supplier
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
+            services.AddScoped<ISupplierManager, SupplierManager>();
+
             //Customer
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerManager, CustomerManager>();

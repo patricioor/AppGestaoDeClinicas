@@ -5,7 +5,7 @@
         public string Login { get; set; }
         public string Password { get; set; }
 
-        public IEnumerable<Function> Functions { get; set; }
+        public ICollection<Function> Functions { get; set; }
 
         public User()
         {

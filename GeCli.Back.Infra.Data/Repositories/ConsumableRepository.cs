@@ -1,4 +1,4 @@
-﻿using GeCli.Back.Domain.Entities.Consumable;
+﻿using GeCli.Back.Domain.Entities.Consumables;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore;
 namespace GeCli.Back.Infra.Data.Repositories;
 public class ConsumableRepository : IConsumableRepository
 {
-    ApplicationDbContext _consumableContext;
+     readonly ApplicationDbContext _consumableContext;
     public ConsumableRepository(ApplicationDbContext context)
     {
         _consumableContext = context;
     }
 
-    public async Task<IEnumerable<Consumable>> GetConsumablesAsync()
+    public async Task<ICollection<Consumable>> GetConsumablesAsync()
     {
         return await _consumableContext.Consumables
             .Include(p => p.CategoryId)

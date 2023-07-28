@@ -26,9 +26,9 @@ namespace GeCli.Back.Manager.Implementation
             return _mapper.Map<UserView>(await _userRepository.GetUserAsync(login));
         }
 
-        public async Task<IEnumerable<UserView>> GetUsersAsync()
+        public async Task<ICollection<UserView>> GetUsersAsync()
         {
-            return _mapper.Map<IEnumerable<User>, IEnumerable<UserView>>(await _userRepository.GetUsersAsync());
+            return _mapper.Map<ICollection<User>, ICollection<UserView>>(await _userRepository.GetUsersAsync());
         }
 
         public async Task<UserView> InsertUserAsync(NewUser newUser)

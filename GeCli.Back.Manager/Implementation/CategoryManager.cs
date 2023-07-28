@@ -1,4 +1,5 @@
-﻿using GeCli.Back.Domain.Entities;
+﻿using AutoMapper;
+using GeCli.Back.Domain.Entities;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Category;
@@ -7,35 +8,40 @@ namespace GeCli.Back.Manager.Implementation
 {
     public class CategoryManager : ICategoryManager
     {
-        private readonly ICategoryRepository _categoryRepository;
-        public CategoryManager(ICategoryRepository categoryRepository)
+        readonly ICategoryRepository _categoryRepository;
+        readonly IMapper _mapper;
+        public CategoryManager(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
-        public Task<IEnumerable<CategoryView>> GetCategoriesAsync()
+        public async Task<ICollection<CategoryView>> GetCategoriesAsync()
         {
-            throw new NotImplementedException();
+            return _mapper.Map<ICollection<CategoryView>>(await _categoryRepository.GetCategoriesAsync());
         }
 
-        public Task<CategoryView> GetCategoryByIdAsync(int id)
+        public async Task<CategoryView> GetCategoryByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<CategoryView>(await _categoryRepository.GetCategoryByIdAsync(id));
         }
 
-        public Task<CategoryView> InsertCategoryAsync(NewCategory newCategory)
+        public async Task<CategoryView> InsertCategoryAsync(NewCategory newCategory)
         {
-            throw new NotImplementedException();
+            var category = _mapper.Map<Category>(newCategory);
+            return _mapper.Map<CategoryView>(await _categoryRepository.InsertCategoryAsync(category));
         }
 
-        public Task<CategoryView> RemoveCategoryAsync(int id)
+        public async Task<CategoryView> DeleteCategoryAsync(int id)
         {
-            throw new NotImplementedException();
+            var categoryDeleted = await _categoryRepository.DeleteCategoryAsync(id);
+            return _mapper.Map<CategoryView>(categoryDeleted);
         }
 
-        public Task<CategoryView> UpdateCategoryAsync(UpdateCategory updateCategory)
+        public async Task<CategoryView> UpdateCategoryAsync(UpdateCategory updateCategory)
         {
-            throw new NotImplementedException();
+            var category = _mapper.Map<Category>(updateCategory);
+            return _mapper.Map<CategoryView>(await _categoryRepository.UpdateCategoryAsync(category));
         }
     }
 }

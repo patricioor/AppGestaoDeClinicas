@@ -1,4 +1,5 @@
 ﻿using GeCli.Back.Domain.Entities.AbstractClasses;
+using GeCli.Back.Domain.Entities.Consumables;
 
 namespace GeCli.Back.Domain.Entities
 {
@@ -7,6 +8,6 @@ namespace GeCli.Back.Domain.Entities
         public MedicalRecord MedicalRecord { get; set; }
 
         public int ConsumableId { get; set; }
-        public IEnumerable<Consumable> Consumables { get; set; }
+        public ICollection<Consumable> Consumables { get; set; }
     }
 }

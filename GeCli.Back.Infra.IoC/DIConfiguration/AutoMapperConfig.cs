@@ -15,6 +15,8 @@ public static class AutoMapperConfig
             typeof(CustomerMappingProfile),
             //Dentist
             typeof(DentistMappingProfile),
+            //Supplier
+            //typeof(SupplierMappingProfile),
             //User
             typeof(UserMappingProfile)
             );

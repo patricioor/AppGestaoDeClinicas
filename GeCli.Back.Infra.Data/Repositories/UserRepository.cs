@@ -20,7 +20,7 @@ namespace GeCli.Back.Infra.Data.Repositories
                 .SingleOrDefaultAsync(p => p.Login == login);
         }
 
-        public async Task<IEnumerable<User>> GetUsersAsync()
+        public async Task<ICollection<User>> GetUsersAsync()
         {
             return await _userContext.DbUsers.AsNoTracking().ToListAsync();
         }

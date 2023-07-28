@@ -7,14 +7,14 @@ namespace GeCli.Back.Infra.Data.Repositories
 {
     public class MedicalRecordRepository : IMedicalRecordRepository
     {
-        ApplicationDbContext _medicalRecordContext;
+        readonly ApplicationDbContext _medicalRecordContext;
 
         public MedicalRecordRepository(ApplicationDbContext context)
         {
             _medicalRecordContext = context;
         }
 
-        public async Task<IEnumerable<MedicalRecord>> GetMedicalRecordsAsync()
+        public async Task<ICollection<MedicalRecord>> GetMedicalRecordsAsync()
         {
             return await _medicalRecordContext.MedicalRecords.AsNoTracking().ToListAsync();
         }

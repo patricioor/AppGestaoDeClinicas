@@ -7,13 +7,13 @@ namespace GeCli.Back.Infra.Data.Repositories
 {
     public class ProcedureRepository : IProcedureRepository
     {
-        ApplicationDbContext _procedureContext;
+        readonly ApplicationDbContext _procedureContext;
         public ProcedureRepository(ApplicationDbContext context)
         {
             _procedureContext = context;
         }
 
-        public async Task<IEnumerable<Procedure>> GetProceduresAsync()
+        public async Task<ICollection<Procedure>> GetProceduresAsync()
         {
             return await _procedureContext.Procedures.AsNoTracking().ToListAsync();
 
@@ -60,12 +60,12 @@ namespace GeCli.Back.Infra.Data.Repositories
 
         private async Task UpdateProcedureConsumables(Procedure procedure, Procedure procedureUpdate)
         {
-            foreach (var consumable in procedure.Consumables)
-            {
-                var consumableFound = await _procedureContext.Consumables.FindAsync(consumable.Id);
-                procedureUpdate.Consumables.Append(consumableFound);
+            //foreach (var consumable in procedure.Consumables)
+            //{
+            //    var consumableFound = await _procedureContext.Consumables.FindAsync(consumable.Id);
+            //    procedureUpdate.Consumables.Append(consumableFound);
                 
-            }
+            //}
         }
 
         public async Task<Procedure> Remove(Procedure procedure)

@@ -7,13 +7,13 @@ namespace GeCli.Back.Infra.Data.Repositories
 {
     public class ResponsibleRepository : IResponsibleRepository
     {
-        ApplicationDbContext _responsibleContext;
+        readonly ApplicationDbContext _responsibleContext;
         public ResponsibleRepository(ApplicationDbContext context)
         {
             _responsibleContext = context;
         }
 
-        public async Task<IEnumerable<Responsible>> GetResponsiblesAsync()
+        public async Task<ICollection<Responsible>> GetResponsiblesAsync()
         {
             return await _responsibleContext.Responsibles.AsNoTracking().ToListAsync();
         }

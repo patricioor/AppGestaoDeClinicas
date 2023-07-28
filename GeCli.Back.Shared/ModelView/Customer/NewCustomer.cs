@@ -15,7 +15,7 @@ namespace GeCli.Back.Shared.ModelView.Customer
 
         public NewCustomerAddress Address { get; set; }
 
-        public IEnumerable<NewCustomerCellphone> Cellphones { get; set; }
+        public ICollection<NewCustomerCellphone> Cellphones { get; set; }
         /// <summary>
         /// Customer's Birth day
         /// </summary>

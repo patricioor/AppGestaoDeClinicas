@@ -9,6 +9,6 @@ namespace GeCli.Back.Shared.ModelView.User
     public class UserView
     {
         public string Login { get; set; }
-        public IEnumerable<FunctionView> Functions { get; set; }
+        public ICollection<FunctionView> Functions { get; set; }
     }
 }
