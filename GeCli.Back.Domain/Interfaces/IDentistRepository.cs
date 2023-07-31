@@ -9,6 +9,6 @@ namespace GeCli.Back.Domain.Interfaces
 
         Task<Dentist> InsertDentistAsync(Dentist dentist);
         Task<Dentist> UpdateDentistAsync(Dentist dentist);
-        Task DeleteDentistAsync(int id);
+        Task<Dentist> DeleteDentistAsync(int id);
     }
 }

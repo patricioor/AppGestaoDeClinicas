@@ -43,14 +43,14 @@ namespace GeCli.Back.Infra.Data.Repositories
 
         private async Task InsertDentistSpecialty(Dentist dentist)
         {
-            var dentistConsulted = new List<Specialty>();
+            var dentistSpecialties = new List<Specialty>();
             foreach (var specialty in dentist.Specialties)
             {
                 var specialityConsulted = await _context.Specialtys
                     .FindAsync(specialty.Id);
-                dentistConsulted.Add(specialityConsulted);
+                dentistSpecialties.Add(specialityConsulted);
             }
-            dentist.Specialties = dentistConsulted;
+            dentist.Specialties = dentistSpecialties;
         }
 
         private async Task InsertDentistCellphone(Dentist dentist)
@@ -110,11 +110,15 @@ namespace GeCli.Back.Infra.Data.Repositories
             dentistFound.Cellphones = dentistCell;
         }
 
-        public async Task DeleteDentistAsync(int id)
+        public async Task<Dentist> DeleteDentistAsync(int id)
         {
             var dentistFound = await _context.Dentists.FindAsync(id);
-            _context.Dentists.Remove(dentistFound);
+
+            if (dentistFound == null) return null;
+
+            var dentistRemoved = _context.Dentists.Remove(dentistFound);
             await _context.SaveChangesAsync();
+            return dentistRemoved.Entity;
         }
     }
 }

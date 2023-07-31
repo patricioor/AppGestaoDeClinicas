@@ -42,7 +42,7 @@ namespace GeCli.Back.Infra.Data.Repositories
             return category;
         }
 
-        public async Task<Category> RemoveCategoryAsync(int id)
+        public async Task<Category> DeleteCategoryAsync(int id)
         {
             var categoryFound = await _categoryContext.Categories.FindAsync(id);
             if(categoryFound == null) return null;

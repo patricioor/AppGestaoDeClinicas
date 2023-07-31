@@ -80,7 +80,6 @@ public class CustomerRepository : ICustomerRepository
             if (cellphoneFound == null)
                 customerCell.Add(cellphone);
         }
-        if (customerCell.Count != customerFound.Cellphones.Count())
             customerFound.Cellphones = customerCell;
     }
 

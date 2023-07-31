@@ -1,4 +1,5 @@
-﻿using GeCli.Back.Domain.Entities.Suppliers;
+﻿using GeCli.Back.Domain.Entities.Consumables;
+using GeCli.Back.Domain.Entities.Suppliers;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +16,9 @@ public class SupplierRepository : ISupplierRepository
     public async Task<ICollection<Supplier>> GetSuppliersAsync()
     {
         return await _context.Suppliers
-                             .Include( p => p.Address)
-                             .Include( p => p.Cellphones)
-                             .Include( p => p.Consumables)
+                             .Include(p => p.Address)
+                             .Include(p => p.Cellphones)
+                             .Include(p => p.Consumables)
                              .AsNoTracking().ToListAsync();
     }
 
@@ -28,21 +29,92 @@ public class SupplierRepository : ISupplierRepository
                      .Include(p => p.Cellphones)
                      .Include(p => p.Consumables)
                      .AsNoTracking()
-                     .SingleOrDefaultAsync( p => p.Id == id);
+                     .SingleOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<Supplier> InsertSupplierAsync(Supplier supplier)
     {
         await InsertConsumableSupplier(supplier);
-        await InsertSupplierAsync(supplier);
+        await InsertSupplierCellphone(supplier);
+        await _context.Suppliers.AddAsync(supplier);
+        await _context.SaveChangesAsync();
+        return supplier;
     }
 
-    public Task<Supplier> UpdateSupplierAsync(Supplier supplier)
+    private async Task InsertSupplierCellphone(Supplier supplier)
     {
-        throw new NotImplementedException();
+        var supplierCellphone = new List<SupplierCellphone>();
+        foreach(var cellphone in supplier.Cellphones)
+        {
+            var cellphoneConsulted = await _context.SupplierCellphones.FindAsync(cellphone.SupplierId, cellphone.Number);
+            if(cellphoneConsulted != null)
+                supplierCellphone.Add(cellphoneConsulted);
+        }
+        supplier.Cellphones = supplierCellphone;
     }
-    public Task<Supplier> DeleteSupplierAsync(int id)
+
+    private async Task InsertConsumableSupplier(Supplier supplier)
     {
-        throw new NotImplementedException();
+        var supplierConsumables = new List<Consumable>();
+        foreach (var consumable in supplier.Consumables)
+        {
+            var consumableConsulted = await _context.Consumables.FindAsync(consumable.Id);
+            supplierConsumables.Add(consumableConsulted);
+        }
+        supplier.Consumables = supplierConsumables;
+    }
+
+    public async Task<Supplier> UpdateSupplierAsync(Supplier supplier)
+    {
+        var supplierFound = await _context.Suppliers
+                                  .Include(p => p.Address)
+                                  .Include(p => p.Cellphones)
+                                  .Include(p => p.Consumables)
+                                  .SingleOrDefaultAsync(p => p.Id == supplier.Id);
+
+        if (supplierFound == null)
+            return null;
+
+        _context.Entry(supplierFound).CurrentValues.SetValues(supplier);
+        
+        await UpdateSupplierCellphone(supplier, supplierFound);
+        await UpdateSupplierConsumable(supplier, supplierFound);
+
+        await _context.SaveChangesAsync();
+        return supplierFound;
+    }
+
+    private async Task UpdateSupplierConsumable(Supplier supplier, Supplier supplierFound)
+    {
+        var supplierConsumables = new List<Consumable>();
+        foreach (var consumable in supplier.Consumables)
+        {
+            var consumableConsulted = await _context.Consumables.FindAsync(consumable.Id);
+            if (consumableConsulted != null)
+                supplierConsumables.Add(consumableConsulted);
+        }
+        supplierFound.Consumables = supplierConsumables; ;
+    }
+
+    private async Task UpdateSupplierCellphone(Supplier supplier, Supplier supplierFound)
+    {
+        var supplierCellphone = new List<SupplierCellphone>();
+        foreach (var cellphone in supplier.Cellphones)
+        {
+            var cellphoneFound = await _context.SupplierCellphones.FindAsync(cellphone.SupplierId, cellphone.Number);
+            if (cellphoneFound == null)
+                supplierCellphone.Add(cellphoneFound);
+        }
+        supplierFound.Cellphones = supplierCellphone;
+    }
+    public async Task<Supplier> DeleteSupplierAsync(int id)
+    {
+        var supplierFound = await _context.Suppliers.FindAsync(id);
+
+        if (supplierFound == null) return null;
+
+        var supplierRemoved = _context.Suppliers.Remove(supplierFound);
+        await _context.SaveChangesAsync();
+        return supplierRemoved.Entity;
     }
 }

@@ -32,6 +32,7 @@ namespace GeCli.Back.Manager.Implementation
             var customer = _mapper.Map<Customer>(newCustomer);
             return _mapper.Map<CustomerView>(await _customerRepository.InsertCustomerAsync(customer));
         }
+
         public async Task<CustomerView> UpdateCustomerAsync(UpdateCustomer updateCustomer)
         {
             var customer = _mapper.Map<Customer>(updateCustomer);

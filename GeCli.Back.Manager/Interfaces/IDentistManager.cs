@@ -10,6 +10,6 @@ namespace GeCli.Back.Manager.Interfaces
 
         Task<DentistView> InsertDentistAsync(NewDentist newDentist);
         Task<DentistView> UpdateDentistAsync(UpdateDentist updateDentist);
-        Task DeleteDentistAsync(int id);
+        Task<DentistView> DeleteDentistAsync(int id);
     }
 }
