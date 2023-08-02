@@ -34,7 +34,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasIndex("SuppliersId");
 
-                    b.ToTable("ConsumableSupplier");
+                    b.ToTable("ConsumableSupplier", (string)null);
                 });
 
             modelBuilder.Entity("DentistSpecialty", b =>
@@ -49,7 +49,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasIndex("SpecialtiesId");
 
-                    b.ToTable("DentistSpecialty");
+                    b.ToTable("DentistSpecialty", (string)null);
                 });
 
             modelBuilder.Entity("FunctionUser", b =>
@@ -64,7 +64,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasIndex("UsersLogin");
 
-                    b.ToTable("FunctionUser");
+                    b.ToTable("FunctionUser", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Category", b =>
@@ -81,7 +81,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Consumables.Consumable", b =>
@@ -119,7 +119,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasIndex("ProcedureId");
 
-                    b.ToTable("Consumables");
+                    b.ToTable("Consumables", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.Customer", b =>
@@ -158,7 +158,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasIndex("ResponsibleId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.CustomerAddress", b =>
@@ -191,7 +191,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.ToTable("CustomersAdresses");
+                    b.ToTable("CustomersAdresses", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Customers.CustomerCellphone", b =>
@@ -204,7 +204,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("CustomerId", "Number");
 
-                    b.ToTable("CustomersCellphones");
+                    b.ToTable("CustomersCellphones", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.Dentist", b =>
@@ -247,7 +247,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasIndex("EmploymentId");
 
-                    b.ToTable("Dentists");
+                    b.ToTable("Dentists", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.DentistAddress", b =>
@@ -280,7 +280,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("DentistId");
 
-                    b.ToTable("DentistsAdresses");
+                    b.ToTable("DentistsAdresses", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.DentistCellphone", b =>
@@ -293,7 +293,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("DentistId", "Number");
 
-                    b.ToTable("DentistsCellphones");
+                    b.ToTable("DentistsCellphones", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.Employment", b =>
@@ -306,7 +306,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employments");
+                    b.ToTable("Employments", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Employees.Specialty", b =>
@@ -323,7 +323,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specialtys");
+                    b.ToTable("Specialtys", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.MedicalRecord", b =>
@@ -378,7 +378,7 @@ namespace GeCli.Back.Infra.Data.Migrations
                     b.HasIndex("ProcedureId")
                         .IsUnique();
 
-                    b.ToTable("MedicalRecords");
+                    b.ToTable("MedicalRecords", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Procedure", b =>
@@ -394,7 +394,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Procedures");
+                    b.ToTable("Procedures", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Responsible", b =>
@@ -407,7 +407,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Responsibles");
+                    b.ToTable("Responsibles", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Suppliers.Supplier", b =>
@@ -432,7 +432,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Suppliers");
+                    b.ToTable("Suppliers", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Suppliers.SupplierAddress", b =>
@@ -465,7 +465,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("SupplierId");
 
-                    b.ToTable("SupplierAddresses");
+                    b.ToTable("SupplierAddresses", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.Suppliers.SupplierCellphone", b =>
@@ -478,7 +478,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("SupplierId", "Number");
 
-                    b.ToTable("SupplierCellphones");
+                    b.ToTable("SupplierCellphones", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.User.Function", b =>
@@ -495,7 +495,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Functions");
+                    b.ToTable("Functions", (string)null);
                 });
 
             modelBuilder.Entity("GeCli.Back.Domain.Entities.User.User", b =>
@@ -509,7 +509,7 @@ namespace GeCli.Back.Infra.Data.Migrations
 
                     b.HasKey("Login");
 
-                    b.ToTable("DbUsers");
+                    b.ToTable("DbUsers", (string)null);
                 });
 
             modelBuilder.Entity("ConsumableSupplier", b =>

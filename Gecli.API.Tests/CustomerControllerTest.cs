@@ -69,7 +69,7 @@ namespace Gecli.API.Tests
         {
             _manager.GetCustomerByIdAsync(Arg.Any<int>()).Returns(new CustomerView());
 
-            var result = (StatusCodeResult) await _controller.GetById(1);
+            var result = (StatusCodeResult)await _controller.GetById(1);
 
             await _manager.Received().GetCustomerByIdAsync(Arg.Any<int>());
             result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
@@ -104,7 +104,7 @@ namespace Gecli.API.Tests
         {
             _manager.UpdateCustomerAsync(Arg.Any<UpdateCustomer>()).ReturnsNull();
 
-            var result = (StatusCodeResult) await _controller.Put(new UpdateCustomer());
+            var result = (StatusCodeResult)await _controller.Put(new UpdateCustomer());
 
             await _manager.Received().UpdateCustomerAsync(Arg.Any<UpdateCustomer>());
             result.StatusCode.Should().Be(StatusCodes.Status404NotFound);

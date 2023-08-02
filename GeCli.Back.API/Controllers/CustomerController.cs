@@ -14,6 +14,7 @@ namespace GeCli.Back.API.Controllers
         {
             _customerManager = customerManager;
         }
+
         /// <summary>
         /// Return all customers registered in the database.
         /// </summary>

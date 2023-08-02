@@ -30,7 +30,7 @@ public class SupplierController : ControllerBase
     }
 
     /// <summary>
-    /// Returns a customer queried by id.
+    /// Returns a supplier queried by id.
     /// </summary>
     /// <param name="id" example="1"> Id of supplier.</param>
     [HttpGet("{id:int}", Name = "GetSupplier")]
