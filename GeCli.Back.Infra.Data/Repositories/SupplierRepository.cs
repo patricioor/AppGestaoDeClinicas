@@ -34,7 +34,6 @@ public class SupplierRepository : ISupplierRepository
 
     public async Task<Supplier> InsertSupplierAsync(Supplier supplier)
     {
-        await InsertConsumableSupplier(supplier);
         await InsertSupplierCellphone(supplier);
         await _context.Suppliers.AddAsync(supplier);
         await _context.SaveChangesAsync();
@@ -53,23 +52,11 @@ public class SupplierRepository : ISupplierRepository
         supplier.Cellphones = supplierCellphone;
     }
 
-    private async Task InsertConsumableSupplier(Supplier supplier)
-    {
-        var supplierConsumables = new List<Consumable>();
-        foreach (var consumable in supplier.Consumables)
-        {
-            var consumableConsulted = await _context.Consumables.FindAsync(consumable.Id);
-            supplierConsumables.Add(consumableConsulted);
-        }
-        supplier.Consumables = supplierConsumables;
-    }
-
     public async Task<Supplier> UpdateSupplierAsync(Supplier supplier)
     {
         var supplierFound = await _context.Suppliers
                                   .Include(p => p.Address)
                                   .Include(p => p.Cellphones)
-                                  .Include(p => p.Consumables)
                                   .SingleOrDefaultAsync(p => p.Id == supplier.Id);
 
         if (supplierFound == null)
@@ -78,22 +65,8 @@ public class SupplierRepository : ISupplierRepository
         _context.Entry(supplierFound).CurrentValues.SetValues(supplier);
         
         await UpdateSupplierCellphone(supplier, supplierFound);
-        await UpdateSupplierConsumable(supplier, supplierFound);
-
         await _context.SaveChangesAsync();
         return supplierFound;
-    }
-
-    private async Task UpdateSupplierConsumable(Supplier supplier, Supplier supplierFound)
-    {
-        var supplierConsumables = new List<Consumable>();
-        foreach (var consumable in supplier.Consumables)
-        {
-            var consumableConsulted = await _context.Consumables.FindAsync(consumable.Id);
-            if (consumableConsulted != null)
-                supplierConsumables.Add(consumableConsulted);
-        }
-        supplierFound.Consumables = supplierConsumables; ;
     }
 
     private async Task UpdateSupplierCellphone(Supplier supplier, Supplier supplierFound)
@@ -102,8 +75,10 @@ public class SupplierRepository : ISupplierRepository
         foreach (var cellphone in supplier.Cellphones)
         {
             var cellphoneFound = await _context.SupplierCellphones.FindAsync(cellphone.SupplierId, cellphone.Number);
-            if (cellphoneFound == null)
+            if (cellphoneFound != null)
                 supplierCellphone.Add(cellphoneFound);
+            else 
+                supplierCellphone.Add(cellphone);
         }
         supplierFound.Cellphones = supplierCellphone;
     }

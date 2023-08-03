@@ -1,4 +1,4 @@
-﻿using GeCli.Back.Domain.Entities;
+﻿using GeCli.Back.Domain.Entities.Consumables;
 
 namespace GeCli.Back.Domain.Interfaces
 {

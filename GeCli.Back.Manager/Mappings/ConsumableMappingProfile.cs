@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GeCli.Back.Domain.Entities;
 using GeCli.Back.Domain.Entities.Consumables;
 using GeCli.Back.Domain.Entities.Suppliers;
 using GeCli.Back.Shared.ModelView.Category;

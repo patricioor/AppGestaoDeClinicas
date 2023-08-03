@@ -12,5 +12,5 @@ public class ConsumableView
     public decimal Price { get; set; }
     public int CategoryId { get; set; }
     public CategoryView Category { get; set; }
-    public SupplierView Supplier { get; set; }
+    public ICollection<SupplierView> Suppliers { get; set; }
 }

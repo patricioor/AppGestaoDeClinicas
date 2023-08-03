@@ -1,7 +1,6 @@
 ﻿using GeCli.Back.Domain.Entities.AbstractClasses;
-using GeCli.Back.Domain.Entities.Consumables;
 
-namespace GeCli.Back.Domain.Entities;
+namespace GeCli.Back.Domain.Entities.Consumables;
 public sealed class Category : Entity
 {
     public string Name { get; set; }

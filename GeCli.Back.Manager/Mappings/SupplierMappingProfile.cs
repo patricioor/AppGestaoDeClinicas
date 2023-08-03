@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using GeCli.Back.Domain.Entities.Suppliers;
-using GeCli.Back.Shared.ModelView.Employees;
 using GeCli.Back.Shared.ModelView.Suppliers;
 
 namespace GeCli.Back.Manager.Mappings
@@ -11,7 +10,6 @@ namespace GeCli.Back.Manager.Mappings
         {
             //Insert
             CreateMap<NewSupplier, Supplier>();
-
             CreateMap<Supplier, SupplierView>();
 
             CreateMap<SupplierAddressView, SupplierAddress>().ReverseMap();
@@ -20,7 +18,7 @@ namespace GeCli.Back.Manager.Mappings
             CreateMap<SupplierCellphoneView, SupplierCellphone>().ReverseMap();
             CreateMap<NewSupplierCellphone, SupplierCellphone>();
 
-        //Update
+            //Update
             CreateMap<UpdateSupplier, Supplier>();
         }
     }
