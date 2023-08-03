@@ -46,7 +46,8 @@ public class ConsumableRepository : IConsumableRepository
         foreach(var supplier in consumable.Suppliers)
         {
             var supplierFounded = await _consumableContext.Suppliers.FindAsync(supplier.Id);
-            consumableSupplier.Add(supplierFounded);
+            if (supplierFounded != null)
+                consumableSupplier.Add(supplierFounded);
         }
             consumable.Suppliers = consumableSupplier;
     }
