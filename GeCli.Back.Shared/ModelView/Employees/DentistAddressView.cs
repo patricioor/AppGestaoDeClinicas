@@ -2,8 +2,12 @@
 
 namespace GeCli.Back.Shared.ModelView.Employees
 {
-    public class DentistAddressView : NewAddress
+    public class DentistAddressView : NewAddress, ICloneable
     {
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
 
     }
 }

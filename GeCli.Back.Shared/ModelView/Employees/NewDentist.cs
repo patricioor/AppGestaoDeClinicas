@@ -39,5 +39,6 @@ namespace GeCli.Back.Shared.ModelView.Employees
         /// </summary>
         /// <example>CE12345</example>
         public string CRO { get; set; }
+
     }
 }

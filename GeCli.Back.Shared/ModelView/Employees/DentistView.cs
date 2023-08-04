@@ -2,7 +2,7 @@
 
 namespace GeCli.Back.Shared.ModelView.Employees
 {
-    public class DentistView
+    public class DentistView : ICloneable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -20,5 +20,20 @@ namespace GeCli.Back.Shared.ModelView.Employees
         public string CPF { get; set; }
 
         public string CRO { get; set; }
+
+        public object Clone()
+        {
+            var dentist = (DentistView)MemberwiseClone();
+            dentist.Address = (DentistAddressView)dentist.Address.Clone();
+            var cellphone = new List<DentistCellphoneView>();
+            dentist.Cellphones.ToList().ForEach(p => cellphone.Add((DentistCellphoneView)p.Clone()));
+            dentist.Cellphones = cellphone;
+            return dentist;
+        }
+
+        public DentistView CloneTyped()
+        {
+            return (DentistView)MemberwiseClone();
+        }
     }
 }

@@ -100,7 +100,7 @@ namespace GeCli.Repository.Tests.Repository
         {
             var register = await RecordInsert();
             var alterCustomer = register.First();
-            alterCustomer.Cellphones.Add(new CellphonesFake(alterCustomer.Id).Generate());
+            alterCustomer.Cellphones.Add(new CustomerCellphonesFake(alterCustomer.Id).Generate());
             var returnResult = await _customerRepository.UpdateCustomerAsync(alterCustomer);
             returnResult.Should().BeEquivalentTo(alterCustomer);
         }

@@ -1,17 +1,13 @@
 ﻿using Bogus;
 using GeCli.Back.Shared.ModelView.Customer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeCli.Back._FakeData.CellphoneData
 {
-    public class NewCellphoneFake : Faker<NewCustomerCellphone>
+    public class CustomerCellphoneViewFake : Faker<CustomerCellphoneView>
     {
-        public NewCellphoneFake() 
+        public CustomerCellphoneViewFake()
         {
+            RuleFor(p => p.Id, f => f.Random.Number(1, 10));
             RuleFor(p => p.Number, f => f.Phone.PhoneNumber("11#########"));
         }
     }

@@ -2,7 +2,11 @@
 
 namespace GeCli.Back.Shared.ModelView.Employees
 {
-    public class DentistCellphoneView : NewCellphone
+    public class DentistCellphoneView : NewCellphone, ICloneable
     {
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }

@@ -4,9 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace GeCli.Back._FakeData.CellphoneData
 {
-    public class CellphonesFake : Faker<CustomerCellphone>
+    public class CustomerCellphonesFake : Faker<CustomerCellphone>
     {
-        public CellphonesFake(int id)
+        public CustomerCellphonesFake(int id)
         {
             RuleFor(x => x.CustomerId, _ => id);
             RuleFor(p => p.Number, f => f.Phone.PhoneNumber("11#########"));

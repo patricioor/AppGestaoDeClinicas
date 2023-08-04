@@ -1,4 +1,4 @@
-﻿using GeCli.Back.Domain.Entities.Employees;
+﻿using GeCli.Back.Domain.Entities;
 
 namespace GeCli.Back.Domain.Interfaces
 {

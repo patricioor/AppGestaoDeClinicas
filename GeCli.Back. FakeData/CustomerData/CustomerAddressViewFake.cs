@@ -2,11 +2,11 @@
 using GeCli.Back.Shared.ModelView.CommunClasses;
 using GeCli.Back.Shared.ModelView.Customer;
 
-namespace GeCli.Back._FakeData.AddressData
+namespace GeCli.Back._FakeData.CustomerData
 {
-    public class NewAddressFake : Faker<NewCustomerAddress>
+    public class CustomerAddressViewFake : Faker<CustomerAddressView>
     {
-        public NewAddressFake()
+        public CustomerAddressViewFake()
         {
             RuleFor(p => p.Number, f => f.Address.BuildingNumber());
             RuleFor(p => p.CEP, f => Convert.ToInt32(f.Address.ZipCode().Replace("-", "")));

@@ -28,7 +28,6 @@ namespace GeCli.Back.Infra.Data.Repositories
                         .Include(p => p.Address)
                         .Include(p => p.Cellphones)
                         .Include(p => p.Specialties)
-                        .AsNoTracking()
                         .SingleOrDefaultAsync(p => p.Id == id);
         }
 
