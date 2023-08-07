@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using GeCli.Back._FakeData.CellphoneData;
 using GeCli.Back._FakeData.CustomerData;
 using GeCli.Back.Domain.Entities.Customers;
 using GeCli.Back.Domain.Interfaces;

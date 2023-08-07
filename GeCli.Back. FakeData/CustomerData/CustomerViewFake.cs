@@ -1,6 +1,5 @@
 ﻿using Bogus;
 using Bogus.Extensions.Brazil;
-using GeCli.Back._FakeData.CellphoneData;
 using GeCli.Back.Shared.ModelView.CommunClasses;
 using GeCli.Back.Shared.ModelView.Customer;
 

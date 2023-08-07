@@ -70,7 +70,6 @@ namespace GeCli.Back.Infra.Data.Repositories
             var dentistFound = await _context.Dentists
                                     .Include(p => p.Specialties)
                                     .Include(p => p.Cellphones)
-                                    .Include(p => p.Address)
                                     .FirstOrDefaultAsync(p => p.Id == dentist.Id);
 
             if (dentistFound == null)
@@ -101,14 +100,13 @@ namespace GeCli.Back.Infra.Data.Repositories
         }
         private async Task UpdateDentistCellphone(Dentist dentist, Dentist dentistFound)
         {
-            var dentistCell = new List<DentistCellphone>();
+            dentistFound.Cellphones.Clear();
             foreach (var cellphone in dentist.Cellphones)
             {
                 var cellphoneFound = await _context.DentistsCellphones.FindAsync(cellphone.DentistId, cellphone.Number);
                 if (cellphoneFound == null)
-                    dentistCell.Add(cellphone);
+                    dentistFound.Cellphones.Add(cellphone);
             }
-            dentistFound.Cellphones = dentistCell;
         }
 
         public async Task<Dentist> DeleteDentistAsync(int id)

@@ -35,7 +35,7 @@ public class DentistRepositoryTest
         List<Specialty> specialties = await InsertSpecialties();
         var dentists = _dentistFake.Generate(100);
 
-        foreach(var dentist in dentists)
+        foreach (var dentist in dentists)
         {
             dentist.Id = 0;
             var random = new Random();
@@ -44,6 +44,7 @@ public class DentistRepositoryTest
                 specialties.ElementAt(random.Next(specialties.Count)),
                 specialties.ElementAt(random.Next((specialties.Count)))
             };
+
             dentist.Specialties = listSpec;
             await _context.Dentists.AddAsync(dentist);
         }
@@ -56,7 +57,7 @@ public class DentistRepositoryTest
     {
         var specialties = new SpecialtyFake().Generate(100);
 
-        foreach( var specialty in specialties)
+        foreach (var specialty in specialties)
         {
             specialty.Id = 0;
             await _context.Specialtys.AddAsync(specialty);
@@ -135,24 +136,71 @@ public class DentistRepositoryTest
         returnResult.Should().BeEquivalentTo(updatedDentist);
     }
 
-    //corrigir
     [Fact]
     public async void UpdateDentist_addSpecialty()
     {
         await InsertDentists();
-        await InsertSpecialties();
-
-        var updatedDentist = await _context.Dentists.Include(p => p.Specialties).AsNoTracking().FirstAsync();
+        var updatedDentist = await _context.Dentists.Include(p => p.Specialties)
+                                                    .Include(p => p.Cellphones)
+                                                    .AsNoTracking().FirstAsync();
 
         var specialty = await _context.Specialtys.Where(p => !updatedDentist
                                                              .Specialties
                                                              .Select(i => i.Id)
                                                              .Contains(p.Id))
-                                                 .AsNoTracking().FirstAsync();
+                                                             .AsNoTracking().FirstAsync();
 
         updatedDentist.Specialties.Add(specialty);
         var returnResult = await _dentistRepository.UpdateDentistAsync(updatedDentist);
 
         returnResult.Specialties.Should().HaveCount(updatedDentist.Specialties.Count);
+    }
+
+    [Fact]
+    public async Task UpdateDentist_RemoveSpecialty()
+    {
+        await InsertDentists();
+
+        var updatedDentist = await _context.Dentists.Include(p => p.Specialties)
+                                                    .Include(p => p.Cellphones)
+                                                    .AsNoTracking().FirstAsync();
+        updatedDentist.Specialties.Remove(updatedDentist.Specialties.First());
+
+        var returnResult = await _dentistRepository.UpdateDentistAsync(updatedDentist);
+        returnResult.Specialties.Should().HaveCount(updatedDentist.Specialties.Count);
+        returnResult.Specialties.First().Id.Should().Be(updatedDentist.Specialties.First().Id);
+    }
+
+    [Fact]
+    public async Task UpdateDentist_RemoveAllSpecialties()
+    {
+        var dentists = await InsertDentists();
+        var updatedDentist = dentists.First();
+        updatedDentist.Specialties.Clear();
+
+        var returnResult = await _dentistRepository.UpdateDentistAsync(updatedDentist);
+        returnResult.Should().BeEquivalentTo(updatedDentist);
+    }
+
+    [Fact]
+    public async Task UpdateDentist_NotFound()
+    {
+        var returnResult = await _dentistRepository.UpdateDentistAsync(_dentist);
+        returnResult.Should().BeNull();
+    }
+
+    [Fact]
+    public async Task DeleteDentist_Ok()
+    {
+        var dentists = await InsertDentists();
+        var returnResult = await _dentistRepository.DeleteDentistAsync(dentists.First().Id);
+        returnResult.Should().BeEquivalentTo(dentists.First());
+    }
+
+    [Fact]
+    public async Task DeleteDentist_NotFound()
+    {
+        var returnResult = await _dentistRepository.DeleteDentistAsync(_dentist.Id);
+        returnResult.Should().BeNull();
     }
 }

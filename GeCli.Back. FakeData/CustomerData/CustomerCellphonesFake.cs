@@ -2,7 +2,7 @@
 using GeCli.Back.Domain.Entities.Customers;
 using System.Text.Json.Serialization;
 
-namespace GeCli.Back._FakeData.CellphoneData
+namespace GeCli.Back._FakeData.CustomerData
 {
     public class CustomerCellphonesFake : Faker<CustomerCellphone>
     {

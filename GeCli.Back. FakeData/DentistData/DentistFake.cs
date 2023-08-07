@@ -16,11 +16,10 @@ public class DentistFake : Faker<Dentist>
         RuleFor(x => x.Gender, f => f.PickRandom<Gender>());
         RuleFor(x => x.CPF, f => f.Person.Cpf());
         RuleFor(x => x.CRO, f => cro.ToString());
-        RuleFor(x => x.Cellphones, _ => new DentistCellphoneFake(id).Generate(3));
+        RuleFor(x => x.Cellphones, _ => new DentistCellphoneFake(id).Generate(2));
         RuleFor(x => x.Address, _ => new DentistAddressFake(id));
         RuleFor(x => x.BirthDay, f => f.Date.Past());
         RuleFor(x => x.CreationDate, f => f.Date.Past());
         RuleFor(x => x.LastUpdate, f => f.Date.Past());
-        RuleFor(x => x.Specialties, f => new SpecialtyFake().Generate(1));
     }
 }
