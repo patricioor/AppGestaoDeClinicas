@@ -7,7 +7,7 @@ public class SpecialtyFake : Faker<Specialty>
 {
     public SpecialtyFake()
     {
-        var id = new Faker().Random.Number(1, 10);
+        var id = new Faker().Random.Number(1, 500);
         RuleFor(p => p.Id, f => id);
         RuleFor(p => p.Description, f => f.Lorem.Word());
     }

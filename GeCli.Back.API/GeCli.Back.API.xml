@@ -4,6 +4,68 @@
         <name>GeCli.Back.API</name>
     </assembly>
     <members>
+        <member name="M:GeCli.Back.API.Controllers.CategoriesController.Get">
+            <summary>
+            Return all categories registered in the database.
+            </summary>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.CategoriesController.GetById(System.Int32)">
+            <summary>
+            Returns a category queried by id.
+            </summary>
+            <param name="id" example="1"> Id of category.</param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.CategoriesController.Post(GeCli.Back.Shared.ModelView.Category.NewCategory)">
+            <summary>
+            Insert new category
+            </summary>
+            <param name="newCategory"></param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.CategoriesController.Put(GeCli.Back.Shared.ModelView.Category.UpdateCategory)">
+            <summary>
+            Update an existing category.
+            </summary>
+            <param name="updateCategory"></param>
+            <remarks>When modifying a category, it will be permanently changed in the database.</remarks>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.CategoriesController.Delete(System.Int32)">
+            <summary>
+            Delete an existing category based on id.
+            </summary>
+            <param name="id" example="1">Id of category</param>
+            <remarks>When deleting a category, it will be permanently removed from the database.</remarks>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.ConsumableController.Get">
+            <summary>
+            Return all consumable registered in the database.
+            </summary>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.ConsumableController.GetById(System.Int32)">
+            <summary>
+            Returns a consumable queried by id.
+            </summary>
+            <param name="id" example="1"> Id of consumable.</param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.ConsumableController.Post(GeCli.Back.Shared.ModelView.Consumable.NewConsumable)">
+            <summary>
+            Insert new consumable
+            </summary>
+            <param name="newConsumable"></param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.ConsumableController.Put(GeCli.Back.Shared.ModelView.Consumable.UpdateConsumable)">
+            <summary>
+            Update an existing consumable.
+            </summary>
+            <param name="updateConsumable"></param>
+            <remarks>When modifying a consumable, it will be permanently changed in the database.</remarks>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.ConsumableController.Delete(System.Int32)">
+            <summary>
+            Delete an existing consumable based on id.
+            </summary>
+            <param name="id" example="1">Id of customer</param>
+            <remarks>When deleting a consumable, it will be permanently removed from the database.</remarks>
+        </member>
         <member name="M:GeCli.Back.API.Controllers.CustomerController.Get">
             <summary>
             Return all customers registered in the database.
@@ -34,6 +96,68 @@
             </summary>
             <param name="id" example="1">Id of customer</param>
             <remarks>When deleting a customer, it will be permanently removed from the database.</remarks>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.DentistController.Get">
+            <summary>
+            Return all dentist registered in the database.
+            </summary>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.DentistController.GetById(System.Int32)">
+            <summary>
+            Returns a dentist queried by id.
+            </summary>
+            <param name="id" example="1"> Id of dentist.</param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.DentistController.Post(GeCli.Back.Shared.ModelView.Employees.NewDentist)">
+            <summary>
+            Insert new dentist
+            </summary>
+            <param name="newDentist"></param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.DentistController.Put(GeCli.Back.Shared.ModelView.Employees.UpdateDentist)">
+            <summary>
+            Update an existing dentist.
+            </summary>
+            <param name="updateDentist"></param>
+            <remarks>When modifying a customer, it will be permanently changed in the database.</remarks>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.DentistController.Delete(System.Int32)">
+            <summary>
+            Delete an existing dentist based on id.
+            </summary>
+            <param name="id" example="1">Id of dentist</param>
+            <remarks>When deleting a dentist, it will be permanently removed from the database.</remarks>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.SupplierController.Get">
+            <summary>
+            Return all suppliers registered in the database.
+            </summary>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.SupplierController.GetById(System.Int32)">
+            <summary>
+            Returns a supplier queried by id.
+            </summary>
+            <param name="id" example="1"> Id of supplier.</param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.SupplierController.Post(GeCli.Back.Shared.ModelView.Suppliers.NewSupplier)">
+            <summary>
+            Insert new supplier
+            </summary>
+            <param name="newSupplier"></param>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.SupplierController.Put(GeCli.Back.Shared.ModelView.Suppliers.UpdateSupplier)">
+            <summary>
+            Update an existing supplier.
+            </summary>
+            <param name="updateSupplier"></param>
+            <remarks>When modifying a supplier, it will be permanently changed in the database.</remarks>
+        </member>
+        <member name="M:GeCli.Back.API.Controllers.SupplierController.Delete(System.Int32)">
+            <summary>
+            Delete an existing supplier based on id.
+            </summary>
+            <param name="id" example="1">Id of supplier</param>
+            <remarks>When deleting a supplier, it will be permanently removed from the database.</remarks>
         </member>
     </members>
 </doc>

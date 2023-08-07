@@ -24,7 +24,12 @@ namespace GeCli.Back.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Get()
         {
-            return Ok(await _dentistManager.GetDentistsAsync());
+            var result = await _dentistManager.GetDentistsAsync();
+
+            if(result.Any())
+                return Ok(result);
+
+            return NotFound();
         }
 
         /// <summary>
@@ -37,7 +42,7 @@ namespace GeCli.Back.API.Controllers
         public async Task<ActionResult> GetById(int id)
         {
             var dentist = await _dentistManager.GetDentistByIdAsync(id);
-            if (dentist == null)
+            if (dentist.Id == 0)
                 return NotFound();
             return Ok(dentist);
         }
@@ -85,11 +90,10 @@ namespace GeCli.Back.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Delete(int id)
         {
-            var customer = await _dentistManager.GetDentistByIdAsync(id);
-            if (customer == null)
+            var dentist = await _dentistManager.DeleteDentistAsync(id);
+            if (dentist == null)
                 return NotFound();
 
-            await _dentistManager.DeleteDentistAsync(id);
             return NoContent();
         }
     }

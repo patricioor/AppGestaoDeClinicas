@@ -5,20 +5,17 @@ using GeCli.Back.Domain.Entities.Customers;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using GeCli.Back.Infra.Data.Repositories;
-using GeCli.Back.Manager.Implementation;
-using GeCli.Back.Manager.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Win32;
 using Xunit;
 
 namespace GeCli.Repository.Tests.Repository
 {
-    public class CustomerRepositoryTest :IDisposable
+    public class CustomerRepositoryTest : IDisposable
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly ApplicationDbContext _context;
         private readonly Customer _customer;
-        private CustomerFake _customerFaker;
+        private CustomerFake _customerFake;
 
         public CustomerRepositoryTest()
         {
@@ -28,13 +25,13 @@ namespace GeCli.Repository.Tests.Repository
             _context = new ApplicationDbContext(optionsBuilder.Options);
             _customerRepository = new CustomerRepository(_context);
 
-            _customerFaker = new CustomerFake();
-            _customer = _customerFaker.Generate();
+            _customerFake = new CustomerFake();
+            _customer = _customerFake.Generate();
         }
 
         private async Task<List<Customer>> RecordInsert()
         {
-            var customers = _customerFaker.Generate(100);
+            var customers = _customerFake.Generate(100);
 
             foreach (var customer in customers)
             {
@@ -89,10 +86,10 @@ namespace GeCli.Repository.Tests.Repository
         public async Task UpdateCustomer_Ok()
         {
             var register = await RecordInsert();
-            var alterCustomer = _customerFaker.Generate();
+            var alterCustomer = _customerFake.Generate();
             alterCustomer.Id = register.First().Id;
             var returnResult = await _customerRepository.UpdateCustomerAsync(alterCustomer);
-            returnResult.Should().BeEquivalentTo(alterCustomer);      
+            returnResult.Should().BeEquivalentTo(alterCustomer);
         }
 
         [Fact]

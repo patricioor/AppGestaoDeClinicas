@@ -21,6 +21,6 @@ public class DentistFake : Faker<Dentist>
         RuleFor(x => x.BirthDay, f => f.Date.Past());
         RuleFor(x => x.CreationDate, f => f.Date.Past());
         RuleFor(x => x.LastUpdate, f => f.Date.Past());
-        RuleFor(x => x.Specialties, f => new SpecialtyFake().Generate(2));
+        RuleFor(x => x.Specialties, f => new SpecialtyFake().Generate(1));
     }
 }

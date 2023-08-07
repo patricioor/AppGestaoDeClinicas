@@ -71,13 +71,15 @@ namespace GeCli.Back.Infra.Data.Repositories
                                     .Include(p => p.Specialties)
                                     .Include(p => p.Cellphones)
                                     .Include(p => p.Address)
-                                    .SingleOrDefaultAsync(p => p.Id == dentist.Id);
+                                    .FirstOrDefaultAsync(p => p.Id == dentist.Id);
 
             if (dentistFound == null)
                 return null;
 
             _context.Entry(dentistFound).CurrentValues.SetValues(dentist);
             dentistFound.CreationDate = dentist.CreationDate;
+            dentistFound.Address = dentist.Address;
+            dentistFound.Cellphones = dentist.Cellphones;
 
             await UpdateDentistCellphone(dentist, dentistFound);
             await UpdateDentistSpecialty(dentist, dentistFound);
