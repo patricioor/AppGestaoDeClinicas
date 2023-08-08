@@ -52,7 +52,6 @@ public class CustomerRepository : ICustomerRepository
     public async Task<Customer> UpdateCustomerAsync(Customer customer)
     {
         var customerInsert = await _customerContext.Customers
-                            .Include(p => p.Address)
                             .Include(p => p.Cellphones)
                             .FirstOrDefaultAsync(p => p.Id == customer.Id);
 
