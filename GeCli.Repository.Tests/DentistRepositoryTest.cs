@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts;
 using Xunit;
 
-namespace GeCli.Repository.Tests.Repository;
+namespace GeCli.Repository.Tests;
 
 public class DentistRepositoryTest
 {
@@ -42,7 +42,7 @@ public class DentistRepositoryTest
             var listSpec = new List<Specialty>
             {
                 specialties.ElementAt(random.Next(specialties.Count)),
-                specialties.ElementAt(random.Next((specialties.Count)))
+                specialties.ElementAt(random.Next(specialties.Count))
             };
 
             dentist.Specialties = listSpec;

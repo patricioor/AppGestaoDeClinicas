@@ -29,7 +29,7 @@ public class DentistControllerTest
     }
 
     [Fact]
-    public async Task Get_Ok()
+    public async Task GetDentists_Ok()
     {
         var control = new List<DentistView>();
         _listDentistViews.ForEach(p => control.Add(p.CloneTyped()));

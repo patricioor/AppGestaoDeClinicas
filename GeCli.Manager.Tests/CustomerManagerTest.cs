@@ -44,6 +44,7 @@ public class CustomerManagerTest
     {
         var listCustomer = _customerFake.Generate(10);
         _customerRepository.GetCustomersAsync().Returns(listCustomer);
+
         var control = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerView>>(listCustomer);
         var returnResult = await _customerManager.GetCustomersAsync();
 
@@ -66,6 +67,7 @@ public class CustomerManagerTest
     public async Task GetCustomerById_Ok()
     {
         _customerRepository.GetCustomerByIdAsync(Arg.Any<int>()).Returns(_customer);
+
         var control = _mapper.Map<CustomerView>(_customer);
         var returnResult = await _customerManager.GetCustomerByIdAsync(_customer.Id);
 
@@ -77,6 +79,7 @@ public class CustomerManagerTest
     public async Task GetCustomerById_NotFound()
     {
         _customerRepository.GetCustomerByIdAsync(Arg.Any<int>()).Returns(new Customer());
+
         var control = _mapper.Map<CustomerView>(new Customer());
         var returnResult = await _customerManager.GetCustomerByIdAsync(control.Id);
 
@@ -100,6 +103,7 @@ public class CustomerManagerTest
     public async Task UpdateCustomer_Ok()
     {
         _customerRepository.UpdateCustomerAsync(Arg.Any<Customer>()).Returns(_customer);
+
         var control = _mapper.Map<CustomerView>(_customer);
         var returnResult = await _customerManager.UpdateCustomerAsync(_updateCustomer);
 

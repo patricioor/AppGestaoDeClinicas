@@ -7,7 +7,7 @@ using GeCli.Back.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace GeCli.Repository.Tests.Repository
+namespace GeCli.Repository.Tests
 {
     public class CustomerRepositoryTest : IDisposable
     {
