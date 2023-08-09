@@ -2,6 +2,10 @@
 
 namespace GeCli.Back.Shared.ModelView.Suppliers;
 
-public class NewSupplierAddress : NewAddress
+public class NewSupplierAddress : NewAddress, ICloneable
 {
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
 }

@@ -2,6 +2,10 @@
 
 namespace GeCli.Back.Shared.ModelView.Suppliers;
 
-public class SupplierCellphoneView : NewCellphone
+public class SupplierCellphoneView : NewCellphone, ICloneable
 {
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
 }

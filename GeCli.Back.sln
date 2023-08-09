@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.GeCli.Tests", "05.GeCli.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeCli.API.Tests", "Gecli.API.Tests\GeCli.API.Tests.csproj", "{20403740-84FF-4BB9-9C18-1DAE492CEE5E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeCli.FakeData", "GeCli.Back. FakeData\GeCli.FakeData.csproj", "{E3FDA266-5FB7-46B1-8875-0076B1D41310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeCli.Back. FakeData", "GeCli.Back. FakeData\GeCli.Back. FakeData.csproj", "{E3FDA266-5FB7-46B1-8875-0076B1D41310}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeCli.Repository.Tests", "GeCli.Repository.Tests\GeCli.Repository.Tests.csproj", "{0BEAE61F-99E0-49F0-9462-204D3EE33B83}"
 EndProject

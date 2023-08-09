@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeCli.Back. FakeData\GeCli.FakeData.csproj" />
+    <ProjectReference Include="..\GeCli.Back. FakeData\GeCli.Back. FakeData.csproj" />
     <ProjectReference Include="..\GeCli.Back.Domain\GeCli.Back.Domain.csproj" />
     <ProjectReference Include="..\GeCli.Back.Manager\GeCli.Back.Manager.csproj" />
   </ItemGroup>

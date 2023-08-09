@@ -42,7 +42,7 @@ public class DentistControllerTest
     }
 
     [Fact]
-    public async Task Get_NotFound()
+    public async Task GetDentists_NotFound()
     {
         _manager.GetDentistsAsync().Returns(new List<DentistView>());
 
@@ -97,6 +97,17 @@ public class DentistControllerTest
         await _manager.Received().UpdateDentistAsync(Arg.Any<UpdateDentist>());
         result.StatusCode.Should().Be(StatusCodes.Status200OK);
         result.Value.Should().BeEquivalentTo(_dentistView);
+    }
+
+    [Fact]
+    public async Task UpdateDentist_NotFound()
+    {
+        _manager.UpdateDentistAsync(Arg.Any<UpdateDentist>()).ReturnsNull();
+
+        var result = (StatusCodeResult)await _controller.Put(new UpdateDentist());
+
+        await _manager.Received().UpdateDentistAsync(Arg.Any<UpdateDentist>());
+        result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
     }
 
     [Fact]

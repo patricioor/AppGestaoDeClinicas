@@ -20,7 +20,7 @@ namespace GeCli.Back.API.Controllers
         /// Return all dentist registered in the database.
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(typeof(Dentist), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<DentistView>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Get()
         {
@@ -37,7 +37,7 @@ namespace GeCli.Back.API.Controllers
         /// </summary>
         /// <param name="id" example="1"> Id of dentist.</param>
         [HttpGet("{id:int}", Name = "GetDentist")]
-        [ProducesResponseType(typeof(Dentist), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DentistView), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetById(int id)
         {
@@ -52,7 +52,7 @@ namespace GeCli.Back.API.Controllers
         /// </summary>
         /// <param name="newDentist"></param>
         [HttpPost]
-        [ProducesResponseType(typeof(Dentist), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(DentistView), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Post(NewDentist newDentist)
         {
@@ -66,7 +66,7 @@ namespace GeCli.Back.API.Controllers
         /// <param name="updateDentist"></param>
         /// <remarks>When modifying a customer, it will be permanently changed in the database.</remarks>
         [HttpPut]
-        [ProducesResponseType(typeof(Dentist), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DentistView), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Put(UpdateDentist updateDentist)
@@ -85,7 +85,7 @@ namespace GeCli.Back.API.Controllers
         /// <param name="id" example="1">Id of dentist</param>
         /// <remarks>When deleting a dentist, it will be permanently removed from the database.</remarks>
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(Dentist), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(DentistView), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Delete(int id)

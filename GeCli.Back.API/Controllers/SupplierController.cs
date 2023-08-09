@@ -18,7 +18,7 @@ public class SupplierController : ControllerBase
     /// Return all suppliers registered in the database.
     /// </summary>
     [HttpGet]
-    [ProducesResponseType(typeof(SupplierView), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<SupplierView>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> Get()
     {
@@ -26,7 +26,8 @@ public class SupplierController : ControllerBase
 
         if (supplier.Any())
             return Ok(supplier);
-        return BadRequest();
+
+        return NotFound();
     }
 
     /// <summary>
@@ -52,7 +53,7 @@ public class SupplierController : ControllerBase
     /// </summary>
     /// <param name="newSupplier"></param>
     [HttpPost]
-    [ProducesResponseType(typeof(SupplierView), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(SupplierView), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> Post(NewSupplier newSupplier)
     {
