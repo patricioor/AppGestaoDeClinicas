@@ -5,17 +5,16 @@ using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using GeCli.Back.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts;
 using Xunit;
 
 namespace GeCli.Repository.Tests;
 
 public class DentistRepositoryTest
 {
-    private readonly IDentistRepository _dentistRepository;
-    private readonly ApplicationDbContext _context;
-    private readonly Dentist _dentist;
-    private readonly DentistFake _dentistFake;
+    readonly IDentistRepository _dentistRepository;
+    readonly ApplicationDbContext _context;
+    readonly Dentist _dentist;
+    readonly DentistFake _dentistFake;
 
     public DentistRepositoryTest()
     {

@@ -2,7 +2,7 @@
 using GeCli.Back.Domain.Entities.AbstractClasses;
 using GeCli.Back.Domain.Entities.Suppliers;
 
-namespace GeCli.Back._FakeData.SupplierData;
+namespace GeCli.FakeData.SupplierData;
 
 public class SupplierAddressFake : Faker<SupplierAddress>
 {

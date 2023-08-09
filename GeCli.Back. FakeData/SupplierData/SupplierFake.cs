@@ -3,7 +3,7 @@ using Bogus.Extensions.Brazil;
 using GeCli.Back._FakeData.ConsumableData;
 using GeCli.Back.Domain.Entities.Suppliers;
 
-namespace GeCli.Back._FakeData.SupplierData;
+namespace GeCli.FakeData.SupplierData;
 
 public class SupplierFake : Faker<Supplier>
 {

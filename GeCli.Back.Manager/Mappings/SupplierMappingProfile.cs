@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using GeCli.Back.Domain.Entities.Consumables;
 using GeCli.Back.Domain.Entities.Suppliers;
+using GeCli.Back.Shared.ModelView.Consumable;
 using GeCli.Back.Shared.ModelView.Suppliers;
 
 namespace GeCli.Back.Manager.Mappings
@@ -17,6 +19,8 @@ namespace GeCli.Back.Manager.Mappings
 
             CreateMap<SupplierCellphoneView, SupplierCellphone>().ReverseMap();
             CreateMap<NewSupplierCellphone, SupplierCellphone>();
+
+            CreateMap<ConsumableReference, Consumable>().ReverseMap();
 
             //Update
             CreateMap<UpdateSupplier, Supplier>();

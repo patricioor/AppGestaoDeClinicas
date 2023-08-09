@@ -1,14 +1,13 @@
 ﻿using Bogus;
-using GeCli.Back.Domain.Entities.AbstractClasses;
 using GeCli.Back.Shared.ModelView.CommunClasses;
 using GeCli.Back.Shared.ModelView.Suppliers;
 
-namespace GeCli.Back._FakeData.SupplierData;
+namespace GeCli.FakeData.SupplierData;
 
 public class NewSupplierAddressFake : Faker<NewSupplierAddress>
 {
-	public NewSupplierAddressFake()
-	{
+    public NewSupplierAddressFake()
+    {
         RuleFor(x => x.Number, f => f.Address.BuildingNumber());
         RuleFor(x => x.CEP, f => Convert.ToInt32(f.Address.ZipCode().Replace("-", "")));
         RuleFor(x => x.Street, f => f.Address.StreetAddress());

@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using GeCli.Back.Shared.ModelView.Suppliers;
 
-namespace GeCli.Back._FakeData.SupplierData;
+namespace GeCli.FakeData.SupplierData;
 
 public class SupplierCellphoneViewFake : Faker<SupplierCellphoneView>
 {

@@ -28,7 +28,6 @@ public class SupplierRepository : ISupplierRepository
                      .Include(p => p.Address)
                      .Include(p => p.Cellphones)
                      .Include(p => p.Consumables)
-                     .AsNoTracking()
                      .SingleOrDefaultAsync(p => p.Id == id);
     }
 
@@ -57,6 +56,7 @@ public class SupplierRepository : ISupplierRepository
         var supplierFound = await _context.Suppliers
                                   .Include(p => p.Address)
                                   .Include(p => p.Cellphones)
+                                  .Include(p => p.Consumables)
                                   .SingleOrDefaultAsync(p => p.Id == supplier.Id);
 
         if (supplierFound == null)
@@ -65,8 +65,29 @@ public class SupplierRepository : ISupplierRepository
         _context.Entry(supplierFound).CurrentValues.SetValues(supplier);
         
         await UpdateSupplierCellphone(supplier, supplierFound);
+        await UpdateSupplierConsumable(supplier, supplierFound);
         await _context.SaveChangesAsync();
         return supplierFound;
+    }
+
+    private async Task UpdateSupplierConsumable(Supplier supplier, Supplier supplierFound)
+    {
+        var supplierConsumable = new List<Consumable>();
+
+        foreach(var consumable in supplier.Consumables)
+        {
+            var consumableFound = await _context.Consumables.FindAsync(consumable.Id);
+            if(consumableFound != null)
+                supplierConsumable.Add(consumable);
+        }
+
+        foreach (var consumableFound in supplierFound.Consumables)
+        {
+            if (!supplierConsumable.Contains(consumableFound))
+                supplierConsumable.Add(consumableFound);
+        }
+        supplierFound.Consumables.Clear();
+        supplierFound.Consumables = supplierConsumable;
     }
 
     private async Task UpdateSupplierCellphone(Supplier supplier, Supplier supplierFound)

@@ -1,4 +1,6 @@
-﻿namespace GeCli.Back.Shared.ModelView.Suppliers;
+﻿using GeCli.Back.Shared.ModelView.Consumable;
+
+namespace GeCli.Back.Shared.ModelView.Suppliers;
 
 public class SupplierView : ICloneable
 {
@@ -7,6 +9,7 @@ public class SupplierView : ICloneable
     public string CNPJ { get; set; }
     public SupplierAddressView Address { get; set; }
     public ICollection<SupplierCellphoneView> Cellphones { get; set; }
+    public ICollection<ConsumableReference> Consumables { get; set; }
     public string Vendor { get; set; }
 
     public object Clone()

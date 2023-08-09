@@ -1,9 +1,9 @@
 ﻿using Bogus;
 using GeCli.Back.Domain.Entities.Suppliers;
 
-namespace GeCli.Back._FakeData.SupplierData
+namespace GeCli.FakeData.SupplierData
 {
-    internal class SupplierCellphoneFake : Faker<SupplierCellphone>
+    public class SupplierCellphoneFake : Faker<SupplierCellphone>
     {
         public SupplierCellphoneFake(int id)
         {

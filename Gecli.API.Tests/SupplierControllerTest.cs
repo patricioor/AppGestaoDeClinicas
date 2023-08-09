@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using GeCli.Back._FakeData.SupplierData;
+using GeCli.FakeData.SupplierData;
 using GeCli.Back.API.Controllers;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Suppliers;

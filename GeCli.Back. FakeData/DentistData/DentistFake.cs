@@ -2,6 +2,7 @@
 using Bogus.Extensions.Brazil;
 using GeCli.Back.Domain.Entities.AbstractClasses;
 using GeCli.Back.Domain.Entities.Employees;
+using GeCli.Back.Shared.ModelView.Employees;
 
 namespace GeCli.Back._FakeData.DentistData;
 
@@ -21,5 +22,6 @@ public class DentistFake : Faker<Dentist>
         RuleFor(x => x.BirthDay, f => f.Date.Past());
         RuleFor(x => x.CreationDate, f => f.Date.Past());
         RuleFor(x => x.LastUpdate, f => f.Date.Past());
+        RuleFor(x => x.Specialties, f => new SpecialtyFake().Generate(2));
     }
 }
