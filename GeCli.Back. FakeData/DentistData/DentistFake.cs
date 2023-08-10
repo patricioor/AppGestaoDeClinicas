@@ -2,7 +2,6 @@
 using Bogus.Extensions.Brazil;
 using GeCli.Back.Domain.Entities.AbstractClasses;
 using GeCli.Back.Domain.Entities.Employees;
-using GeCli.Back.Shared.ModelView.Employees;
 
 namespace GeCli.Back._FakeData.DentistData;
 

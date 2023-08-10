@@ -3,7 +3,7 @@ using GeCli.Back.Domain.Entities.Consumables;
 
 namespace GeCli.Back.Domain.Entities.Suppliers;
 
-public class Supplier : Entity
+public sealed class Supplier : Entity
 {
     public string Name { get; set; }
     public string CNPJ { get; set; }

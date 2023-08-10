@@ -34,7 +34,7 @@ public class SupplierRepositoryTest
     private async Task<List<Supplier>> InsertSuppliers()
     {
         List<Consumable> consumables = await InsertConsumables();
-        var suppliers = _supplierFake.Generate(100);
+        var suppliers = _supplierFake.Generate(10);
 
         foreach (var supplier in suppliers)
         {

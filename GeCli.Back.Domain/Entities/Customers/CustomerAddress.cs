@@ -2,7 +2,7 @@
 
 namespace GeCli.Back.Domain.Entities.Customers
 {
-    public class CustomerAddress : Address
+    public sealed class CustomerAddress : Address
     {
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }

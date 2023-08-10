@@ -1,7 +1,7 @@
 ﻿using GeCli.Back.Domain.Entities.AbstractClasses;
 
 namespace GeCli.Back.Domain.Entities.Employees;
-public class Dentist : Entity
+public sealed class Dentist : Entity
 {
     public string Name { get; set; }
     public ICollection<DentistCellphone> Cellphones { get; set; }
