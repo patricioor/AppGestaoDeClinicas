@@ -69,6 +69,7 @@ namespace GeCli.Back.Infra.Data.Repositories
         {
             var dentistFound = await _context.Dentists
                                     .Include(p => p.Specialties)
+                                    .Include(p => p.Address)
                                     .Include(p => p.Cellphones)
                                     .FirstOrDefaultAsync(p => p.Id == dentist.Id);
 

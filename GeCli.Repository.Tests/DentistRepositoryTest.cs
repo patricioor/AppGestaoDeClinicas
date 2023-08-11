@@ -161,11 +161,12 @@ public class DentistRepositoryTest
         await InsertDentists();
 
         var updatedDentist = await _context.Dentists.Include(p => p.Specialties)
+                                                    .Include(p => p .Address)
                                                     .Include(p => p.Cellphones)
                                                     .AsNoTracking().FirstAsync();
         updatedDentist.Specialties.Remove(updatedDentist.Specialties.First());
-
         var returnResult = await _dentistRepository.UpdateDentistAsync(updatedDentist);
+
         returnResult.Specialties.Should().HaveCount(updatedDentist.Specialties.Count);
         returnResult.Specialties.First().Id.Should().Be(updatedDentist.Specialties.First().Id);
     }

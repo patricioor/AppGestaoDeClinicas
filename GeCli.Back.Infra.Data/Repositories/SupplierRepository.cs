@@ -57,12 +57,15 @@ public class SupplierRepository : ISupplierRepository
                                   .Include(p => p.Address)
                                   .Include(p => p.Cellphones)
                                   .Include(p => p.Consumables)
-                                  .SingleOrDefaultAsync(p => p.Id == supplier.Id);
+                                  .FirstOrDefaultAsync(p => p.Id == supplier.Id);
 
         if (supplierFound == null)
             return null;
 
         _context.Entry(supplierFound).CurrentValues.SetValues(supplier);
+        supplierFound.Address = supplier.Address;
+        supplierFound.Cellphones = supplier.Cellphones;
+        supplierFound.Consumables = supplier.Consumables;
         
         await UpdateSupplierCellphone(supplier, supplierFound);
         await UpdateSupplierConsumable(supplier, supplierFound);
@@ -73,20 +76,12 @@ public class SupplierRepository : ISupplierRepository
     private async Task UpdateSupplierConsumable(Supplier supplier, Supplier supplierFound)
     {
         var supplierConsumable = new List<Consumable>();
-
         foreach(var consumable in supplier.Consumables)
         {
             var consumableFound = await _context.Consumables.FindAsync(consumable.Id);
             if(consumableFound != null)
                 supplierConsumable.Add(consumable);
         }
-
-        foreach (var consumableFound in supplierFound.Consumables)
-        {
-            if (!supplierConsumable.Contains(consumableFound))
-                supplierConsumable.Add(consumableFound);
-        }
-        supplierFound.Consumables.Clear();
         supplierFound.Consumables = supplierConsumable;
     }
 

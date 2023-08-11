@@ -15,6 +15,7 @@ public class SupplierFake : Faker<Supplier>
         RuleFor(p => p.CNPJ, f => f.Company.Cnpj());
         RuleFor(p => p.Address, f => new SupplierAddressFake(id));
         RuleFor(p => p.Cellphones, f => new SupplierCellphoneFake(id).Generate(2));
+        RuleFor(p => p.Consumables, f => new ConsumableFake().Generate(2));
         RuleFor(p => p.Vendor, f => f.Person.FirstName);
     }
 }
