@@ -3,9 +3,4 @@
 public class UpdateCategory : NewCategory
 {
     public int Id {  get; set; }
-
-    public UpdateCategory ClonedTyped()
-    {
-        return (UpdateCategory)MemberwiseClone();
-    }
 }

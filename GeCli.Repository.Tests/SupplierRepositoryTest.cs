@@ -187,6 +187,18 @@ public class SupplierRepositoryTest
     }
 
     [Fact]
+    public async Task DeleteAllSuppliers_NoContent()
+    {
+        var suppliers = await InsertSuppliers();
+        var supplier = suppliers.First();
+        supplier.Consumables.Clear();
+
+        var returnResult = await _supplierRepository.UpdateSupplierAsync(supplier);
+
+        returnResult.Should().BeEquivalentTo(supplier);
+    }
+
+    [Fact]
     public async Task DeleteSupplier_NoContent()
     {
         var db = await InsertSuppliers();

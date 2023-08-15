@@ -65,10 +65,10 @@ public class SupplierRepository : ISupplierRepository
         _context.Entry(supplierFound).CurrentValues.SetValues(supplier);
         supplierFound.Address = supplier.Address;
         supplierFound.Cellphones = supplier.Cellphones;
-        supplierFound.Consumables = supplier.Consumables;
         
         await UpdateSupplierCellphone(supplier, supplierFound);
         await UpdateSupplierConsumable(supplier, supplierFound);
+
         await _context.SaveChangesAsync();
         return supplierFound;
     }
@@ -80,7 +80,7 @@ public class SupplierRepository : ISupplierRepository
         {
             var consumableFound = await _context.Consumables.FindAsync(consumable.Id);
             if(consumableFound != null)
-                supplierConsumable.Add(consumable);
+                supplierConsumable.Add(consumableFound);
         }
         supplierFound.Consumables = supplierConsumable;
     }

@@ -16,6 +16,6 @@ public class ConsumableViewFake : Faker<ConsumableView>
         RuleFor(p => p.Price, f => f.Random.Decimal(0.01m, 9999.00m));
         RuleFor(p => p.Stock, f => f.Random.Number(1, 100));
         RuleFor(p => p.Category, f => new CategoryViewFake());
-        RuleFor(p => p.Suppliers, f => new SupplierReferenceFake().Generate(3));
+        RuleFor(p => p.Suppliers, f => new SupplierReferenceFake().Generate(2));
     }
 }

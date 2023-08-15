@@ -11,10 +11,10 @@ namespace GeCli.Repository.Tests
 {
     public class CustomerRepositoryTest : IDisposable
     {
-        private readonly ICustomerRepository _customerRepository;
-        private readonly ApplicationDbContext _context;
-        private readonly Customer _customer;
-        private CustomerFake _customerFake;
+        readonly ICustomerRepository _customerRepository;
+        readonly ApplicationDbContext _context;
+        readonly Customer _customer;
+        readonly CustomerFake _customerFake;
 
         public CustomerRepositoryTest()
         {

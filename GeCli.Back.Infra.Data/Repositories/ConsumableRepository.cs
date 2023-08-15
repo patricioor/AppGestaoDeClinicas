@@ -25,15 +25,15 @@ public class ConsumableRepository : IConsumableRepository
     public async Task<Consumable> GetConsumableByIdAsync(int id)
     {
         return await _consumableContext.Consumables
-            .Include(p => p.Category)
-            .Include(p => p.Suppliers)
-            .SingleOrDefaultAsync(p => p.Id == id);
+                    .Include(p => p.Category)
+                    .Include(p => p.Suppliers)
+                    .SingleOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<Consumable> InsertConsumableAsync(Consumable consumable)
     {
         await InsertCategoryConsumable(consumable);
-        await InsertConsumableSupplier(consumable);
+        //await InsertConsumableSupplier(consumable);
         _consumableContext.Consumables.Add(consumable);
         await _consumableContext.SaveChangesAsync();
         return consumable;
@@ -54,7 +54,7 @@ public class ConsumableRepository : IConsumableRepository
 
     private async Task InsertCategoryConsumable(Consumable consumable)
     {
-        var consumableCategory = await _consumableContext.Categories.FirstAsync(p => p.Id == consumable.Category.Id);
+        var consumableCategory = await _consumableContext.Categories.SingleOrDefaultAsync(p => p.Id == consumable.Category.Id);
         if (consumableCategory != null)
             consumable.Category = consumableCategory;        
     }
@@ -62,9 +62,9 @@ public class ConsumableRepository : IConsumableRepository
     public async Task<Consumable> UpdateConsumableAsync(Consumable consumable)
     {
         var consumableFound = await _consumableContext.Consumables
-            .Include(p => p.Category)
-            .Include(p => p.Suppliers)
-            .FirstOrDefaultAsync(p => p.Id == consumable.Id);
+                                                        .Include(p => p.Category)
+                                                        .Include(p => p.Suppliers)
+                                                        .FirstOrDefaultAsync(p => p.Id == consumable.Id);
 
         if (consumableFound == null)
             return null;
