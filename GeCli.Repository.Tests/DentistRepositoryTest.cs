@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using GeCli.Back._FakeData.DentistData;
+using GeCli.FakeData.DentistData;
 using GeCli.Back.Domain.Entities.Employees;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
@@ -9,7 +9,7 @@ using Xunit;
 
 namespace GeCli.Repository.Tests;
 
-public class DentistRepositoryTest
+public class DentistRepositoryTest : IDisposable
 {
     readonly IDentistRepository _dentistRepository;
     readonly ApplicationDbContext _context;
@@ -202,5 +202,10 @@ public class DentistRepositoryTest
     {
         var returnResult = await _dentistRepository.DeleteDentistAsync(_dentist.Id);
         returnResult.Should().BeNull();
+    }
+
+    public void Dispose()
+    {
+        _context.Database.EnsureDeleted();
     }
 }

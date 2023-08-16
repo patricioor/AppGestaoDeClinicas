@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using GeCli.Back.Shared.ModelView.Category;
 
-namespace GeCli.Back._FakeData.CategoryData;
+namespace GeCli.FakeData.CategoryData;
 
 public class UpdateCategoryFake : Faker<UpdateCategory>
 {

@@ -1,18 +1,16 @@
 ﻿using FluentAssertions;
-using GeCli.Back._FakeData.CategoryData;
-using GeCli.Back._FakeData.ConsumableData;
 using GeCli.Back.Domain.Entities.Consumables;
-using GeCli.Back.Domain.Entities.Suppliers;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using GeCli.Back.Infra.Data.Repositories;
-using GeCli.FakeData.SupplierData;
+using GeCli.FakeData.CategoryData;
+using GeCli.FakeData.ConsumableData;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace GeCli.Repository.Tests;
 
-public class ConsumableRepositoryTest
+public class ConsumableRepositoryTest : IDisposable
 {
     readonly IConsumableRepository _consumableRepository;
     readonly ApplicationDbContext _context;
@@ -37,7 +35,7 @@ public class ConsumableRepositoryTest
         List<Category> categories = await InsertCategory();
         var consumables = _consumableFake.Generate(100);
 
-        foreach(var consumable in consumables)
+        foreach (var consumable in consumables)
         {
             consumable.Id = 0;
             var random = new Random();
@@ -72,7 +70,7 @@ public class ConsumableRepositoryTest
         returnResult.Should().HaveCount(db.Count);
         returnResult.First().Category.Should().NotBeNull();
         //returnResult.First().Suppliers.Should().NotBeNull();
-    }    
+    }
 
     [Fact]
     public async Task GetConsumablesAsync_Void()
@@ -113,5 +111,31 @@ public class ConsumableRepositoryTest
         var returnResult = await _consumableRepository.UpdateConsumableAsync(updateConsumable);
         returnResult.Should().BeEquivalentTo(updateConsumable);
     }
-    // adicionar supplier
+
+    [Fact]
+    public async Task UpdateConsumable_NotFound()
+    {
+        var returnResult = await _consumableRepository.UpdateConsumableAsync(_consumable);
+        returnResult.Should().BeNull();
+    }
+
+    [Fact]
+    public async Task DeleteConsumable_NoContent()
+    {
+        var db = await RecordInsert();
+        var returnResult = await _consumableRepository.DeleteConsumableAsync(db.First().Id);
+        returnResult.Should().BeEquivalentTo(db.First());
+    }
+
+    [Fact]
+    public async Task DeleteConsumable_NotFound()
+    {
+        var returnResult = await _consumableRepository.DeleteConsumableAsync(1);
+        returnResult.Should().BeNull();
+    }
+
+    public void Dispose()
+    {
+        _context.Database.EnsureDeleted();
+    }
 }

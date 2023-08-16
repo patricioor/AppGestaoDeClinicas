@@ -1,10 +1,10 @@
 ﻿using Bogus;
 using Bogus.Extensions.Brazil;
-using GeCli.Back._FakeData.ConsumableData;
+using GeCli.FakeData.ConsumableData;
 using GeCli.Back.Shared.ModelView.Suppliers;
 using GeCli.FakeData.SupplierData;
 
-namespace GeCli.Back._FakeData.SupplierData;
+namespace GeCli.FakeData.SupplierData;
 
 public class UpdateSupplierFake : Faker<UpdateSupplier>
 {

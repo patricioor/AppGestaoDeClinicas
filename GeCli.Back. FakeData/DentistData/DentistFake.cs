@@ -3,7 +3,7 @@ using Bogus.Extensions.Brazil;
 using GeCli.Back.Domain.Entities.AbstractClasses;
 using GeCli.Back.Domain.Entities.Employees;
 
-namespace GeCli.Back._FakeData.DentistData;
+namespace GeCli.FakeData.DentistData;
 
 public class DentistFake : Faker<Dentist>
 {

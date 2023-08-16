@@ -20,6 +20,7 @@ namespace GeCli.Back.Manager.Mappings
             CreateMap<SupplierCellphoneView, SupplierCellphone>().ReverseMap();
             CreateMap<NewSupplierCellphone, SupplierCellphone>();
 
+            CreateMap<ConsumableView, Consumable>().ReverseMap();
             CreateMap<ConsumableReference, Consumable>().ReverseMap();
 
             //Update

@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using GeCli.Back._FakeData.DentistData;
 using GeCli.Back.API.Controllers;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Employees;
+using GeCli.FakeData.DentistData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
@@ -46,7 +46,7 @@ public class DentistControllerTest
     {
         _manager.GetDentistsAsync().Returns(new List<DentistView>());
 
-        var result = (StatusCodeResult) await _controller.Get();
+        var result = (StatusCodeResult)await _controller.Get();
 
         await _manager.Received().GetDentistsAsync();
         result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
@@ -57,7 +57,7 @@ public class DentistControllerTest
     {
         _manager.GetDentistByIdAsync(Arg.Any<int>()).Returns(_dentistView.CloneTyped());
 
-        var result = (ObjectResult) await _controller.GetById(_dentistView.Id);
+        var result = (ObjectResult)await _controller.GetById(_dentistView.Id);
 
         await _manager.Received().GetDentistByIdAsync(Arg.Any<int>());
         result.Value.Should().BeEquivalentTo(_dentistView);

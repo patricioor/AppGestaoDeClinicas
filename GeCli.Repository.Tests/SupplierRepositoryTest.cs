@@ -1,18 +1,17 @@
 ﻿using FluentAssertions;
-using GeCli.Back._FakeData.ConsumableData;
 using GeCli.Back.Domain.Entities.Consumables;
 using GeCli.Back.Domain.Entities.Suppliers;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Infra.Data.Context;
 using GeCli.Back.Infra.Data.Repositories;
+using GeCli.FakeData.ConsumableData;
 using GeCli.FakeData.SupplierData;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 using Xunit;
 
 namespace GeCli.Repository.Tests;
 
-public class SupplierRepositoryTest
+public class SupplierRepositoryTest : IDisposable
 {
     readonly ISupplierRepository _supplierRepository;
     readonly ApplicationDbContext _context;
@@ -212,5 +211,10 @@ public class SupplierRepositoryTest
     {
         var returnResult = await _supplierRepository.DeleteSupplierAsync(_supplier.Id);
         returnResult.Should().BeNull();
+    }
+
+    public void Dispose()
+    {
+        _context.Database.EnsureDeleted();
     }
 }

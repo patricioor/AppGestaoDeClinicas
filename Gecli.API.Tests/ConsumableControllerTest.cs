@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using GeCli.Back._FakeData.ConsumableData;
 using GeCli.Back.API.Controllers;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Consumable;
+using GeCli.FakeData.ConsumableData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;

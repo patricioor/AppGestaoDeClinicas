@@ -1,6 +1,6 @@
 ﻿using Bogus;
 using Bogus.Extensions.Brazil;
-using GeCli.Back._FakeData.ConsumableData;
+using GeCli.FakeData.ConsumableData;
 using GeCli.Back.Shared.ModelView.Suppliers;
 
 namespace GeCli.FakeData.SupplierData;

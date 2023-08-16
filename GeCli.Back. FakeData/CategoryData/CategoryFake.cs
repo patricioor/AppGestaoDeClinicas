@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using GeCli.Back.Domain.Entities.Consumables;
 
-namespace GeCli.Back._FakeData.CategoryData;
+namespace GeCli.FakeData.CategoryData;
 
 public class CategoryFake : Faker<Category>
 {

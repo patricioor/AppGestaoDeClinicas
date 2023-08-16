@@ -1,9 +1,9 @@
 ﻿using Bogus;
-using GeCli.Back._FakeData.CategoryData;
+using GeCli.FakeData.CategoryData;
 using GeCli.FakeData.SupplierData;
 using GeCli.Back.Shared.ModelView.Consumable;
 
-namespace GeCli.Back._FakeData.ConsumableData;
+namespace GeCli.FakeData.ConsumableData;
 
 public class ConsumableViewFake : Faker<ConsumableView>
 {

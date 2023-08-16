@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <BaseOutputPath></BaseOutputPath>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>D:\Repositório Estudos\GeCli\GeCli.Back\GeCli.Back.API\GeCli.Back.API.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\patricio.rios\source\repos\AppGestaoDeClinicas1\GeCli.Back.API\GeCli.Back.API.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

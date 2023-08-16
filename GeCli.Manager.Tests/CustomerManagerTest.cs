@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using FluentAssertions;
-using GeCli.Back._FakeData.CustomerData;
 using GeCli.Back.Domain.Entities.Customers;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Manager.Implementation;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Manager.Mappings;
 using GeCli.Back.Shared.ModelView.Customer;
+using GeCli.FakeData.CustomerData;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Xunit;
@@ -29,7 +29,7 @@ public class CustomerManagerTest
     {
         _customerRepository = Substitute.For<ICustomerRepository>();
         _mapper = new MapperConfiguration(p => p.AddProfile<CustomerMappingProfile>()).CreateMapper();
-        _customerManager = new CustomerManager(_customerRepository,_mapper);
+        _customerManager = new CustomerManager(_customerRepository, _mapper);
         _customerFake = new CustomerFake();
         _newCustomerFake = new NewCustomerFake();
         _updateCustomerFake = new UpdateCustomerFake();
@@ -84,7 +84,7 @@ public class CustomerManagerTest
         var returnResult = await _customerManager.GetCustomerByIdAsync(control.Id);
 
         await _customerRepository.Received().GetCustomerByIdAsync(Arg.Any<int>());
-        returnResult.Should().BeEquivalentTo(control);        
+        returnResult.Should().BeEquivalentTo(control);
     }
 
     [Fact]

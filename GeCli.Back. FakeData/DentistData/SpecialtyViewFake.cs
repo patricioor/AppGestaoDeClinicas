@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using GeCli.Back.Shared.ModelView.Employees;
 
-namespace GeCli.Back._FakeData.DentistData;
+namespace GeCli.FakeData.DentistData;
 
 public class SpecialtyViewFake : Faker<SpecialtyView>
 {

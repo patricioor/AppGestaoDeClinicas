@@ -3,7 +3,7 @@ using Bogus.Extensions.Brazil;
 using GeCli.Back.Shared.ModelView.CommunClasses;
 using GeCli.Back.Shared.ModelView.Customer;
 
-namespace GeCli.Back._FakeData.CustomerData
+namespace GeCli.FakeData.CustomerData
 {
     public class CustomerViewFake : Faker<CustomerView>
     {

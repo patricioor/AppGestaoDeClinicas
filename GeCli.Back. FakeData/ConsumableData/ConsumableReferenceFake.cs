@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using GeCli.Back.Shared.ModelView.Consumable;
 
-namespace GeCli.Back._FakeData.ConsumableData
+namespace GeCli.FakeData.ConsumableData
 {
     public class ConsumableReferenceFake : Faker<ConsumableReference>
     {

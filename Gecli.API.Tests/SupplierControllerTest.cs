@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using GeCli.FakeData.SupplierData;
 using GeCli.Back.API.Controllers;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Suppliers;
+using GeCli.FakeData.SupplierData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
@@ -124,7 +124,7 @@ public class SupplierControllerTest
     {
         _supplierManager.DeleteSupplierAsync(Arg.Any<int>()).ReturnsNull();
 
-        var result = (StatusCodeResult) await _controller.Delete(1);
+        var result = (StatusCodeResult)await _controller.Delete(1);
 
         await _supplierManager.Received().DeleteSupplierAsync(Arg.Any<int>());
         result.StatusCode.Should().Be(StatusCodes.Status404NotFound);

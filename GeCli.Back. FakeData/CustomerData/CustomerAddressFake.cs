@@ -2,7 +2,7 @@
 using GeCli.Back.Domain.Entities.AbstractClasses;
 using GeCli.Back.Domain.Entities.Customers;
 
-namespace GeCli.Back._FakeData.CustomerData;
+namespace GeCli.FakeData.CustomerData;
 public class CustomerAddressFake : Faker<CustomerAddress>
 {
     public CustomerAddressFake(int id)

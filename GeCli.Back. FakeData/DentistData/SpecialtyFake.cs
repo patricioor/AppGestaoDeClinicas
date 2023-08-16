@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using GeCli.Back.Domain.Entities.Employees;
 
-namespace GeCli.Back._FakeData.DentistData;
+namespace GeCli.FakeData.DentistData;
 
 public class SpecialtyFake : Faker<Specialty>
 {

@@ -1,8 +1,8 @@
 using FluentAssertions;
-using GeCli.Back._FakeData.CustomerData;
 using GeCli.Back.API.Controllers;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Customer;
+using GeCli.FakeData.CustomerData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;

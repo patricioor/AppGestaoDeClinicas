@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using FluentAssertions;
-using GeCli.Back._FakeData.CustomerData;
-using GeCli.Back._FakeData.DentistData;
 using GeCli.Back.Domain.Entities.Employees;
 using GeCli.Back.Domain.Interfaces;
 using GeCli.Back.Manager.Implementation;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Manager.Mappings;
 using GeCli.Back.Shared.ModelView.Employees;
+using GeCli.FakeData.DentistData;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Xunit;

@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using GeCli.Back._FakeData.CategoryData;
 using GeCli.Back.API.Controllers;
 using GeCli.Back.Manager.Interfaces;
 using GeCli.Back.Shared.ModelView.Category;
+using GeCli.FakeData.CategoryData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
@@ -48,7 +48,7 @@ public class CategoryControllerTest
     {
         _categoryManager.GetCategoriesAsync().Returns(new List<CategoryView>());
 
-        var result = (StatusCodeResult) await _categoryController.Get();
+        var result = (StatusCodeResult)await _categoryController.Get();
 
         await _categoryManager.Received().GetCategoriesAsync();
         result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
@@ -103,7 +103,7 @@ public class CategoryControllerTest
     {
         _categoryManager.UpdateCategoryAsync(Arg.Any<UpdateCategory>()).ReturnsNull();
 
-        var result = (StatusCodeResult) await _categoryController.Put(_updateCategory);
+        var result = (StatusCodeResult)await _categoryController.Put(_updateCategory);
 
         await _categoryManager.Received().UpdateCategoryAsync(Arg.Any<UpdateCategory>());
         result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
