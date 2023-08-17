@@ -28,6 +28,7 @@ public class DentistManagerTest
     {
         _dentistRepository = Substitute.For<IDentistRepository>();
         _mapper = new MapperConfiguration(p => p.AddProfile<DentistMappingProfile>()).CreateMapper();
+
         _dentistManager = new DentistManager(_dentistRepository, _mapper);
         _dentistFake = new DentistFake();
         _newDentistFake = new NewDentistFake();
