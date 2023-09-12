@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GeCli.Back.Shared</name>
+    </assembly>
+    <members>
+        <member name="P:GeCli.Back.Shared.ModelView.CommumClasses.NewAddress.CEP">
+            <example>60000000</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.CommumClasses.NewAddress.Street">
+            <example>Rua dos Loucos</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.CommumClasses.NewAddress.City">
+            <example>Fortaleza</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.CommumClasses.NewAddress.State">
+            <example>CE</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.CommumClasses.NewAddress.Number">
+            <summary> Letters can be inserted next to the number</summary>
+            <example>0</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.CommumClasses.NewAddress.Complement">
+            <example>APTO 200</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.CommumClasses.NewCellphone.Number">
+            <summary>
+            Customer's cellphone number.
+            </summary>
+            <example>11987654321</example>
+        </member>
+        <member name="T:GeCli.Back.Shared.ModelView.Customer.NewCustomer">
+            <summary>
+            Object used to insert a new customer.
+            </summary>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Customer.NewCustomer.Name">
+            <summary>
+            Customer's full name.
+            </summary>
+            <example>Patrício Osterno Rios</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Customer.NewCustomer.BirthDay">
+            <summary>
+            Customer's Birth day
+            </summary>
+            <example>1999-10-20</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Customer.NewCustomer.Gender">
+            <summary>
+            Customer's gender
+            </summary>
+            <example>M</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Customer.NewCustomer.CPF">
+            <summary>
+            Brazilian identification document: CPF(Validation on)
+            </summary>
+            <example>79656843061</example>
+        </member>
+        <member name="T:GeCli.Back.Shared.ModelView.Employees.NewDentist">
+            <summary>
+            Object used to insert a new Dentist.
+            </summary>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Employees.NewDentist.Name">
+            <summary>
+            Dentist's full name.
+            </summary>
+            <example>Patrício Osterno Rios</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Employees.NewDentist.BirthDay">
+            <summary>
+            Dentist's Birth day
+            </summary>
+            <example>1999-10-20</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Employees.NewDentist.Gender">
+            <summary>
+            Customer's gender
+            </summary>
+            <example>M</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Employees.NewDentist.CPF">
+            <summary>
+            Brazilian identification document: CPF(Validation on)
+            </summary>
+            <example>79656843061</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Employees.NewDentist.CRO">
+            <summary>
+            Dentist certification document: CRO
+            </summary>
+            <example>CE12345</example>
+        </member>
+        <member name="P:GeCli.Back.Shared.ModelView.Employees.NewSpecialty.Description">
+            <summary>
+            Dentist's specialty.
+            </summary>
+            <example>Endodontist</example>
+        </member>
+    </members>
+</doc>
